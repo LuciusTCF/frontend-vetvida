@@ -1,10 +1,9 @@
 
-import React, { useState } from 'react';
+// import React from 'react';
 import { useForm } from "react-hook-form";
 // import { Link } from "react-router-dom";
-import { useNavigate} from 'react-router-dom';
 import horses from "../src/assets/caballosInicioSesion.jpg";
-import Swal from 'sweetalert2'
+// import Swal from 'sweetalert2'
 
 
 
@@ -12,29 +11,27 @@ import Swal from 'sweetalert2'
 
 const LoginScreen = (  ) => {
         const {handleSubmit,register,formState:{errors}} = useForm();
-        const navigate = useNavigate();
-        const [email,setEmail] = useState('');
-        const [password,setPassword] = useState('');
+        
         
         
 
-        const handleSubmitV =(e)=>{
-            e.preventDefault();
-            if(email == 'admin@admin.com' && password == '12345678'){
-            localStorage.setItem('user',JSON.stringify(email));
-            navigate("/admin");
-        }else{
-            Swal.fire({
-                title: "Email o contraseña incorrectas.",
-                width: 600,
-                padding: "3em",
-                color: "#716add",
-                background: "#fff url(/images/trees.png)",
-                backdrop: `rgba(0,0,123,0.4)`,
-                icon:"error"
-                });
-        }
-    }
+        // const handleSubmitV =(e)=>{
+        //     e.preventDefault();
+        //     if(email == 'admin@admin.com' && password == '12345678'){
+        //     localStorage.setItem('user',JSON.stringify(email));
+        //     navigate("/admin");
+        // }else{
+        //     Swal.fire({
+        //         title: "Email o contraseña incorrectas.",
+        //         width: 600,
+        //         padding: "3em",
+        //         color: "#716add",
+        //         background: "#fff url(/images/trees.png)",
+        //         backdrop: `rgba(0,0,123,0.4)`,
+        //         icon:"error"
+        //         });
+        // }
+    // }
         
     return (
         
@@ -43,17 +40,15 @@ const LoginScreen = (  ) => {
             <div className="col-12 col-lg-6 d-none  d-lg-block">
                     <img src={horses} className="w-100 h-100 rounded-2 shadow-lg" alt="horses" />
                 </div>
-                <form noValidate onSubmit={handleSubmit(handleSubmitV)}   className="col-12 col-lg-6 my-auto px-5">
+                <form noValidate onSubmit={handleSubmit ()}   className="col-12 col-lg-6 my-auto px-5">
                     <h1 className="mb-4  mt-4 ">Iniciar sesión</h1>
                     <section>
                             <fieldset className="form-floating  mb-3">
                                 <input
                                     type="email"
-                                    value={email}
-                                    onChange={(e)=>setEmail(e.target.value)}
                                     className="form-control shadow-sm"
                                     id="inputCorreo"
-                                    {...register('correo',{
+                                    {...register('email',{
                                         required: "Este campo es obligatorio.",
                                         minLength:{
                                             value:5,
@@ -72,15 +67,13 @@ const LoginScreen = (  ) => {
                                     maxLength={30}
                                     minLength={5}
                                 />
-                                <p className="text-danger">{errors.correo?.message}</p>
+                                <p className="text-danger">{errors.email?.message}</p>
                                 <label htmlFor="inputCorreo">Email</label>
                             </fieldset>
                             <fieldset className="form-floating">
                                 <input
                                     type="password"
                                     className="form-control shadow-sm"
-                                    value={password}
-                                    onChange={(e)=>setPassword(e.target.value)}
                                     id="inputPassword"
                                     required
                                     {...register('password',{
