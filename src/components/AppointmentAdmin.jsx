@@ -1,33 +1,33 @@
 import React, { useState } from "react";
-import useGetUsers from "../hooks/useGetUsers";
-import { userDelete } from "../api/usersApi";
+import useGetAppointments from "../hooks/useGetAppointments";
+import { appointmentDelete } from "../api/appointmentsApi";
 import BtnPagination from "../components/BtnPagination";
-import ModalUserUpdate from "../components/ModalUserUpdate";
+import ModalAppointmentUpdate from "../components/ModalAppointmentUpdate";
 
-const UserAdmin = () => {
+const AppointmentAdmin = () => {
   const [page, setPage] = useState(0);
-  const { data } = useGetUsers(page);
+  const { data } = useGetAppointments(page);
   const [show, setShow] = useState(false);
-  const [user, setUser] = useState(null);
+  const [appointment, setappointment] = useState(null);
 
   const handleClose = () => {
-    setUser(null);
+    setappointment(null);
     setShow(false);
   };
 
   const handleShow = (data) => {
-    setUser(data);
+    setappointment(data);
     setShow(true);
   };
 
-  const modifyUser = (data) => {
-    setUser(data);
+  const modifyAppointment = (data) => {
+    setappointment(data);
   };
 
-  const deleteUser = async (id) => {
-    const validate = confirm("Está seguro que quiere borrar el usuario?");
+  const deleteAppointment = async (id) => {
+    const validate = confirm("Está seguro que quiere borrar el turno?");
     if (validate) {
-      const resp = await userDelete(id);
+      const resp = await appointmentDelete(id);
       console.log(resp);
     }
   };
@@ -52,10 +52,10 @@ const UserAdmin = () => {
         <table className="table">
           <thead>
             <tr>
-              <th>Nombre</th>
-              <th>Correo</th>
-              <th>Télefono</th>
-              <th>Rol</th>
+              <th>Detalle</th>
+              <th>Veterinario</th>
+              <th>Fecha</th>
+              <th>Usuario</th>
               <th>Mascotas</th>
               <th>Mascotas</th>
               <th></th>
@@ -63,16 +63,16 @@ const UserAdmin = () => {
           </thead>
 
           <tbody>
-            {data?.users.length > 0 &&
-              data.users.map((user) => (
-                <tr key={user._id}>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.phone}</td>
-                  <td>{user.role}</td>
-                  <td>{JSON.stringify(user.pet)}</td>
+            {data?.appointments?.length > 0 &&
+              data.appointments.map((appointment) => (
+                <tr key={appointment._id}>
+                  <td>{appointment.detail}</td>
+                  <td>{appointment.veterinarian}</td>
+                  <td>{appointment.date}</td>
+                  {/* <td>{appointment.user}</td> */}
+                  <td>{JSON.stringify(appointment.pet)}</td>
                   <td>
-                    {user.pet.map((pet) => {
+                    {appointment.pet.map((pet) => {
                       <ul>
                         <li>Nombre: {pet.name}</li>
                         <li>Especie: {pet.specie}</li>
@@ -85,13 +85,13 @@ const UserAdmin = () => {
                     <div>
                       <button
                         className="btn btn-danger btn-sm"
-                        onClick={() => deleteUser(user._id)}
+                        onClick={() => deleteAppointment(appointment._id)}
                       >
                         X
                       </button>
                       <button
                         className="btn btn-warning btn-sm"
-                        onClick={() => handleShow(user)}
+                        onClick={() => handleShow(appointment)}
                       >
                         M
                       </button>
@@ -102,12 +102,12 @@ const UserAdmin = () => {
           </tbody>
         </table>
 
-        {user && (
-          <ModalUserUpdate
+        {appointment && (
+          <ModalAppointmentUpdate
             show={show}
             handleClose={handleClose}
-            user={user}
-            setUser={modifyUser}
+            appointment={appointment}
+            setappointment={modifyAppointment}
           />
         )}
       </div>
@@ -118,4 +118,4 @@ const UserAdmin = () => {
   );
 };
 
-export default UserAdmin;
+export default AppointmentAdmin;

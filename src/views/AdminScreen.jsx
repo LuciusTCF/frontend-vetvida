@@ -1,5 +1,6 @@
 import React from "react";
 import UserAdmin from "../components/UserAdmin";
+import AppointmentAdmin from "../components/AppointmentAdmin";
 
 const AdminScreen = () => {
   return (
@@ -10,6 +11,7 @@ const AdminScreen = () => {
         </div>
       </div>
       <UserAdmin />
+      <AppointmentAdmin />
     </div>
   );
 };

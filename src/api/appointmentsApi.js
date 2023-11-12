@@ -1,6 +1,6 @@
-const url = "https://backend-vetvida-dev-jche.1.us-1.fl0.io/api/users";
+const url = "https://backend-vetvida-dev-jche.1.us-1.fl0.io/api/appointments";
 
-const userList = async (page) => {
+const appointmentList = async (page) => {
   const resp = await fetch(url + "?from=" + page, {
     method: "GET",
     headers: {
@@ -13,7 +13,7 @@ const userList = async (page) => {
   return data;
 };
 
-const userAdd = async (data) => {
+const appointmentAdd = async (data) => {
   const resp = await fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
@@ -27,7 +27,7 @@ const userAdd = async (data) => {
   return dataRes;
 };
 
-const userUpdate = async (id, data) => {
+const appointmentUpdate = async (id, data) => {
   const resp = await fetch(url + "/" + id, {
     method: "PUT",
     body: JSON.stringify(data),
@@ -40,7 +40,7 @@ const userUpdate = async (id, data) => {
   return dataResp;
 };
 
-const userDelete = async (id) => {
+const appointmentDelete = async (id) => {
   const resp = await fetch(url + "/" + id, {
     method: "DELETE",
     headers: {
@@ -52,4 +52,9 @@ const userDelete = async (id) => {
   return data;
 };
 
-export { userList, userAdd, userUpdate, userDelete };
+export {
+  appointmentList,
+  appointmentAdd,
+  appointmentUpdate,
+  appointmentDelete,
+};
