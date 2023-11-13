@@ -1,4 +1,5 @@
-const url = 'http://localhost:5173/api/auth';
+const url = "http://localhost:8080/api/auth";
+
 
 export const login = async (datos) => {
     const res = await fetch(url + "/login", {

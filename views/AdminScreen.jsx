@@ -2,7 +2,9 @@
 
 const AdminScreen = () => {
   return (
-    <div><h1>Hola administrador</h1></div>
+    <>
+    <h1>Bienvenido Administrador</h1>
+    </>
   )
 }
 
