@@ -6,10 +6,10 @@ import ModalAppointmentUpdate from "../components/ModalAppointmentUpdate";
 
 const AppointmentAdmin = () => {
   const [page, setPage] = useState(0);
-  const { data } = useGetAppointments(page);
+  const dataInfo = useGetAppointments(page);
   const [show, setShow] = useState(false);
   const [appointment, setappointment] = useState(null);
-
+  console.log(dataInfo);
   const handleClose = () => {
     setappointment(null);
     setShow(false);
@@ -33,7 +33,7 @@ const AppointmentAdmin = () => {
   };
 
   const nextPage = () => {
-    const totalPages = data.total / 15;
+    const totalPages = dataInfo.total / 15;
     console.log(totalPages);
     if (page + 1 < totalPages) {
       setPage(page + 15);
@@ -49,38 +49,73 @@ const AppointmentAdmin = () => {
   return (
     <>
       <div className="col">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Detalle</th>
-              <th>Veterinario</th>
-              <th>Fecha</th>
-              <th>Usuario</th>
-              <th>Mascotas</th>
-              <th>Mascotas</th>
-              <th></th>
-            </tr>
-          </thead>
+        {/* <h3>Tablas</h3>
+        <h4>{dataInfo?.total && dataInfo.total}</h4> */}
 
-          <tbody>
-            {data?.appointments?.length > 0 &&
-              data.appointments.map((appointment) => (
+        {dataInfo?.appointment ? (
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Detalle</th>
+                <th>Veterinario</th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {dataInfo.appointment.map((item) => (
+                <tr key={item._id}>
+                  <td>{item.detail}</td>
+                  <td>{item.veterinarian}</td>
+                  <td>{item.date}</td>
+                  <td>{item?.user.name}</td>
+                  <td>
+                    <div>
+                      <button
+                        className="btn btn-danger btn-sm"
+                        onClick={() => deleteAppointment(item._id)}
+                      >
+                        X
+                      </button>
+                      <button
+                        className="btn btn-warning btn-sm"
+                        onClick={() => handleShow(item)}
+                      >
+                        M
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <h3>Cargando data...</h3>
+        )}
+
+        {/* {dataInfo ? (
+          <table className="table">
+            <thead>
+              <tr>
+                <th>Detalle</th>
+                <th>Veterinario</th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+
+                <th></th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {dataInfo?.appointment.map((appointment) => (
                 <tr key={appointment._id}>
                   <td>{appointment.detail}</td>
                   <td>{appointment.veterinarian}</td>
                   <td>{appointment.date}</td>
-                  {/* <td>{appointment.user}</td> */}
-                  <td>{JSON.stringify(appointment.pet)}</td>
-                  <td>
-                    {appointment.pet.map((pet) => {
-                      <ul>
-                        <li>Nombre: {pet.name}</li>
-                        <li>Especie: {pet.specie}</li>
-                        <li>Raza: {pet.breed}</li>
-                        <li>Edad: {pet.age}</li>
-                      </ul>;
-                    })}
-                  </td>
+                  <td>{appointment.user}</td>
+                  
                   <td>
                     <div>
                       <button
@@ -99,8 +134,11 @@ const AppointmentAdmin = () => {
                   </td>
                 </tr>
               ))}
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        ) : (
+          <h3>Cargando info...</h3>
+        )}
 
         {appointment && (
           <ModalAppointmentUpdate
@@ -109,7 +147,7 @@ const AppointmentAdmin = () => {
             appointment={appointment}
             setappointment={modifyAppointment}
           />
-        )}
+        )} */}
       </div>
       <div className="col">
         <BtnPagination nextPage={nextPage} backPage={backPage} />
