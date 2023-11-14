@@ -2,21 +2,18 @@ import { useState, useEffect } from "react";
 import { appointmentList } from "../api/appointmentsApi";
 
 const useGetAppointments = (page = 0) => {
-  const [data, setData] = useState(null);
+  const [dataInfo, setDataInfo] = useState(null);
 
   useEffect(() => {
     getData();
-  }, [data]);
+  }, [page]);
 
   const getData = async () => {
-    const { total, appointments } = await appointmentList(page);
-    setData({
-      total,
-      appointments,
-    });
+    const { total, appointment } = await appointmentList(page);
+    setDataInfo({ total, appointment });
   };
 
-  return { data };
+  return dataInfo;
 };
 
 export default useGetAppointments;
