@@ -6,4 +6,8 @@
     bottom: 0;
     background: rgba(0, 0, 0, 0.5); /* Color de fondo semi-transparente */
   }
+  /* Estilos de página de error 404 */
+  .error404-container {
+    width: 500px;
+  }
   

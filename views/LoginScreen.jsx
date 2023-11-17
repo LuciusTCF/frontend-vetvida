@@ -8,7 +8,8 @@ import { useNavigate } from "react-router-dom";
 import { login } from "../src/api/auth";
 import { useState } from "react";
 import Spinner from 'react-bootstrap/Spinner';
-import '../src/css/login.css'
+import '../src/css/login.css';
+
 
 
 
@@ -22,7 +23,13 @@ const LoginScreen = () => {
   const [loginUser, setLoginUser] = useState(null);
 
 
-  const inicioSesion = async (data) => {
+  // useEffect(() => {
+  //   localStorage.removeItem('token');
+  //   setLoginUser(false);
+  // }, []);
+
+
+  const logIn = async (data) => {
     setLoading(true);
     const respuesta = await login(data);
     console.log(respuesta);
@@ -45,6 +52,7 @@ const LoginScreen = () => {
       });
     }
   };
+  
 
 
 
@@ -55,7 +63,7 @@ const LoginScreen = () => {
           <div className="col-12 col-lg-6 d-none  d-lg-block">
             <img src={horses} className="w-100 h-100 rounded-2 shadow-lg" alt="horses" />
           </div>
-          <form noValidate onSubmit={handleSubmit(inicioSesion)} className="col-12 col-lg-6 my-auto px-5">
+          <form noValidate onSubmit={handleSubmit(logIn)} className="col-12 col-lg-6 my-auto px-5">
             <h1 className="mb-4  mt-4 ">Iniciar sesión</h1>
             <section>
               <fieldset className="form-floating  mb-3">
@@ -148,12 +156,12 @@ const LoginScreen = () => {
       {loading && (
         <div className="position-fixed top-0 start-0 end-0 bottom-0 d-flex justify-content-center align-items-center">
           <div className="overlay"></div>
-          <div className="text-center">
+          <div className="text-center bg-light p-3">
             <Spinner animation="grow" className="m-2" variant="primary" role="status"></Spinner>
             <Spinner animation="grow" className="m-2" variant="primary" role="status"></Spinner>
             <Spinner animation="grow" className="m-2" variant="primary" role="status"></Spinner>
             <Spinner animation="grow" className="m-2" variant="primary" role="status"></Spinner>
-            <h2 className="d-flex justify-content-around text-info fw-bold">Cargando...</h2>
+            <h2 className="d-flex justify-content-around text-info fw-bold">CARGANDO...</h2>
           </div>
         </div>
       )}

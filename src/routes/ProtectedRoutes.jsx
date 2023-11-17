@@ -1,19 +1,14 @@
-// import React from 'react';
-import { Navigate } from 'react-router-dom';
+// import React from "react";
+import { Navigate } from "react-router-dom";
 
+const ProtectedRoutes = ({ children }) => {
+    const token = JSON.parse(localStorage.getItem("token")) || null;
 
-const ProtectedRoutes = ( {children}) => {
-
-    const user = JSON.parse(localStorage.getItem('user')) || null;
-    
-    if(user == 'admin@admin.com'){
-        return children
-    }else{
-        <Navigate to='/admin' />
+    if (token) {
+        return children;
+    } else {
+        return <Navigate to="/login" />;
     }
-//   return (
-    
-//   )
-}
+};
 
 export default ProtectedRoutes;
