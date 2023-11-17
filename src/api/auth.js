@@ -7,6 +7,7 @@ export const login = async (datos) => {
       body: JSON.stringify(datos),
       headers: {
         "Content-type": "application/json; charset=UTF-8",
+        
       },
     });
   
