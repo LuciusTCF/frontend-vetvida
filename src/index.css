@@ -11,38 +11,22 @@
 
 }
 
-
 .cardPlans{
   width: auto;
   border: none;
-  margin-left: 10%;
-  margin-right: 10%;
+  margin-left: 7%;
+  margin-right: 7%;
 }
 
-.card-plans-main{
-  width: 60%;
-  height: 90%;
-  margin-bottom: 4%;
-  text-align: start;
-  color: azure;
- 
-}
 
 .h1-plans{
  color: aliceblue;
  margin-left:1%;
- margin-top: 11%;
+ margin-top: 12%;
 }
 
 .img-main-plans{
 margin-bottom: 4%;
 }
 
-.ul-Plans{
-  list-style-position: inside;
-}
-
-.lili{
-  list-style-position: inside;
-}
 

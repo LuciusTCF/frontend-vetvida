@@ -1,8 +1,7 @@
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
-
+import "../css/plans.css"
 
 
 
@@ -20,24 +19,20 @@ const FormPlans = () => {
     };
 
   
-    
       return (
-        
-
        
         <form
           noValidate
           onSubmit={handleSubmit(newUser)}
-          className="bg-light text-dark p-3 rounded w-100"
+          className=" text-dark p-3 rounded w-50 mx-auto formPlans"
         >
-          <h1 className="text-center">Deja tus datos para contactarnos!</h1>
+          <h2 className="text-center mb-4">Dejá tus datos y nuestro equipo se pondrá en contacto!</h2>
+
           <section className="row">
             <fieldset className="col-12 ">
-              <label htmlFor="nameUser-input" className="form-label">
-                Nombre y apellido
-              </label>
               <input
                 type="text"
+                placeholder="Nombre completo" 
                 id="nameUser-input"
                 className="form-control"
                 {...register("name", {
@@ -61,11 +56,9 @@ const FormPlans = () => {
   
   
             <fieldset className="col-12 ">
-              <label htmlFor="Email-input" className="form-label">
-                Correo
-              </label>
               <input
                 type="email"
+                placeholder="Correo electrónico" 
                 id="Email-input"
                 className="form-control"
                 {...register("email", {
@@ -75,28 +68,51 @@ const FormPlans = () => {
               />
               <p className="text-danger">{errors.email?.message}</p>
             </fieldset>
+
+
+            <fieldset className="col-12 mb-3">
+              <input
+                type="tel" placeholder="Número de teléfono (opcional)"  
+                id="Email-input"
+                className="form-control "
+                {...register("mobile number", {
+                  required: "Este campo es requerido",
+                  minLength: {
+                    value: 3,
+                    message: "Este campo tiene un mínimo de 3 caracteres",
+                  },
+                  maxLength: {
+                    value: 20,
+                    message: "Este campo tiene un máximo de 20 caracteres",
+                  },
+                })}
+                required
+                minLength={3}
+                maxLength={20} />
+            </fieldset>
+
+
+  
+
+
             <fieldset className="col-12 ">
             <select className="form-select" aria-label="Default select example">
                <option value>Cantidad de mascotas</option>
                <option value="1">1</option>
                <option value="2">2</option>
                <option value="3">3</option>
-               <option value="3">4</option>
-               <option value="3">5</option>
-               <option value="3">más</option>
-               
+               <option value="4">Más</option>
              </select>
              </fieldset>
   
-
-
-
           </section>
-          <div className="text-end">
+
+          <div className="text-end mt-4">
             <button type="submit" className="btn btn-primary">
               Registrar
             </button>
           </div>
+
         </form>
   
         
