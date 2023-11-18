@@ -3,6 +3,7 @@ import useGetUsers from "../hooks/useGetUsers";
 import { userDelete } from "../api/usersApi";
 import BtnPagination from "../components/BtnPagination";
 import ModalUserUpdate from "../components/ModalUserUpdate";
+import Table from "react-bootstrap/Table";
 
 const UserAdmin = () => {
   const [page, setPage] = useState(0);
@@ -33,24 +34,25 @@ const UserAdmin = () => {
   };
 
   const nextPage = () => {
-    const totalPages = dataUsers.total / 15;
+    const totalPages = dataUsers.total / 10;
     console.log(totalPages);
     if (page + 1 < totalPages) {
-      setPage(page + 15);
+      setPage(page + 10);
     }
   };
 
   const backPage = () => {
-    if (page >= 15) {
-      setPage(page - 15);
+    if (page >= 10) {
+      setPage(page - 10);
     }
   };
 
   return (
-    <>
-      <div className="col">
+    <div className="col table">
+      <div className="row">
+        <h3 className="my-3">Usuarios</h3>
         {dataUsers?.users ? (
-          <table className="table">
+          <Table striped bordered hover responsive="lg" variant="dark">
             <thead>
               <tr>
                 <th>Nombre</th>
@@ -87,7 +89,7 @@ const UserAdmin = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         ) : (
           <h3>Cargando data...</h3>
         )}
@@ -101,10 +103,10 @@ const UserAdmin = () => {
           />
         )}
       </div>
-      <div className="col">
+      <div className="row">
         <BtnPagination nextPage={nextPage} backPage={backPage} />
       </div>
-    </>
+    </div>
   );
 };
 

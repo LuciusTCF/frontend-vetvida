@@ -1,8 +1,9 @@
 import React from "react";
+import "font-awesome/css/font-awesome.min.css";
 
 const BtnPagination = ({ nextPage, backPage }) => {
   return (
-    <div className="container">
+    <div className="container d-flex justify-content-center mb-4">
       <div className="row">
         <div className="col-12 d-flex gap-2">
           <button className="btn btn-success" onClick={backPage}>
