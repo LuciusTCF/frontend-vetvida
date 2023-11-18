@@ -10,13 +10,13 @@ function App() {
   return (
     <BrowserRouter>
     <Routes>
-    <Route path = "/login"  element = { <LoginScreen /> }/>
     <Route path='/*' element= {
     <ProtectedRoutes>
         <PrimaryRoutes/>
     </ProtectedRoutes>
     }
     />
+    <Route path = "/login"  element = { <LoginScreen /> }/>
     </Routes>
     </BrowserRouter>
   )
