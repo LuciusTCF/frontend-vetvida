@@ -157,7 +157,7 @@ const LoginScreen = () => {
 
       {loading && (
         <div className="position-fixed top-0 start-0 end-0 bottom-0 d-flex justify-content-center align-items-center">
-          <div className="overlay"></div>
+          <div className="overlay overlay-login"></div>
           <div className="text-center">
             <Spinner
               animation="grow"
