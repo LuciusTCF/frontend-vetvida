@@ -1,0 +1,61 @@
+*{
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  body{
+    height: 100vh;
+  }
+
+  .container-carousel img {
+    height: 100%;
+    filter: grayscale(0.8);
+    object-fit: cover;
+    object-position: top;
+  }
+  
+  .carousel button{
+    z-index: 100;
+  }
+  
+  .overlay{
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    z-index: 99;
+  }
+  
+  .overlay-home p{
+    font-size: 40px;
+
+  }
+
+  .profesionales p{
+    font-size: 18px;
+  }
+
+  .footer_bg{
+    background-color: #6a3093;
+  }
+
+  .footer-whatsapp {
+    text-decoration: underline;
+    color: white;
+  }
+
+  .servicios{
+    background-color: #FBD3E9;
+  }
+
+  .servicios p{
+    font-size: 18px;
+  }
+
+  .cardhome img{
+    object-fit: cover;
+    height: 100%;
+  }
+
