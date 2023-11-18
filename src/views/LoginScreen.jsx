@@ -2,12 +2,12 @@
 // import React from 'react';
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import horses from "../src/assets/caballosInicioSesion.jpg";
+import horses from "../assets/caballosInicioSesion.jpg";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
-import { login } from "../src/api/auth";
+import { login } from "../api/auth";
 import { useState } from "react";
-import '../src/css/login.css';
+import '../css/login.css';
 
 
 
@@ -154,9 +154,8 @@ const LoginScreen = () => {
 
       {loading && (
         <div className="position-fixed top-0 start-0 end-0 bottom-0 d-flex justify-content-center align-items-center">
-          <div className="overlay"></div>
+          <div className="overlay-login"></div>
           <div className="text-center  p-3">
-            {/* **** */}
             <div aria-label="Orange and tan hamster running in a metal wheel" role="img" className="wheel-and-hamster">
               <div className="wheel"></div>
               <div className="hamster">

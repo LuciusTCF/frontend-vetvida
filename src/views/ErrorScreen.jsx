@@ -1,7 +1,7 @@
 // import React from 'react';
 import Lottie from 'lottie-react';
-import errorAnimation from '../src/assets/error404.json';
-import "../src/css/login.css";
+import errorAnimation from '../assets/error404.json';
+import "../css/login.css";
 import { Link } from "react-router-dom";
 
 

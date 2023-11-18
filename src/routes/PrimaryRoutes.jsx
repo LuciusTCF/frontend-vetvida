@@ -1,7 +1,7 @@
 // import React from 'react';
 import { Route,Routes } from 'react-router-dom';
-import AdminScreen from '../../views/AdminScreen';
-import ErrorScreen from '../../views/ErrorScreen';
+import AdminScreen from '../views/AdminScreen';
+import ErrorScreen from '../views/ErrorScreen';
 
 
 const PrimaryRoutes = () => {
