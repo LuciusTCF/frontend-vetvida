@@ -3,6 +3,7 @@ import useGetAppointments from "../hooks/useGetAppointments";
 import { appointmentDelete } from "../api/appointmentsApi";
 import BtnPagination from "../components/BtnPagination";
 import ModalAppointmentUpdate from "../components/ModalAppointmentUpdate";
+import Table from "react-bootstrap/Table";
 
 const AppointmentAdmin = () => {
   const [page, setPage] = useState(0);
@@ -33,28 +34,28 @@ const AppointmentAdmin = () => {
   };
 
   const nextPage = () => {
-    const totalPages = dataInfo.total / 15;
+    const totalPages = dataInfo.total / 10;
     console.log(totalPages);
     if (page + 1 < totalPages) {
-      setPage(page + 15);
+      setPage(page + 10);
     }
   };
 
   const backPage = () => {
-    if (page >= 15) {
-      setPage(page - 15);
+    if (page >= 10) {
+      setPage(page - 10);
     }
   };
 
   return (
-    <>
-      <div className="col">
-        {/* <h3>Tablas</h3>
-        <h4>{dataInfo?.total && dataInfo.total}</h4> */}
+    <div className="col table">
+      <div className="row">
+        <h3 className="my-3">Turnos</h3>
+        {/*<h4>{dataInfo?.total && dataInfo.total}</h4> */}
 
         {dataInfo?.appointment ? (
-          <table className="table">
-            <thead>
+          <Table striped bordered hover responsive="lg" variant="dark">
+            <thead className="text-center">
               <tr>
                 <th>Detalle</th>
                 <th>Veterinario</th>
@@ -64,7 +65,7 @@ const AppointmentAdmin = () => {
                 <th></th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="text-center">
               {dataInfo.appointment.map((item) => (
                 <tr key={item._id}>
                   <td>{item.detail}</td>
@@ -90,7 +91,7 @@ const AppointmentAdmin = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </Table>
         ) : (
           <h3>Cargando data...</h3>
         )}
@@ -149,10 +150,10 @@ const AppointmentAdmin = () => {
           />
         )} */}
       </div>
-      <div className="col">
+      <div className="row">
         <BtnPagination nextPage={nextPage} backPage={backPage} />
       </div>
-    </>
+    </div>
   );
 };
 
