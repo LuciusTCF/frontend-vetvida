@@ -3,7 +3,7 @@ import RouterPrimary from "./routes/RouterPrimary.jsx";
 import LoginScreen from "./views/LoginScreen.jsx";
 import HomeScreen from './views/HomeScreen'
 import ProtectedRoutes from "../src/routes/ProtectedRoutes.jsx";
-
+// import "./App.css";
 
 function App() {
   return (
