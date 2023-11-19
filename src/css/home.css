@@ -8,6 +8,24 @@
     height: 100vh;
   }
 
+  .imghome {
+    width: 100%;
+    object-fit: cover;
+    height: auto;
+  }
+
+  .overlay-home p{
+    font-size: 40px;
+  }
+
+  .servicios{
+    background-color: rgba(128, 128, 128, 0.11);
+  }
+
+  .servicios p{
+    font-size: 18px;
+  }
+
   .container-carousel img {
     height: 100%;
     filter: grayscale(0.8);
@@ -19,6 +37,10 @@
     z-index: 100;
   }
   
+  .overlay-container{
+    position: relative;
+  }
+
   .overlay{
     position: absolute;
     top: 0;
@@ -26,15 +48,15 @@
     left: 0;
     bottom: 0;
     z-index: 99;
+    padding: 10px;
   }
   
-  .overlay-home p{
-    font-size: 40px;
-
-  }
-
   .profesionales p{
     font-size: 18px;
+  }
+
+  .sponsors img{
+    filter: grayscale(1);
   }
 
   .footer_bg{
@@ -46,16 +68,21 @@
     color: white;
   }
 
-  .servicios{
-    background-color: #FBD3E9;
-  }
-
-  .servicios p{
-    font-size: 18px;
-  }
-
   .cardhome img{
     object-fit: cover;
     height: 100%;
   }
 
+
+
+  @media screen and (max-width: 768px) {
+    .overlay p {
+      font-size: 20px; 
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    .overlay p {
+      font-size: 50px; 
+    }
+  }
