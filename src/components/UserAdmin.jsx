@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import useGetUsers from "../hooks/useGetUsers";
+import { userDelete } from "../api/usersApi";
 import BtnPagination from "../components/BtnPagination";
 import ModalUserUpdate from "../components/ModalUserUpdate";
+import Table from "react-bootstrap/Table";
 
 const UserAdmin = () => {
   const [page, setPage] = useState(0);
-  const { data } = useGetUsers(page);
+  const dataUsers = useGetUsers(page);
   const [show, setShow] = useState(false);
   const [user, setUser] = useState(null);
-
+  // console.log(data);
   const handleClose = () => {
     setUser(null);
     setShow(false);
@@ -32,65 +34,53 @@ const UserAdmin = () => {
   };
 
   const nextPage = () => {
-    const totalPages = data.total / 15;
+    const totalPages = dataUsers.total / 10;
     console.log(totalPages);
     if (page + 1 < totalPages) {
-      setPage(page + 15);
+      setPage(page + 10);
     }
   };
 
   const backPage = () => {
-    if (page >= 15) {
-      setPage(page - 15);
+    if (page >= 10) {
+      setPage(page - 10);
     }
   };
 
   return (
-    <>
-      <div className="col">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Correo</th>
-              <th>Télefono</th>
-              <th>Rol</th>
-              <th>Mascotas</th>
-              <th>Mascotas</th>
-              <th></th>
-            </tr>
-          </thead>
+    <div className="col table">
+      <div className="row">
+        <h3 className="my-3">Usuarios</h3>
+        {dataUsers?.users ? (
+          <Table striped bordered hover responsive="lg" variant="dark">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Correo</th>
+                <th>Télefono</th>
+                <th>Rol</th>
+                <th></th>
+              </tr>
+            </thead>
 
-          <tbody>
-            {data?.users.length > 0 &&
-              data.users.map((user) => (
-                <tr key={user._id}>
-                  <td>{user.name}</td>
-                  <td>{user.email}</td>
-                  <td>{user.phone}</td>
-                  <td>{user.role}</td>
-                  <td>{JSON.stringify(user.pet)}</td>
-                  <td>
-                    {user.pet.map((pet) => {
-                      <ul>
-                        <li>Nombre: {pet.name}</li>
-                        <li>Especie: {pet.specie}</li>
-                        <li>Raza: {pet.breed}</li>
-                        <li>Edad: {pet.age}</li>
-                      </ul>;
-                    })}
-                  </td>
+            <tbody>
+              {dataUsers.users.map((item) => (
+                <tr key={item._id}>
+                  <td>{item.name}</td>
+                  <td>{item.email}</td>
+                  <td>{item.phone}</td>
+                  <td>{item.role}</td>
                   <td>
                     <div>
                       <button
                         className="btn btn-danger btn-sm"
-                        onClick={() => deleteUser(user._id)}
+                        onClick={() => deleteUser(item._id)}
                       >
                         X
                       </button>
                       <button
                         className="btn btn-warning btn-sm"
-                        onClick={() => handleShow(user)}
+                        onClick={() => handleShow(item)}
                       >
                         M
                       </button>
@@ -98,8 +88,11 @@ const UserAdmin = () => {
                   </td>
                 </tr>
               ))}
-          </tbody>
-        </table>
+            </tbody>
+          </Table>
+        ) : (
+          <h3>Cargando data...</h3>
+        )}
 
         {user && (
           <ModalUserUpdate
@@ -110,10 +103,10 @@ const UserAdmin = () => {
           />
         )}
       </div>
-      <div className="col">
+      <div className="row">
         <BtnPagination nextPage={nextPage} backPage={backPage} />
       </div>
-    </>
+    </div>
   );
 };
 

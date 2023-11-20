@@ -1,32 +1,37 @@
 import React, { useState, useEffect } from "react";
-import { userList, userUpdate } from "../api/usersApi";
+import { appointmentList, appointmentUpdate } from "../api/appointmentsApi";
 
 import Modal from "react-bootstrap/Modal";
 
-const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
-  const [dataUser, setDataUser] = useState(null);
+const ModalAppointmentUpdate = ({
+  show,
+  handleClose,
+  appointment,
+  setAppointment,
+}) => {
+  const [dataAppointment, setDataAppointment] = useState(null);
 
   useEffect(() => {
-    getUser();
+    getAppointment();
   }, []);
 
-  const getUser = async () => {
-    const { users } = await userList();
-    setDataUser(users);
+  const getAppointment = async () => {
+    const { appointments } = await appointmentList();
+    setDataAppointment(appointments);
   };
 
   const handleChange = (e) => {
     if (e.target.name === "state") {
-      setUser({ ...user, [e.target.name]: e.target.checked });
+      setAppointment({ ...appointment, [e.target.name]: e.target.checked });
     } else {
-      setUser({ ...user, [e.target.name]: e.target.value });
+      setAppointment({ ...appointment, [e.target.name]: e.target.value });
     }
   };
 
   const update = async (e) => {
     e.preventDefault();
 
-    await userUpdate(user._id, user);
+    await appointmentUpdate(appointment._id, appointment);
 
     handleClose();
   };
@@ -34,7 +39,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
   return (
     <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Actualizar {user?.name}</Modal.Title>
+        <Modal.Title>Actualizar {appointment?.date}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form
@@ -43,20 +48,47 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
         >
           <section className="row">
             <fieldset className="col-12 ">
-              <label htmlFor="name-input" className="form-label">
-                Nombre
+              <label htmlFor="date-input" className="form-label">
+                Fecha
               </label>
               <input
                 type="text"
-                id="name-input"
-                name="name"
+                id="date-input"
+                name="date"
                 className="form-control"
-                value={user.name}
+                value={appointment.date}
                 onChange={handleChange}
                 required
               />
             </fieldset>
-
+            <fieldset className="col-12">
+              <label htmlFor="detail-input" className="form-label">
+                Detalle
+              </label>
+              <textarea
+                type="text"
+                id="detail-input"
+                name="detail"
+                className="form-control"
+                value={appointment.detail}
+                onChange={handleChange}
+                required
+              ></textarea>
+            </fieldset>
+            <fieldset className="col-12 ">
+              <label htmlFor="vet-input" className="form-label">
+                Veterinario
+              </label>
+              <input
+                type="text"
+                id="vet-input"
+                name="vet"
+                className="form-control"
+                value={appointment.veterinarian}
+                onChange={handleChange}
+                required
+              />
+            </fieldset>
             <fieldset className="col-12 ">
               <label htmlFor="pet-input" className="form-label">
                 Mascota
@@ -66,29 +98,10 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                 id="pet-input"
                 name="pet"
                 className="form-control"
-                value={user.pet}
+                value={appointment.pet}
                 onChange={handleChange}
                 required
               />
-            </fieldset>
-            <fieldset className="col-12">
-              <label htmlFor="role-input" className="form-label">
-                Rol
-              </label>
-              <select
-                className="form-select"
-                aria-label="Default select example"
-                onChange={handleChange}
-                name="role"
-              >
-                <option value="">Elegir Rol</option>
-                {dataUser?.length > 0 &&
-                  dataUser.map((user) => (
-                    <option key={user._id} value={user._id}>
-                      {user.role}
-                    </option>
-                  ))}
-              </select>
             </fieldset>
             <fieldset className="col-12 ">
               <div className="form-check form-switch">
@@ -98,7 +111,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                   name="state"
                   role="switch"
                   id="flexSwitchCheckChecked"
-                  checked={user.state}
+                  checked={appointment.state}
                   onChange={handleChange}
                 />
                 <label className="form-check-label">Estado</label>
@@ -116,4 +129,4 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
   );
 };
 
-export default ModalUserUpdate;
+export default ModalAppointmentUpdate;

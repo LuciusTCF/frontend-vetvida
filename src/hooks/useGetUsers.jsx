@@ -2,21 +2,21 @@ import { useState, useEffect } from "react";
 import { userList } from "../api/usersApi";
 
 const useGetUsers = (page = 0) => {
-  const [data, setData] = useState(null);
+  const [dataUsers, setDataUsers] = useState(null);
 
   useEffect(() => {
     getData();
-  }, [data]);
+  }, [page]);
 
   const getData = async () => {
     const { total, users } = await userList(page);
-    setData({
+    setDataUsers({
       total,
       users,
     });
   };
 
-  return { data };
+  return dataUsers;
 };
 
 export default useGetUsers;

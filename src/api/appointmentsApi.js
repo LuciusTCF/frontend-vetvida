@@ -1,8 +1,8 @@
-// const url = "https://backend-vetvida-dev-jche.1.us-1.fl0.io/api/users";
-const url = "http://localhost:8080/api/users";
+// const url = "https://backend-vetvida-dev-jche.1.us-1.fl0.io/api/appointments";
+const url = "http://localhost:8080/api/appointments";
 const token = JSON.parse(localStorage.getItem("token")) || null;
 
-const userList = async (page) => {
+const appointmentList = async (page) => {
   const resp = await fetch(url + "?from=" + page, {
     method: "GET",
     headers: {
@@ -16,13 +16,12 @@ const userList = async (page) => {
   return data;
 };
 
-const userAdd = async (data) => {
+const appointmentAdd = async (data) => {
   const resp = await fetch(url, {
     method: "POST",
     body: JSON.stringify(data),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": token,
     },
   });
 
@@ -31,7 +30,7 @@ const userAdd = async (data) => {
   return dataRes;
 };
 
-const userUpdate = async (id, data) => {
+const appointmentUpdate = async (id, data) => {
   const resp = await fetch(url + "/" + id, {
     method: "PUT",
     body: JSON.stringify(data),
@@ -44,7 +43,7 @@ const userUpdate = async (id, data) => {
   return dataResp;
 };
 
-const userDelete = async (id) => {
+const appointmentDelete = async (id) => {
   const resp = await fetch(url + "/" + id, {
     method: "DELETE",
     headers: {
@@ -56,4 +55,9 @@ const userDelete = async (id) => {
   return data;
 };
 
-export { userList, userAdd, userUpdate, userDelete };
+export {
+  appointmentList,
+  appointmentAdd,
+  appointmentUpdate,
+  appointmentDelete,
+};
