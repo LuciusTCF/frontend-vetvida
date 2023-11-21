@@ -5,6 +5,7 @@ import horses from "../assets/caballosInicioSesion.jpg";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
+import { login } from "../api/auth";
 import { useState } from "react";
 import '../css/login.css';
 
@@ -14,7 +15,12 @@ import '../css/login.css';
 
 
 const LoginScreen = () => {
-  const { handleSubmit, register, reset, formState: { errors } } = useForm();
+  const {
+    handleSubmit,
+    register,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -46,7 +52,7 @@ const LoginScreen = () => {
         color: "#716add",
         background: "#fff url(/images/trees.png)",
         backdrop: `rgba(0,0,123,0.4)`,
-        icon: "error"
+        icon: "error",
       });
     }
   };
@@ -59,7 +65,11 @@ const LoginScreen = () => {
       <div className="container  w-75 shadow-lg rounded-3 p-0">
         <div className="row ">
           <div className="col-12 col-lg-6 d-none  d-lg-block">
-            <img src={horses} className="w-100 h-100 rounded-2 shadow-lg" alt="horses" />
+            <img
+              src={horses}
+              className="w-100 h-100 rounded-2 shadow-lg"
+              alt="horses"
+            />
           </div>
           <form noValidate onSubmit={handleSubmit(logIn)} className="col-12 col-lg-6 my-auto px-5">
             <h1 className="mb-4  mt-4 ">Iniciar sesión</h1>
@@ -69,20 +79,21 @@ const LoginScreen = () => {
                   type="email"
                   className="form-control shadow-sm"
                   id="inputCorreo"
-                  {...register('email', {
+                  {...register("email", {
                     required: "Este campo es obligatorio.",
                     minLength: {
                       value: 5,
-                      message: "Escribe un mínimo de 5 caracteres."
+                      message: "Escribe un mínimo de 5 caracteres.",
                     },
                     maxLength: {
                       value: 21,
-                      message: "Escribe un máximo de 20 caracteres."
+                      message: "Escribe un máximo de 20 caracteres.",
                     },
                     pattern: {
                       value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.com$/,
-                      message: "El correo debe llevar '@' y finalizar con dominio '.com' "
-                    }
+                      message:
+                        "El correo debe llevar '@' y finalizar con dominio '.com' ",
+                    },
                   })}
                   required
                   maxLength={30}
@@ -101,18 +112,17 @@ const LoginScreen = () => {
                   maxLength={16}
                   required
                   disabled={loading ? true : false}
-                  {...register('password', {
-                    required: `Este campo es obligatorio.`
-                    ,
+                  {...register("password", {
+                    required: `Este campo es obligatorio.`,
                     maxLength: {
                       value: 17,
-                      message: "Escribe un máximo de 16 caracteres."
+                      message: "Escribe un máximo de 16 caracteres.",
                     },
                     pattern: {
-                      value: /^.{8,16}$/
-                      ,
-                      message: "La contraseña debe tener un máximo de 16 caracteres entre mayusculas y minusculas."
-                    }
+                      value: /^.{8,16}$/,
+                      message:
+                        "La contraseña debe tener un máximo de 16 caracteres entre mayusculas y minusculas.",
+                    },
                   })}
                 />
                 <p className="text-danger">{errors.password?.message}</p>
@@ -128,11 +138,15 @@ const LoginScreen = () => {
                 </button>
               </div>
               <p>Aun no tienes cuenta?</p>
-              <Link to="/prueba" className="btn btn-outline-success mb-3 fw-bold ">
+              <Link
+                to="/prueba"
+                className="btn btn-outline-success mb-3 fw-bold "
+              >
                 Regístrate
               </Link>
               <hr className="text-secondary border-3" />
-              <Link to="/prueba" className="btn btn-info fw-bold mb-3  "><i className="bi bi-house-fill"> </i>
+              <Link to="/prueba" className="btn btn-info fw-bold mb-3  ">
+                <i className="bi bi-house-fill"> </i>
                 Volver
               </Link>
             </section>
@@ -149,7 +163,8 @@ const LoginScreen = () => {
               </div>
             </div>
           ))}
-        </div>)}
+        </div>
+      )}
 
       {loading && (
         <div className="position-fixed top-0 start-0 end-0 bottom-0 d-flex justify-content-center align-items-center">
@@ -178,7 +193,7 @@ const LoginScreen = () => {
         </div>
       )}
     </>
-  )
+  );
 };
 
 export default LoginScreen;

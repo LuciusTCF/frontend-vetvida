@@ -1,14 +1,23 @@
-import { Link } from "react-router-dom";
-
+import React from "react";
+import UserAdmin from "../components/UserAdmin";
+import AppointmentAdmin from "../components/AppointmentAdmin";
+import "../css/admin.css";
 
 const AdminScreen = () => {
-
-  
   return (
-    <>
-      <h1>Bienvenido Administrador</h1>
-      <Link to= "/error" className="btn btn-info">volver</Link>
-    </>
+    <div className="container-fluid row main-admin">
+      <div className="col pt-5 tables">
+        <div className="row">
+          <h1>Administrador</h1>
+        </div>
+        <div className="row">
+          <hr />
+          <UserAdmin />
+          <hr />
+          <AppointmentAdmin />
+        </div>
+      </div>
+    </div>
   );
 };
 

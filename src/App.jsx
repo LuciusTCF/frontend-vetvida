@@ -1,10 +1,9 @@
-import { BrowserRouter,Routes,Route} from 'react-router-dom';
-import LoginScreen from '../src/views/LoginScreen.jsx';
-import './App.css'
-import PrimaryRoutes from '../src/routes/PrimaryRoutes.jsx';
-import ProtectedRoutes from '../src/routes/ProtectedRoutes.jsx';
-
-
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import RouterPrimary from "./routes/RouterPrimary.jsx";
+import LoginScreen from "./views/LoginScreen.jsx";
+import HomeScreen from "./views/HomeScreen";
+import ProtectedRoutes from "../src/routes/ProtectedRoutes.jsx";
+// import "./App.css";
 
 function App() {
   return (
@@ -19,6 +18,7 @@ function App() {
     <Route path = "/login"  element = { <LoginScreen /> }/>
     </Routes>
     </BrowserRouter>
+    
   )
 }
 
