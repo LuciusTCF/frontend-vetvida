@@ -146,13 +146,18 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                 onChange={handleChange}
                 name="role"
               >
-                <option value="">Elegir Rol</option>
-                {dataUser?.length > 0 &&
-                  dataUser.map((user) => (
-                    <option key={user._id} value={user._id}>
-                      {user.role}
+                <option value="0">Elegir Rol</option>
+                <option value="ADMIN_ROLE">Admin</option>
+                <option value="USER_ROLE_NP">Usuario sin plan</option>
+                <option value="USER_ROLE_P1">Usuario con plan Plata</option>
+                <option value="USER_ROLE_P2">Usuario con plan Bronce</option>
+                <option value="USER_ROLE_P3">Usuario con plan Oro</option>
+                {/* {user?.length > 0 &&
+                  user.map((item, index) => (
+                    <option key={index} value={index}>
+                      {item.role}
                     </option>
-                  ))}
+                  ))} */}
               </select>
             </fieldset>
           </section>
