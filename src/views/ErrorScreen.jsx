@@ -1,4 +1,3 @@
-// import React from 'react';
 import Lottie from 'lottie-react';
 import errorAnimation from '../assets/error404.json';
 import "../css/login.css";
