@@ -1,19 +1,25 @@
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import NavBarApp from '../components/NavBarApp'
 import imgMainPlans from "../assets/BronzeMain1.jpg"
 import imgSilverPlans from "../assets/PlanSilver.jpg"
 import imgBronzePlans from "../assets/PlanBronze.png";
 import imgGoldPlans from "../assets/PlanGold.png";
+import "../css/plans.css"
+import FormPlans from '../components/FormPlans';
+import FooterApp from '../components/FooterApp'
 
 
 
 const PlansScreen= () =>  {
   return (
     <div>
+
+      <NavBarApp/>
 <div>
-  <div class="position-relative mx-auto img-main-plans ">
+  <div className="position-relative mx-auto img-main-plans ">
   <img src={imgMainPlans} className="img-fluid" alt="..."/>
-  <div class="position-absolute top-0 star-0">
+  <div className="position-absolute top-0 star-0">
   <h1 className='h1-plans'>Planes que se adaptan a tus necesidades!</h1>
   </div>
 </div>
@@ -67,6 +73,10 @@ const PlansScreen= () =>  {
 </div>
 <hr className="border-bottom"/>
 <hr className="border-bottom"/>
+
+<FormPlans/>
+
+<FooterApp/>
 
 </div>
 

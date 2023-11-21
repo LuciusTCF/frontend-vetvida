@@ -1,4 +1,35 @@
-.formPlans{
+
+*{
+    padding: 0%;
+    margin: 0%;
+  }
+
+  .formPlans{
     background-color: #f7b9ff;
-   border-color: rgb(0, 255, 21);
-}
+  }
+  
+  
+  .imgPlans{
+    border-radius: 50%;
+    width: 50%;
+    height: auto;
+  
+  }
+  
+  .cardPlans{
+    width: auto;
+    border: none;
+    margin-left: 7%;
+    margin-right: 7%;
+  }
+  
+  
+  .h1-plans{
+   color: aliceblue;
+   margin-left:1%;
+   margin-top: 12%;
+  }
+  
+  .img-main-plans{
+  margin-bottom: 4%;
+  }
