@@ -11,10 +11,11 @@ function App() {
     <Routes>
     <Route path='/*' element= {
     <ProtectedRoutes>
-        <PrimaryRoutes/>
+        <RouterPrimary/>
     </ProtectedRoutes>
     }
     />
+    <Route path="/" element={<HomeScreen />}/>
     <Route path = "/login"  element = { <LoginScreen /> }/>
     </Routes>
     </BrowserRouter>

@@ -1,18 +1,9 @@
-// import React from 'react'
+import React from 'react'
 
-const NavbarApp = () => {
+const NavBarApp = () => {
   return (
-    <nav className="navbar bg-info mb-3">
-  <div className="container-fluid">
-    <a className="navbar-brand">Navbar</a>
-    <form className="d-flex" >
-      
-      <button className="btn btn-outline-danger" >cerrar sesion</button>
-      {loginUser ? "LogOut" : "LogIn"}
-    </form>
-  </div>
-</nav>
+    <div>NavBarApp</div>
   )
 }
 
-export default NavbarApp
+export default NavBarApp

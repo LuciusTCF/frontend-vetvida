@@ -5,7 +5,6 @@ import horses from "../assets/caballosInicioSesion.jpg";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
-import { login } from "../api/auth";
 import { useState } from "react";
 import '../css/login.css';
 
