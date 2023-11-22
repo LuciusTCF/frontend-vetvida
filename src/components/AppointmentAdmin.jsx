@@ -141,6 +141,7 @@ const AppointmentAdmin = () => {
           <h3>Cargando info...</h3>
         )}
 
+      */}
         {appointment && (
           <ModalAppointmentUpdate
             show={show}
@@ -148,7 +149,7 @@ const AppointmentAdmin = () => {
             appointment={appointment}
             setappointment={modifyAppointment}
           />
-        )} */}
+        )}
       </div>
       <div className="row">
         <BtnPagination nextPage={nextPage} backPage={backPage} />
