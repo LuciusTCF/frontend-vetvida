@@ -51,8 +51,18 @@
     padding: 10px;
   }
   
-  .profesionales p{
+  .parrafoshome p{
     font-size: 18px;
+  }
+
+  .carouselproductoshome{
+    height: 250px;
+    overflow: hidden;
+  }
+
+  .carousel-item img{
+    object-fit: cover;
+    height: 100%;
   }
 
   .sponsors img{
@@ -75,14 +85,29 @@
 
 
 
-  @media screen and (max-width: 768px) {
+  @media (min-width: 390px) {
     .overlay p {
       font-size: 20px; 
     }
+    .carouselproductoshome{
+      height: 70px;
+    }
+ 
   }
 
-  @media screen and (min-width: 769px) {
+  @media (min-width: 768px){
+    .carouselproductoshome{
+      height: 160px;
+    }
+
+  }
+
+  @media (min-width: 1024px) {
     .overlay p {
       font-size: 50px; 
     }
+    .carouselproductoshome{
+      height: 250px;
+    }
+
   }

@@ -8,7 +8,7 @@ const SponsorsApp = () => {
   return (
 
 
-  <div className='row sponsors mx-3 mb-5 g-1 bg-body-secondary'>
+  <div className='row sponsors mx-3 my-5 g-1 bg-body-secondary'>
      <div className='col-3' >
         <div className="card">
           <img src={marca1} className="card-img-top" alt="sponsor"/>

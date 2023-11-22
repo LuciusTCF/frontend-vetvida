@@ -8,6 +8,7 @@ import imagenhome from '../assets/home.jpg'
 import SponsorsApp from '../components/SponsorsApp'
 import CarouselApp from '../components/CarouselApp'
 import '../css/home.css'
+import CarouselProdHomeApp from '../components/CarouselProdHomeApp'
 
 
 const HomeScreen = () => {
@@ -26,7 +27,7 @@ const HomeScreen = () => {
 
 
         <div>
-                <div className='servicios d-flex'>
+                <div className='servicios d-flex parrafoshome'>
                     <p className='mx-5 my-4'><b>En VetVida te ofrecemos: </b><br /><br />
                         Consulta general <br /> Medicina preventiva: vacunación y desparasitación <br />
                         Limpieza dental <br /> Esterilizaciones <br /> Cirugías <br /> Rayos x<br />
@@ -59,7 +60,7 @@ const HomeScreen = () => {
 </div> */}
 
         <div >    
-            <div className="row mx-2 my-2 g-3 profesionales">   
+            <div className="row mx-2 my-2 g-3 parrafoshome">   
             <p><b>Tus mascotas en las mejores manos.. nuestros profesionales:</b></p>      
                     {
                     infoProfessionals.map((item,index)=>(
@@ -68,8 +69,16 @@ const HomeScreen = () => {
                     }
             </div>
         </div>
-          
+
+        <div className=" parrafoshome mx-3 my-2">
+            <p><b>Todo lo que tu mascota necesita, lo encotras aqui en VetVida</b></p>
+            {/* Alimento, vacunas, juguetes, collares-correas y placas de identificación, productos de higiene, camas-tapetes */}
+            <CarouselProdHomeApp/>
+
+        </div>
+
         <SponsorsApp />
+
 
         <div>
             <div className="card mx-3 mb-5">
