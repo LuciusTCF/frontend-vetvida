@@ -2,8 +2,6 @@ import React from 'react'
 import CardApp from '../components/CardApp'
 import { infoProfessionals } from '../data/dataProfessionals'
 import { infoComment } from '../data/dataComment'
-import FooterApp from '../components/FooterApp'
-import NavBarApp from '../components/NavBarApp'
 import imagenhome from '../assets/home.jpg'
 import SponsorsApp from '../components/SponsorsApp'
 import CarouselApp from '../components/CarouselApp'
@@ -14,8 +12,6 @@ import CarouselProdHomeApp from '../components/CarouselProdHomeApp'
 const HomeScreen = () => {
   return (
     <div>
-
-        <NavBarApp />
 
         <div className='overlay-container'>
                 <img src={imagenhome} className="imghome" alt="imagen de gato"/>
@@ -40,24 +36,6 @@ const HomeScreen = () => {
 
         <CarouselApp />
 
-    
-{/* <div className="container">
-    <div className="row">
-        <div className="col-9">
-            <div className=" mx-2 my-2 g-3 profesionales">   
-                        <p><b>Tus mascotas en las mejores manos.. nuestros profesionales:</b></p>      
-                                {
-                                infoProfessionals.map((item,index)=>(
-                                    <CardApp key={index} item={item}/>
-                                ))
-                                }
-                </div>
-        </div>
-        <div className="col">
-            <SponsorsApp />
-        </div>
-    </div>
-</div> */}
 
         <div >    
             <div className="row mx-2 my-2 g-3 parrafoshome">   
@@ -72,7 +50,6 @@ const HomeScreen = () => {
 
         <div className=" parrafoshome mx-3 my-2">
             <p><b>Todo lo que tu mascota necesita, lo encotras aqui en VetVida</b></p>
-            {/* Alimento, vacunas, juguetes, collares-correas y placas de identificación, productos de higiene, camas-tapetes */}
             <CarouselProdHomeApp/>
 
         </div>
@@ -96,8 +73,6 @@ const HomeScreen = () => {
         </div>
 
 
-    
-        <FooterApp />
 
     </div>
   )

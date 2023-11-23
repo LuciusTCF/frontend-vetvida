@@ -3,11 +3,13 @@ import RouterPrimary from "./routes/RouterPrimary.jsx";
 import LoginScreen from "./views/LoginScreen.jsx";
 import HomeScreen from './views/HomeScreen'
 import ProtectedRoutes from "../src/routes/ProtectedRoutes.jsx";
-// import "./App.css";
+import NavBarApp from "./components/NavBarApp.jsx";
+import FooterApp from "./components/FooterApp.jsx";
 
 function App() {
   return (
     <BrowserRouter>
+    <NavBarApp />
       <Routes>
         <Route
           path="/*"
@@ -16,10 +18,11 @@ function App() {
               <RouterPrimary />
             </ProtectedRoutes>
           }
-        />
+        />     
         <Route path="/" element={<HomeScreen />}/>
-        <Route path="/login" element={<LoginScreen />} />
+        <Route path="/login" element={<LoginScreen />} />       
       </Routes>
+      <FooterApp />
     </BrowserRouter>
   );
 }

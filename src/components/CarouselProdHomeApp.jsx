@@ -11,16 +11,16 @@ const CarouselProdHomeApp = () => {
     <div id="carouselExampleAutoplaying" className="carousel slide carouselproductoshome" data-bs-ride="carousel" data-bs-interval="2000">
     <div className="carousel-inner h100">
       <div className="carousel-item active">
-        <img src={img1} class="d-block w-100" alt="..."/>
+        <img src={img1} className="d-block w-100" alt="productos que se comercializan en VetVida"/>
         </div>
         <div className="carousel-item">
-        <img src={img2} class="d-block w-100" alt="..."/>
+        <img src={img2} className="d-block w-100" alt="productos que se comercializan en VetVida"/>
         </div>
         <div className="carousel-item">
-        <img src={img3} class="d-block w-100" alt="..."/>
+        <img src={img3} className="d-block w-100" alt="productos que se comercializan en VetVida"/>
         </div>
         <div className="carousel-item">
-        <img src={img4} class="d-block w-100" alt="..."/>
+        <img src={img4} className="d-block w-100" alt="productos que se comercializan en VetVida"/>
         </div>
       </div>
     <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">

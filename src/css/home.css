@@ -14,12 +14,8 @@
     height: auto;
   }
 
-  .overlay-home p{
-    font-size: 40px;
-  }
-
   .servicios{
-    background-color: rgba(128, 128, 128, 0.11);
+    background-color: #e2c5fc;
   }
 
   .servicios p{
@@ -28,9 +24,19 @@
 
   .container-carousel img {
     height: 100%;
+    width: 100%;
     filter: grayscale(0.8);
     object-fit: cover;
     object-position: top;
+  }
+
+  .carousel-inner img {
+    max-height: 100%; 
+    object-fit: cover;
+  }
+
+  .container-carousel{
+    max-height: 300px;
   }
   
   .carousel button{
@@ -59,7 +65,7 @@
     height: 250px;
     overflow: hidden;
   }
-
+  
   .carousel-item img{
     object-fit: cover;
     height: 100%;
@@ -69,13 +75,8 @@
     filter: grayscale(1);
   }
 
-  .footer_bg{
-    background-color: #6a3093;
-  }
-
-  .footer-whatsapp {
-    text-decoration: underline;
-    color: white;
+  .color{
+    color: #3d1164;
   }
 
   .cardhome img{
@@ -84,21 +85,33 @@
   }
 
 
+  
 
   @media (min-width: 390px) {
     .overlay p {
       font-size: 20px; 
     }
     .carouselproductoshome{
-      height: 70px;
+      height: 80px;
     }
- 
+    .container-carousel p{
+      font-size: 15px;
+    }
   }
 
   @media (min-width: 768px){
-    .carouselproductoshome{
-      height: 160px;
+    .overlay p {
+      font-size: 30px; 
     }
+    .carouselproductoshome{
+      height: 170px;
+    }
+    .container-carousel p{
+      font-size: 30px;
+    }
+    .container-carousel{
+    max-height: 300px;
+  }
 
   }
 
@@ -107,7 +120,9 @@
       font-size: 50px; 
     }
     .carouselproductoshome{
-      height: 250px;
+      height: 260px;
     }
-
+    .container-carousel p{
+      font-size: 30px;
+    }
   }

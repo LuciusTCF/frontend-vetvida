@@ -12,9 +12,7 @@ const CardApp = ({item}) => {
                 <p className="card-text">{item.mp}</p>                
             </div>
         </div>
-
     </div>
-
   )
 }
 
