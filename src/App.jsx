@@ -4,6 +4,9 @@ import LoginScreen from "./views/LoginScreen.jsx";
 import HomeScreen from './views/HomeScreen'
 import PlansScreen from './views/PlansScreen.jsx';
 import ProtectedRoutes from "../src/routes/ProtectedRoutes.jsx";
+import AboutUsScreen from "./views/AboutUsScreen.jsx";
+
+
 // import "./App.css";
 
 function App() {
@@ -21,6 +24,9 @@ function App() {
         <Route path="/" element={<HomeScreen />}/>
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/plans" element={<PlansScreen />} />
+        <Route path="/aboutUs" element={<AboutUsScreen/>}/>
+        
+
       </Routes>
     </BrowserRouter>
   );

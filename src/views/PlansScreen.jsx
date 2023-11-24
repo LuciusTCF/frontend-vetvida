@@ -14,8 +14,6 @@ import FooterApp from '../components/FooterApp'
 const PlansScreen= () =>  {
   return (
     <div>
-
-      <NavBarApp/>
 <div>
   <div className="position-relative mx-auto img-main-plans ">
   <img src={imgMainPlans} className="img-fluid" alt="..."/>
@@ -76,7 +74,7 @@ const PlansScreen= () =>  {
 
 <FormPlans/>
 
-<FooterApp/>
+
 
 </div>
 
@@ -84,6 +82,6 @@ const PlansScreen= () =>  {
   )
 };
 
-export default PlansScreen
+export default PlansScreen;
 
 
