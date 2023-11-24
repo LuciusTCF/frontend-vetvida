@@ -103,20 +103,6 @@ const ModalAppointmentUpdate = ({
                 required
               />
             </fieldset>
-            <fieldset className="col-12 ">
-              <div className="form-check form-switch">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  name="state"
-                  role="switch"
-                  id="flexSwitchCheckChecked"
-                  checked={appointment.state}
-                  onChange={handleChange}
-                />
-                <label className="form-check-label">Estado</label>
-              </div>
-            </fieldset>
           </section>
           <div className="text-end mt-2">
             <button type="submit" className="btn btn-primary">

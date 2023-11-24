@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RouterPrimary from "./routes/RouterPrimary.jsx";
 import LoginScreen from "./views/LoginScreen.jsx";
-import HomeScreen from './views/HomeScreen'
 import PlansScreen from './views/PlansScreen.jsx';
+import HomeScreen from "./views/HomeScreen";
 import ProtectedRoutes from "../src/routes/ProtectedRoutes.jsx";
 import AboutUsScreen from "./views/AboutUsScreen.jsx";
 
@@ -21,7 +21,7 @@ function App() {
             </ProtectedRoutes>
           }
         />
-        <Route path="/" element={<HomeScreen />}/>
+        <Route path="/" element={<HomeScreen />} />
         <Route path="/login" element={<LoginScreen />} />
         <Route path="/plans" element={<PlansScreen />} />
         <Route path="/aboutUs" element={<AboutUsScreen/>}/>
