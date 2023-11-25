@@ -16,17 +16,13 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
   };
 
   const handleChange = (e) => {
-    if (e.target.name === "state") {
-      setUser({ ...user, [e.target.name]: e.target.checked });
-    } else {
-      setUser({ ...user, [e.target.name]: e.target.value });
-    }
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   const update = async (e) => {
     e.preventDefault();
 
-    await userUpdate(user._id, user);
+    await userUpdate(user._id, console.log(user));
 
     handleClose();
   };
@@ -62,7 +58,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                 Mascotas:
               </label>
               {user?.pet.map((item, index) => (
-                <div key={item._id}>
+                <div>
                   <h6>{`Mascota ${index + 1}`}</h6>
                   <div className="d-flex">
                     <label
@@ -136,7 +132,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
               ))}
             </fieldset>
             <hr />
-            <fieldset className="col-12">
+            <fieldset className="col-12 mb-3">
               <label htmlFor="role-input" className="form-label fs-4">
                 Rol:
               </label>
