@@ -12,7 +12,7 @@ const appointmentList = async (page) => {
   });
 
   const data = await resp.json();
-  console.log(data);
+  // console.log(data);
   return data;
 };
 
@@ -22,6 +22,7 @@ const appointmentAdd = async (data) => {
     body: JSON.stringify(data),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
+      "x-token": token,
     },
   });
 

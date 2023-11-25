@@ -6,7 +6,7 @@ const useGetAppointments = (page = 0) => {
 
   useEffect(() => {
     getData();
-  }, [page]);
+  }, [dataInfo]);
 
   const getData = async () => {
     const { total, appointment } = await appointmentList(page);

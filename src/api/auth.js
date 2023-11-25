@@ -15,7 +15,7 @@ export const login = async (data) => {
   return info;
 };
 
-export const obtenerDatosAuth = async (token) => {
+export const obtainDataAuth = async (token) => {
   const res = await fetch(url, {
     method: "GET",
     headers: {
