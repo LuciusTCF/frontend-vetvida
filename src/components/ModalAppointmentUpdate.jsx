@@ -27,7 +27,7 @@ const ModalAppointmentUpdate = ({
   const update = async (e) => {
     e.preventDefault();
 
-    await appointmentUpdate(appointment._id, console.log(appointment));
+    await appointmentUpdate(appointment._id, appointment);
 
     handleClose();
   };

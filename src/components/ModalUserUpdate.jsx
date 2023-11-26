@@ -22,7 +22,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
   const update = async (e) => {
     e.preventDefault();
 
-    await userUpdate(user._id, console.log(user));
+    await userUpdate(user.uid, user);
 
     handleClose();
   };
@@ -58,7 +58,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                 Mascotas:
               </label>
               {user?.pet.map((item, index) => (
-                <div>
+                <div key={index}>
                   <h6>{`Mascota ${index + 1}`}</h6>
                   <div className="d-flex">
                     <label
