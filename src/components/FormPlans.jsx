@@ -11,14 +11,10 @@ export const FormPlans = () => {
 
   const {
     register,
-    reset,
     formState: { errors },
   } = useForm();
 
-  const onSubmit = async (data) => {
-    await usuarioAdd(data);
-    reset();
-  };
+
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -35,10 +31,19 @@ export const FormPlans = () => {
       }, (error) => {
           console.log(error.text);
       });
+
+      onSubmit = (event) => {
+        event.preventDefault();
+        this.setState({ isLoading: true });
+        console.log(this.state);
+        setTimeout(() => {
+          this.setState({ isLoading: false });
+        }, 2000);
+      };
   };
 
   return (
-    <form ref={form} onSubmit={sendEmail} className=" text-dark p-3 rounded w-50 mx-auto formPlans mt-4">
+    <form ref={form} onSubmit={sendEmail} className=" text-dark p-3 rounded w-50 mx-auto formPlans mt-4 mb-4">
 
 <h2 className="text-center mb-4">Dejá tus datos y nuestro equipo se pondrá en contacto!</h2>
 <section className="row">
@@ -87,11 +92,11 @@ export const FormPlans = () => {
       <fieldset className="col-12 ">
           <input
       type="tel" 
-      placeholder="Número de teléfono (opcional)"  
+      placeholder="Número de teléfono"  
       name='mobileNumber'
       className="form-control "
       {...register("mobilenumber", {
-        required: true,
+        required: "Por favor, ingrese su número.",
         minLength: {
           value: 11,
           message: "Mínimo 11 números",
@@ -100,6 +105,7 @@ export const FormPlans = () => {
           value: 11,
           message: "Máximo 11 números", 
         },
+        
       })}
     
       minLength={11}
