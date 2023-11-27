@@ -40,12 +40,21 @@ export const FormPlans = () => {
           this.setState({ isLoading: false });
         }, 2000);
       };
+
+      handleSubmit = (event) => {
+        event.preventDefault();
+        this.setState({ isLoading: true });
+        console.log(this.state);
+        setTimeout(() => {
+          this.setState({ isLoading: false });
+        }, 2000);
+      };
   };
 
   return (
     <form ref={form} onSubmit={sendEmail} className=" text-dark p-3 rounded w-50 mx-auto formPlans mt-4 mb-4">
 
-<h2 className="text-center mb-4">Dejá tus datos y nuestro equipo se pondrá en contacto!</h2>
+<h2 className="text-center mb-4"><b>Dejá tus datos y nuestro equipo se pondrá en contacto!</b></h2>
 <section className="row">
         <fieldset className="col-12 ">
     
@@ -117,7 +126,7 @@ export const FormPlans = () => {
 
 
     <fieldset className="col-12 " >
-    <span>Cantidad de mascotas:</span>
+    <span><b>Cantidad de mascotas:</b></span>
             <select className="form-select"
              aria-label="Default select example" type="email" name='AmountOfPet' >
                <option value="1">1</option>
@@ -126,6 +135,47 @@ export const FormPlans = () => {
                <option value="4">Más</option>
              </select>
     </ fieldset>
+
+
+     <span className='mt-4'><b>Mi consulta:</b> </span>
+    <fieldset className="col-12 mx-auto mt-3 form-check-inline " name='checkPlans' >
+  <div className="form-check form-check-inline">
+    <input
+      className="form-check-input"
+      type="radio"
+      name="flexRadioDefault"
+      id="flexRadioDefault1"
+    />
+    <label className="form-check-label" htmlFor="flexRadioDefault1">
+      Información sobre costos.
+    </label>
+  </div>
+  <div className="form-check form-check-inline">
+    <input
+      className="form-check-input"
+      type="radio"
+      name="flexRadioDefault"
+      id="flexRadioDefault2"
+      defaultChecked=""
+    />
+    <label className="form-check-label" htmlFor="flexRadioDefault2">
+       Coberturas y descuentos especiales.
+    </label>
+  </div>
+
+  <div className="form-check form-check-inline">
+    <input
+      className="form-check-input"
+      type="radio"
+      name="flexRadioDefault"
+      id="flexRadioDefault3"
+    />
+    <label className="form-check-label" htmlFor="flexRadioDefault3">
+   Otras.
+    </label>
+  </div>
+  </ fieldset>
+
      
  
       <button type="submit" value="Send"  className="btn btn-light mt-4">Enviar</button>
