@@ -22,6 +22,8 @@ const appointmentAdd = async (data) => {
     body: JSON.stringify(data),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
+      // se agrego a modo prueba
+      "x-token": token,
     },
   });
 

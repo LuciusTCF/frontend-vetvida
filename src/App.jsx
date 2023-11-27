@@ -3,7 +3,8 @@ import RouterPrimary from "./routes/RouterPrimary.jsx";
 import LoginScreen from "./views/LoginScreen.jsx";
 import HomeScreen from "./views/HomeScreen";
 import ProtectedRoutes from "../src/routes/ProtectedRoutes.jsx";
-// import "./App.css";
+import ContactScreen from "./views/ContactScreen.jsx";
+
 
 function App() {
   return (
@@ -17,9 +18,9 @@ function App() {
     />
     <Route path="/" element={<HomeScreen />}/>
     <Route path = "/login"  element = { <LoginScreen /> }/>
+    <Route path="/contact" element = {<ContactScreen />} />
     </Routes>
     </BrowserRouter>
-    
   )
 }
 

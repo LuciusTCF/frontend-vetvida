@@ -56,12 +56,29 @@ const LoginScreen = () => {
     }
   };
 
+  // **********Logica de cierre de sesión en el navBar:
+  // useEffect(() => {
+    // const token = localStorage.getItem("token");
 
+    // if (!token) {
+      // Si no hay un token almacenado, redirigir a la pantalla de inicio de sesión
+  //     navigate("/login");
+  //   }
+  // }, [navigate]);
+
+  // const logout = () => {
+    // Limpiar el estado de autenticación
+    // setLoginUser(null);
+    // Eliminar el token de autenticación almacenado en el almacenamiento local
+    // localStorage.removeItem("token");
+    // Redirigir al usuario a la pantalla de inicio de sesión u otra pantalla pública
+  //   navigate("/login");
+  // };
 
 
   return (
     <>
-      <div className="container  w-75 shadow-lg rounded-3 p-0">
+      <div className="container  w-75 my-4 shadow-lg rounded-3 p-0">
         <div className="row ">
           <div className="col-12 col-lg-6 d-none  d-lg-block">
             <img
@@ -100,7 +117,7 @@ const LoginScreen = () => {
                   disabled={loading ? true : false}
                 />
                 <p className="text-danger">{errors.email?.message}</p>
-                <label htmlFor="inputCorreo">Email</label>
+                <label htmlFor="inputCorreo">Correo Electrónico</label>
               </fieldset>
               <fieldset className="form-floating">
                 <input
@@ -125,7 +142,7 @@ const LoginScreen = () => {
                   })}
                 />
                 <p className="text-danger">{errors.password?.message}</p>
-                <label htmlFor="inputPassword">Password</label>
+                <label htmlFor="inputPassword">Contraseña</label>
               </fieldset>
               <div className="mt-4 d-grid">
                 <button
