@@ -5,11 +5,14 @@ import HomeScreen from './views/HomeScreen'
 import ProtectedRoutes from "../src/routes/ProtectedRoutes.jsx";
 import NavBarApp from "./components/NavBarApp.jsx";
 import FooterApp from "./components/FooterApp.jsx";
+import { useState } from "react";
+import AdminScreen from "./views/AdminScreen.jsx";
 
 function App() {
+  const [estadoLogin, setEstadoLogin] = useState(false)
   return (
     <BrowserRouter>
-    <NavBarApp />
+    <NavBarApp estadoLogin={estadoLogin}/>
       <Routes>
         <Route
           path="/*"
@@ -18,9 +21,14 @@ function App() {
               <RouterPrimary />
             </ProtectedRoutes>
           }
-        />     
+        />  
+        <Route path="/admin" element={
+          <ProtectedRoutes estadoLogin={estadoLogin}>
+            <AdminScreen/>
+          </ProtectedRoutes>
+        }/>   
         <Route path="/" element={<HomeScreen />}/>
-        <Route path="/login" element={<LoginScreen />} />       
+        <Route path="/login" element={<LoginScreen setEstadoLogin={setEstadoLogin}/>} />       
       </Routes>
       <FooterApp />
     </BrowserRouter>

@@ -35,10 +35,10 @@
     object-fit: cover;
   }
 
-  .container-carousel{
-    max-height: 300px;
+  .card{
+    overflow: hidden;
   }
-  
+
   .carousel button{
     z-index: 100;
   }
@@ -82,12 +82,15 @@
   .cardhome img{
     object-fit: cover;
     height: 100%;
+    width: 100%;
   }
 
-
+  .cardhome p{
+    font-size: 15px;
+  }
   
 
-  @media (min-width: 390px) {
+  @media (min-width: 280px) {
     .overlay p {
       font-size: 20px; 
     }
@@ -96,6 +99,9 @@
     }
     .container-carousel p{
       font-size: 15px;
+    }
+    .container-carousel{
+      max-height: 300px;
     }
   }
 
@@ -110,7 +116,7 @@
       font-size: 30px;
     }
     .container-carousel{
-    max-height: 300px;
+    max-height: 250px;
   }
 
   }
@@ -125,4 +131,8 @@
     .container-carousel p{
       font-size: 30px;
     }
+    .container-carousel{
+      max-height: 350px;
+    }
+    
   }

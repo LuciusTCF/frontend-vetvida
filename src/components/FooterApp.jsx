@@ -4,7 +4,7 @@ import '../css/footer.css'
 
 const FooterApp = () => {
   return (
- 
+    
     <div className="footer_bg text-white p-3 container-fluid logofooter">
       <div className="row">
         <div className="col-md-6 d-flex justify-content-center align-items-center">
@@ -31,6 +31,7 @@ const FooterApp = () => {
         </div>
       </div>
      </div>
+     
   )
 }
 
