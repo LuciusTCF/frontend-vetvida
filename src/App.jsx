@@ -8,20 +8,19 @@ import ProtectedRoutes from "../src/routes/ProtectedRoutes.jsx";
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          path="/*"
-          element={
-            <ProtectedRoutes>
-              <RouterPrimary />
-            </ProtectedRoutes>
-          }
-        />
-        <Route path="/" element={<HomeScreen />} />
-        <Route path="/login" element={<LoginScreen />} />
-      </Routes>
+    <Routes>
+    <Route path='/*' element= {
+    <ProtectedRoutes>
+        <RouterPrimary/>
+    </ProtectedRoutes>
+    }
+    />
+    <Route path="/" element={<HomeScreen />}/>
+    <Route path = "/login"  element = { <LoginScreen /> }/>
+    </Routes>
     </BrowserRouter>
-  );
+    
+  )
 }
 
 export default App;
