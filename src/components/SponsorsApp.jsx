@@ -7,7 +7,6 @@ import marca4 from '../assets/marca4.jpg'
 const SponsorsApp = () => {
   return (
 
-
   <div className='row sponsors mx-3 my-5 g-1 bg-body-secondary'>
      <div className='col-3' >
         <div className="card">
@@ -32,29 +31,6 @@ const SponsorsApp = () => {
     </div>
   </div>
 
-    // <div >
-    //  <div className='sponsors' >
-    //     <div className="card">
-    //       <img src={marca1} className="card-img-top" alt="sponsor"/>
-    //     </div>
-    //   {/* </div>
-    //   <div className='col-3 ' > */}
-    //     <div className="card">
-    //       <img src={marca2} className="card-img-top" alt="sponsor"/>
-    //     </div>
-    //   {/* </div>
-    //   <div className='col-3 ' > */}
-    //     <div className="card">
-    //       <img src={marca3} className="card-img-top" alt="sponsor"/>
-    //     </div>
-    //     {/* </div>
-    //   <div className='col-3 ' > */}
-    //     <div className="card">
-    //       <img src={marca4} className="card-img-top" alt="sponsor"/>
-    //     </div>
-        
-    // </div>
-    // </div>
   )
 }
 

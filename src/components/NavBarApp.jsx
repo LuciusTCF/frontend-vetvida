@@ -1,9 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '../assets/logo.png'
 import { NavLink, Link } from "react-router-dom";
 import '../css/navbar.css'
+import obtenerClima from '../helpers/obtener-clima'
 
 const NavBarApp = ({estadoLogin}) => {
+  const [tiempo, setTiempo] = useState(null);
+
+  useEffect(()=>{
+    clima1();
+  },[]);
+
+  const clima1 = () => {
+    navigator.geolocation.getCurrentPosition((pos)=>{
+      const coords = pos.coords;
+      const lat = coords.latitude;
+      const long = coords.longitude;
+
+      obtenerClima(lat,long)
+      .then((resultado)=>{       
+        const {main,weather} = resultado;
+       
+        setTiempo({
+          temp: main.temp,
+          clima: weather[0],
+        });
+        // console.log(tiempo.clima)
+      })
+      .catch((error) => console.log(error));
+    });
+  };
+
+
   return (
   <div className="sticky-top">
     <nav className="navbar navbar-expand-lg  navbarhome">
@@ -36,6 +64,10 @@ const NavBarApp = ({estadoLogin}) => {
             </li>}
           </ul>
        
+          {/* <div className="d-flex gap-2 align-items-center justify-content-center me-2">
+            <img src={`https://openweathermap.org/img/wn/${tiempo.clima.icon}@2x.png`} alt={tiempo.clima.description} title={tiempo.clima.description}/>
+          </div> */}
+
           <Link className='btn btn-outline-dark' to='/login'>{estadoLogin ? 'LogOut' : 'LogIn'}</Link>
         </div>
         

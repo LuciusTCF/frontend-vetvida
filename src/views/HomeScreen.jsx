@@ -16,22 +16,16 @@ const HomeScreen = () => {
         <div className='overlay-container'>
                 <img src={imagenhome} className="imghome" alt="imagen de gato"/>
                 <div className='overlay overlay-home d-flex h-100 w-100 align-items-center text-white'>
-                    <p><b> VetVida </b><br /> Bindamos servicios <br /> dignos de calidez <br /> y excelencia</p>
+                    <p>En <b> Vet Vida </b><br /> Bindamos servicios <br /> dignos de calidez <br /> y excelencia</p>
                 </div>     
 
         </div>
 
-
-        <div>
-                <div className='servicios d-flex parrafoshome'>
-                    <p className='mx-5 my-4'><b>En VetVida te ofrecemos: </b><br /><br />
-                        Consulta general <br /> Medicina preventiva: vacunación y desparasitación <br />
-                        Limpieza dental <br /> Esterilizaciones <br /> Cirugías <br /> Rayos x<br />
-                        Fisioterapia y rehabilitación <br /> Laboratorio clínico <br />
-                        Baño y peluquería <br /> 
+                <div className='servicios d-flex parrafoshome justify-content-center text-center'>
+                    <p className='mx-5 my-4 lh-lg '><b>En VetVida te ofrecemos: </b><br /><br />
+                        Consulta general <i className="fa fa-paw" aria-hidden="true"></i> Medicina preventiva: vacunación y desparasitación <i className="fa fa-paw" aria-hidden="true"></i> Limpieza dental <i className="fa fa-paw" aria-hidden="true"></i> Esterilizaciones <i className="fa fa-paw" aria-hidden="true"></i> Cirugías <i className="fa fa-paw" aria-hidden="true"></i> Rayos x <i className="fa fa-paw" aria-hidden="true"></i> Fisioterapia y rehabilitación <i className="fa fa-paw" aria-hidden="true"></i> Laboratorio clínico <i className="fa fa-paw" aria-hidden="true"></i> Baño y peluquería <br /> <br />
                     </p>
                 </div>
-        </div>
 
 
         <CarouselApp />
