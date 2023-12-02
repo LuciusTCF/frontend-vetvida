@@ -1,6 +1,5 @@
  .navbarhome{
     background-color: #e2c5fc;
-    /* color: #3d1164; */
   }
 
   .logonav{
@@ -15,4 +14,8 @@
 
   .color{
     color: #3d1164;
+  }
+
+  .icon-tiempo{
+    width: 50px;
   }

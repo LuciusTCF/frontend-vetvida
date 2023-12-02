@@ -7,11 +7,8 @@ import obtenerClima from '../helpers/obtener-clima'
 const NavBarApp = ({estadoLogin}) => {
   const [tiempo, setTiempo] = useState(null);
 
-  useEffect(()=>{
-    clima1();
-  },[]);
 
-  const clima1 = () => {
+  const clima = () => {
     navigator.geolocation.getCurrentPosition((pos)=>{
       const coords = pos.coords;
       const lat = coords.latitude;
@@ -31,6 +28,10 @@ const NavBarApp = ({estadoLogin}) => {
     });
   };
 
+
+  useEffect(()=>{
+    clima();
+  },[]);
 
   return (
   <div className="sticky-top">
@@ -63,16 +64,43 @@ const NavBarApp = ({estadoLogin}) => {
               <NavLink className="nav-link" aria-current="page" to="/admin">Administrador</NavLink>
             </li>}
           </ul>
-       
-          {/* <div className="d-flex gap-2 align-items-center justify-content-center me-2">
-            <img src={`https://openweathermap.org/img/wn/${tiempo.clima.icon}@2x.png`} alt={tiempo.clima.description} title={tiempo.clima.description}/>
-          </div> */}
 
-          <Link className='btn btn-outline-dark' to='/login'>{estadoLogin ? 'LogOut' : 'LogIn'}</Link>
-        </div>
+
+          {/* {tiempo ? (
+              <div className="d-flex gap-2 align-items-center justify-content-center me-4">
+              <img src={`https://openweathermap.org/img/wn/${tiempo.clima.icon}@2x.png`} className='icon-tiempo' alt={tiempo.clima.description} title={tiempo.clima.description} />
+
+              <span>{Math.round(tiempo.temp)}°C </span>
+            </div>
+            ) : (
+              <div className="spinner-border me-5" role="status">
+                <span className="visually-hidden">Cargando...</span>
+            </div>
+            )
+          }         */}
         
+          <Link className='btn btn-outline-dark' to='/login'>{estadoLogin ? 'LogOut' : 'LogIn'}</Link>
+
+        </div>
+
       </div>
+
     </nav>
+
+    <div className='navbarhome d-flex justify-content-end'>
+    {tiempo ? (
+              <div className="d-flex gap-2 align-items-center justify-content-center me-4 mb-1">
+              <img src={`https://openweathermap.org/img/wn/${tiempo.clima.icon}@2x.png`} className='icon-tiempo' alt={tiempo.clima.description} title={tiempo.clima.description} />
+
+              <span>{Math.round(tiempo.temp)}°C </span>
+            </div>
+            ) : (
+              <div className="spinner-border me-5 mb-2" role="status">
+                <span className="visually-hidden">Cargando...</span>
+            </div>
+            )
+          }   
+    </div>
 
 </div>
   )
