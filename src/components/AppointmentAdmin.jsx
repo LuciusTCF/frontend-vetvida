@@ -4,13 +4,16 @@ import { appointmentDelete } from "../api/appointmentsApi";
 import BtnPagination from "../components/BtnPagination";
 import ModalAppointmentUpdate from "../components/ModalAppointmentUpdate";
 import Table from "react-bootstrap/Table";
+import Swal from 'sweetalert2';
 
 const AppointmentAdmin = () => {
   const [page, setPage] = useState(0);
   const dataInfo = useGetAppointments(page);
   const [show, setShow] = useState(false);
+
   const [appointment, setAppointment] = useState(null);
   // console.log(dataInfo);
+
   const handleClose = () => {
     setAppointment(null);
     setShow(false);
@@ -21,15 +24,29 @@ const AppointmentAdmin = () => {
     setShow(true);
   };
 
+
   const modifyAppointment = (data) => {
     setAppointment(data);
+
   };
 
+  // **
   const deleteAppointment = async (id) => {
-    const validate = confirm("Está seguro que quiere borrar el turno?");
-    if (validate) {
+    // Utiliza SweetAlert2 para mostrar un cuadro de diálogo de confirmación
+    const { isConfirmed } = await Swal.fire({
+      title: '¿Desea eliminar el turno?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, borrarlo',
+      cancelButtonText: 'Cancelar',
+    });
+  
+    if (isConfirmed) {
       const resp = await appointmentDelete(id);
       console.log(resp);
+      // Aquí puedes realizar más acciones después de la confirmación
     }
   };
 
@@ -73,9 +90,9 @@ const AppointmentAdmin = () => {
                   <td>{item.date}</td>
                   <td>{`${item?.user.name} (ID:${item?.user.uid})`}</td>
                   <td>
-                    <div>
+                    <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-sm-between">
                       <button
-                        className="btn btn-danger btn-sm"
+                        className="btn btn-danger btn-sm mb-2 mb-sm-0 me-sm-2"
                         onClick={() => deleteAppointment(item._id)}
                       >
                         X

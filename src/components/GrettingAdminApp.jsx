@@ -1,20 +1,21 @@
-// import React from 'react';
+import { useEffect } from 'react';
 import Swal from 'sweetalert2';
 const GrettingAdminApp = () => {
     
-
+  useEffect(() => {
     // Función para mostrar el mensaje de bienvenida
-    const mostrarMensajeDeBienvenida =()=> {
+    const welcomeMessage =()=> {
       Swal.fire({
-        title: '¡Bienvenido Administrador!',
+        title: '¡Bienvenido Admin!',
         icon: 'success',
-        timer: 5000, // El mensaje se cerrará automáticamente después de 3 segundos
+        timer: 3000, // El mensaje se cerrará automáticamente después de 3 segundos
         showConfirmButton: false // Oculta el botón de confirmación
       });
     }
+    welcomeMessage();
+  }, []);
     
-    // Llama a la función para mostrar el mensaje de bienvenida al cargar la página
-    window.addEventListener('load', mostrarMensajeDeBienvenida);
+    
     
     
 
@@ -25,4 +26,4 @@ const GrettingAdminApp = () => {
   )
 }
 
-export default GrettingAdminApp
+export default  GrettingAdminApp ;

@@ -1,11 +1,24 @@
+
 import React, { useEffect, useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { obtainDataAuth } from "../api/auth";
+
 import UserAdmin from "../components/UserAdmin";
 import AppointmentAdmin from "../components/AppointmentAdmin";
+// importar Navigate en caso de no tener el token válido:
+import { Navigate } from "react-router-dom";
+// Importando la funcion para obtenr datos:
+import { getAuthData } from "../api/auth";
+// importado por Ale
+import { useState,useEffect } from "react"; 
+// importado por ale
+import { Link } from "react-router-dom";
 import "../css/admin.css";
+import  GrettingAdminApp  from "../components/GrettingAdminApp"
+
 
 const AdminScreen = () => {
+
   const [role, setRole] = useState(null);
   const [message, setMessage] = useState(null);
   const token = JSON.parse(localStorage.getItem("token")) || null;
@@ -116,7 +129,9 @@ const AdminScreen = () => {
       )} */}
 
       {/* <div className="container-fluid row main-admin">
+
       <div className="col pt-5 tables">
+      < GrettingAdminApp />
         <div className="row">
           <h1>Administrador</h1>
         </div>
@@ -127,8 +142,25 @@ const AdminScreen = () => {
           <AppointmentAdmin />
         </div>
       </div>
+
+      </div>
+      ) : (
+          <Navigate to="/" />
+        )) : (
+        <div className="container">
+          <div className="row pt-5">
+            <div className="col">
+              <h3>Esperando respuesta...</h3>
+            </div>
+          </div>
+        </div>
+      )}
+      
+      </>
+
     </div> */}
     </>
+
   );
 };
 
