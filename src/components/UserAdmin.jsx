@@ -11,7 +11,7 @@ const UserAdmin = () => {
   const dataUsers = useGetUsers(page);
   const [show, setShow] = useState(false);
   const [user, setUser] = useState(null);
-  // console.log(data);
+  // console.log(dataUsers);
   const handleClose = () => {
     setUser(null);
     setShow(false);
@@ -62,13 +62,14 @@ const UserAdmin = () => {
   };
 
   return (
-    <div className="col table">
+    <div className="col">
       <div className="row">
         <h3 className="my-3">Usuarios</h3>
         {dataUsers?.users ? (
           <Table striped bordered hover responsive="lg" variant="dark">
-            <thead>
+            <thead className="text-center">
               <tr>
+                <th>ID</th>
                 <th>Nombre</th>
                 <th>Correo</th>
                 <th>Télefono</th>
@@ -77,9 +78,10 @@ const UserAdmin = () => {
               </tr>
             </thead>
 
-            <tbody>
+            <tbody className="text-center">
               {dataUsers.users.map((item) => (
-                <tr key={item._id}>
+                <tr key={item.uid}>
+                  <td>{item.uid}</td>
                   <td>{item.name}</td>
                   <td>{item.email}</td>
                   <td>{item.phone}</td>
@@ -87,7 +89,9 @@ const UserAdmin = () => {
                   <td>
                     <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-sm-between">
                       <button
+
                         className="btn btn-danger btn-sm mb-2 mb-sm-0 me-sm-2"
+
                         onClick={() => deleteUser(item.uid)}
                       >
                         X

@@ -12,7 +12,7 @@ const userList = async (page) => {
   });
 
   const data = await resp.json();
-  console.log(data);
+  // console.log(data);
   return data;
 };
 

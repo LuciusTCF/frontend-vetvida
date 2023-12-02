@@ -15,9 +15,11 @@ export const login = async (data) => {
   return info;
 };
 
+
 // funcion para validar el rol para dar o no accesos a ciertas funcionalidades
 export const getAuthData = async (token) => {
   try{
+
   const res = await fetch(url, {
     method: "GET",
     headers: {

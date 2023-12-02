@@ -21,11 +21,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
   };
 
   const handleChange = (e) => {
-    if (e.target.name === "state") {
-      setUser({ ...user, [e.target.name]: e.target.checked });
-    } else {
-      setUser({ ...user, [e.target.name]: e.target.value });
-    }
+    setUser({ ...user, [e.target.name]: e.target.value });
   };
 
   // actualizacion mascota
@@ -43,7 +39,11 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
 
   const update = async (e) => {
     e.preventDefault();
+
 console.log(user)
+
+
+
     await userUpdate(user.uid, user);
 
     handleClose();
@@ -79,6 +79,7 @@ console.log(user)
               <label htmlFor="name-input" className="form-label fs-4">
                 Mascotas:
               </label>
+
               {/* Modificación para mostrar campos de mascotas vacíos si no hay mascotas registradas */}
               {(!user.pet || user.pet.length === 0) && (
             <div className="row">
@@ -101,6 +102,10 @@ console.log(user)
               {/* para renderizar campos cuando hay mascotas cargadas*/}
               {user.pet && user.pet.length > 0 && user.pet.map((item, index) => (
                 <div key={item} className="mb-3 border p-3">
+
+              {user?.pet.map((item, index) => (
+                <div key={index}>
+
                   <h6>{`Mascota ${index + 1}`}</h6>
                   <div className="col-12">
                     <label
@@ -176,7 +181,7 @@ console.log(user)
   
 
             <hr />
-            <fieldset className="col-12">
+            <fieldset className="col-12 mb-3">
               <label htmlFor="role-input" className="form-label fs-4">
                 Rol:
               </label>
@@ -186,13 +191,20 @@ console.log(user)
                 onChange={handleChange}
                 name="role"
               >
-                <option value="">Elegir Rol</option>
-                {dataUser?.length > 0 &&
-                  this.user.dataUser.map((user) => (
-                    <option key={user.id} value={user._id}>
-                      {user.role}
+
+                <option value="0">Elegir Rol</option>
+                <option value="ADMIN_ROLE">Admin</option>
+                <option value="USER_ROLE_NP">Usuario sin plan</option>
+                <option value="USER_ROLE_P1">Usuario con plan Plata</option>
+                <option value="USER_ROLE_P2">Usuario con plan Bronce</option>
+                <option value="USER_ROLE_P3">Usuario con plan Oro</option>
+                {/* {user?.length > 0 &&
+                  user.map((item, index) => (
+                    <option key={index} value={index}>
+                      {item.role}
+
                     </option>
-                  ))}
+                  ))} */}
               </select>
             </fieldset>
           </section>
