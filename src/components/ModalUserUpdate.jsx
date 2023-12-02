@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { userAdd, userList, userUpdate } from "../api/usersApi";
 
+
 import Modal from "react-bootstrap/Modal";
 
 const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
   const [dataUser, setDataUser] = useState(null);
   const [dataPet, setDataPet] = useState(null);
+
 
   useEffect(() => {
     getUser();
@@ -31,6 +33,10 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
 
   const update = async (e) => {
     e.preventDefault();
+
+console.log(user)
+
+
 
     await userUpdate(user.uid, user);
 
@@ -136,7 +142,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                       required
                     />
                   </div>
-                  <div className="d-flex">
+                  <div className="col-12 mt-1">
                     <label
                       htmlFor={`pet-specie-input${index + 1}`}
                       className="form-label align-self-center"
@@ -153,7 +159,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                       required
                     />
                   </div>
-                  <div className="d-flex">
+                  <div className="col-12 mt-1">
                     <label
                       htmlFor={`pet-breed-input${index + 1}`}
                       className="form-label align-self-center"
@@ -170,7 +176,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                       required
                     />
                   </div>
-                  <div className="d-flex">
+                  <div className="col-12 mt-1">
                     <label
                       htmlFor={`pet-age-input${index + 1}`}
                       className="form-label align-self-center"
@@ -195,6 +201,8 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                 </button>
               </div>
             </fieldset>
+  
+
             <hr />
             <fieldset className="col-12 mb-3">
               <label htmlFor="role-input" className="form-label fs-4">
@@ -223,6 +231,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
               Guardar cambios
             </button>
           </div>
+          
         </form>
       </Modal.Body>
     </Modal>

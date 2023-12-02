@@ -1,13 +1,17 @@
-// import React from 'react';
+
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import horses from "../assets/caballosInicioSesion.jpg";
-import Swal from "sweetalert2";
+import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
 import { useState } from "react";
-import Spinner from "react-bootstrap/Spinner";
-import "../css/login.css";
+import '../css/login.css';
+
+
+
+
+
 
 const LoginScreen = () => {
   const {
@@ -21,7 +25,14 @@ const LoginScreen = () => {
   const [loading, setLoading] = useState(false);
   const [loginUser, setLoginUser] = useState(null);
 
-  const inicioSesion = async (data) => {
+
+  // useEffect(() => {
+  //   localStorage.removeItem('token');
+  //   setLoginUser(false);
+  // }, []);
+
+
+  const logIn = async (data) => {
     setLoading(true);
     const respuesta = await login(data);
     console.log(respuesta);
@@ -45,9 +56,29 @@ const LoginScreen = () => {
     }
   };
 
+  // **********Logica de cierre de sesión en el navBar:
+  // useEffect(() => {
+    // const token = localStorage.getItem("token");
+
+    // if (!token) {
+      // Si no hay un token almacenado, redirigir a la pantalla de inicio de sesión
+  //     navigate("/login");
+  //   }
+  // }, [navigate]);
+
+  // const logout = () => {
+    // Limpiar el estado de autenticación
+    // setLoginUser(null);
+    // Eliminar el token de autenticación almacenado en el almacenamiento local
+    // localStorage.removeItem("token");
+    // Redirigir al usuario a la pantalla de inicio de sesión u otra pantalla pública
+  //   navigate("/login");
+  // };
+
+
   return (
     <>
-      <div className="container  w-75 shadow-lg rounded-3 p-0">
+      <div className="container  w-75 my-4 shadow-lg rounded-3 p-0">
         <div className="row ">
           <div className="col-12 col-lg-6 d-none  d-lg-block">
             <img
@@ -56,11 +87,7 @@ const LoginScreen = () => {
               alt="horses"
             />
           </div>
-          <form
-            noValidate
-            onSubmit={handleSubmit(inicioSesion)}
-            className="col-12 col-lg-6 my-auto px-5"
-          >
+          <form noValidate onSubmit={handleSubmit(logIn)} className="col-12 col-lg-6 my-auto px-5">
             <h1 className="mb-4  mt-4 ">Iniciar sesión</h1>
             <section>
               <fieldset className="form-floating  mb-3">
@@ -90,7 +117,7 @@ const LoginScreen = () => {
                   disabled={loading ? true : false}
                 />
                 <p className="text-danger">{errors.email?.message}</p>
-                <label htmlFor="inputCorreo">Email</label>
+                <label htmlFor="inputCorreo">Correo Electrónico</label>
               </fieldset>
               <fieldset className="form-floating">
                 <input
@@ -115,7 +142,7 @@ const LoginScreen = () => {
                   })}
                 />
                 <p className="text-danger">{errors.password?.message}</p>
-                <label htmlFor="inputPassword">Password</label>
+                <label htmlFor="inputPassword">Contraseña</label>
               </fieldset>
               <div className="mt-4 d-grid">
                 <button
@@ -157,35 +184,27 @@ const LoginScreen = () => {
 
       {loading && (
         <div className="position-fixed top-0 start-0 end-0 bottom-0 d-flex justify-content-center align-items-center">
-          <div className="overlay overlay-login"></div>
-          <div className="text-center">
-            <Spinner
-              animation="grow"
-              className="m-2"
-              variant="primary"
-              role="status"
-            ></Spinner>
-            <Spinner
-              animation="grow"
-              className="m-2"
-              variant="primary"
-              role="status"
-            ></Spinner>
-            <Spinner
-              animation="grow"
-              className="m-2"
-              variant="primary"
-              role="status"
-            ></Spinner>
-            <Spinner
-              animation="grow"
-              className="m-2"
-              variant="primary"
-              role="status"
-            ></Spinner>
-            <h2 className="d-flex justify-content-around text-info fw-bold">
-              Cargando...
-            </h2>
+          <div className="overlay-login"></div>
+          <div className="text-center  p-3">
+            <div aria-label="Orange and tan hamster running in a metal wheel" role="img" className="wheel-and-hamster">
+              <div className="wheel"></div>
+              <div className="hamster">
+                <div className="hamster__body">
+                  <div className="hamster__head">
+                    <div className="hamster__ear"></div>
+                    <div className="hamster__eye"></div>
+                    <div className="hamster__nose"></div>
+                  </div>
+                  <div className="hamster__limb hamster__limb--fr"></div>
+                  <div className="hamster__limb hamster__limb--fl"></div>
+                  <div className="hamster__limb hamster__limb--br"></div>
+                  <div className="hamster__limb hamster__limb--bl"></div>
+                  <div className="hamster__tail"></div>
+                </div>
+              </div>
+              <div className="spoke"></div>
+            </div>
+            <h2 className="d-flex justify-content-around text-black mt-2 fw-bold">CARGANDO...</h2>
           </div>
         </div>
       )}

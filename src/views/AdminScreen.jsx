@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { obtainDataAuth } from "../api/auth";
@@ -5,8 +6,10 @@ import "../css/admin.css";
 import useGetAppointments from "../hooks/useGetAppointments";
 import BtnPagination from "../components/BtnPagination";
 import Table from "react-bootstrap/Table";
+import  GrettingAdminApp  from "../components/GrettingAdminApp"
 
 const AdminScreen = () => {
+
   const [role, setRole] = useState(null);
   const [message, setMessage] = useState(null);
   const token = JSON.parse(localStorage.getItem("token")) || null;
@@ -120,6 +123,7 @@ const AdminScreen = () => {
         </div>
       </div>
     </>
+
   );
 };
 

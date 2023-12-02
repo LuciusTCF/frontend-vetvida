@@ -4,11 +4,13 @@ import { appointmentAdd, appointmentDelete } from "../api/appointmentsApi";
 import BtnPagination from "../components/BtnPagination";
 import ModalAppointmentUpdate from "../components/ModalAppointmentUpdate";
 import Table from "react-bootstrap/Table";
+import Swal from 'sweetalert2';
 
 const AppointmentAdmin = () => {
   const [page, setPage] = useState(0);
   const dataInfo = useGetAppointments(page);
   const [show, setShow] = useState(false);
+
   const [appointment, setAppointment] = useState(null);
   const [dataAppointment, setDataAppointment] = useState(null);
   const handleClose = () => {
@@ -21,16 +23,29 @@ const AppointmentAdmin = () => {
     setShow(true);
   };
 
+
   const modifyAppointment = (data) => {
     setAppointment(data);
     console.log(appointment);
   };
 
+  // **
   const deleteAppointment = async (id) => {
-    const validate = confirm("Está seguro que quiere borrar el turno?");
-    if (validate) {
+    // Utiliza SweetAlert2 para mostrar un cuadro de diálogo de confirmación
+    const { isConfirmed } = await Swal.fire({
+      title: '¿Desea eliminar el turno?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, borrarlo',
+      cancelButtonText: 'Cancelar',
+    });
+  
+    if (isConfirmed) {
       const resp = await appointmentDelete(id);
       console.log(resp);
+      // Aquí puedes realizar más acciones después de la confirmación
     }
   };
 
@@ -174,7 +189,6 @@ const AppointmentAdmin = () => {
                   <th>Veterinario</th>
                   <th>Fecha</th>
                   <th>Usuario</th>
-
                   <th></th>
                 </tr>
               </thead>

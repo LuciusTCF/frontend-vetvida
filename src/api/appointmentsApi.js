@@ -2,6 +2,7 @@
 const url = "http://localhost:8080/api/appointments";
 const token = JSON.parse(localStorage.getItem("token")) || null;
 
+
 const appointmentList = async (page) => {
   const resp = await fetch(url + "?from=" + page, {
     method: "GET",
@@ -22,6 +23,7 @@ const appointmentAdd = async (data) => {
     body: JSON.stringify(data),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
+
       "x-token": token,
     },
   });
