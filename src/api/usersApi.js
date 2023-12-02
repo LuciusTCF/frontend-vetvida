@@ -23,7 +23,7 @@ const userAdd = async (data) => {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       "x-token": token,
-    },
+    }
   });
 
   const dataRes = await resp.json();
@@ -56,4 +56,7 @@ const userDelete = async (id) => {
   return data;
 };
 
-export { userList, userAdd, userUpdate, userDelete };
+export { userList,
+    userAdd,
+    userUpdate,
+    userDelete };

@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from "react";
 import { userList, userUpdate } from "../api/usersApi";
 
+
 import Modal from "react-bootstrap/Modal";
 
 const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
   const [dataUser, setDataUser] = useState(null);
 
+
   useEffect(() => {
     getUser();
   }, []);
+  
+
+
 
   const getUser = async () => {
     const { user } = await userList();
@@ -23,10 +28,23 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
     }
   };
 
+  // actualizacion mascota
+  const handlePetChange = (e, petIndex) => {
+    const updatedPets = [...user.pet];
+    updatedPets[petIndex] = {
+      ...updatedPets[petIndex],
+      [e.target.name]: e.target.value
+    };
+    setUser({ ...user, pet: updatedPets });
+  };
+  
+  
+  
+
   const update = async (e) => {
     e.preventDefault();
-
-    await userUpdate(user._id, user);
+console.log(user)
+    await userUpdate(user.uid, user);
 
     handleClose();
   };
@@ -57,84 +75,106 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
               />
             </fieldset>
             <hr />
-            <fieldset className="col-12 mb-3">
+    <fieldset className="col-12  mb-3">
               <label htmlFor="name-input" className="form-label fs-4">
                 Mascotas:
               </label>
-              {user?.pet.map((item, index) => (
-                <div key={item._id}>
+              {/* Modificación para mostrar campos de mascotas vacíos si no hay mascotas registradas */}
+              {(!user.pet || user.pet.length === 0) && (
+            <div className="row">
+              <div className="col-6 mb-3">
+                <label htmlFor={`pet-name-input-0`} className="form-label ">
+                  Nombre:
+                </label>
+                <input
+                  type="text"
+                  id={`pet-name-input-0`}
+                  name="namepet"
+                  className="form-control"
+                  value={user.namepet}
+                  onChange={(e) => handlePetChange(e, 0)}
+                  required
+                />
+                </div>
+            </div>
+          )}
+              {/* para renderizar campos cuando hay mascotas cargadas*/}
+              {user.pet && user.pet.length > 0 && user.pet.map((item, index) => (
+                <div key={item} className="mb-3 border p-3">
                   <h6>{`Mascota ${index + 1}`}</h6>
-                  <div className="d-flex">
+                  <div className="col-12">
                     <label
-                      htmlFor="pet-input"
+                      htmlFor={`pet-name-input-${index}`}
                       className="form-label align-self-center"
                     >
                       Nombre:
                     </label>
                     <input
                       type="text"
-                      id="pet-input"
-                      name="pet"
+                      id={`pet-name-input-${index}`}
+                      name="namepet"
                       className="form-control"
-                      value={item.name}
-                      onChange={handleChange}
+                      value={item.namepet}
+                      onChange={(e) => handlePetChange(e, index)}
                       required
                     />
                   </div>
-                  <div className="d-flex">
+                  <div className="col-12 mt-1">
                     <label
-                      htmlFor="pet-input"
-                      className="form-label align-self-center"
+                      htmlFor={`pet-specie-input-${index}`}
+                      className="form-label "
                     >
                       Especie:
                     </label>
                     <input
                       type="text"
-                      id="pet-input"
-                      name="pet"
+                      id={`pet-specie-input-${index}`}
+                      name="specie"
                       className="form-control"
                       value={item.specie}
-                      onChange={handleChange}
+                      onChange={(e) => handlePetChange(e, index)}
                       required
                     />
                   </div>
-                  <div className="d-flex">
+                  <div className="col-12 mt-1">
                     <label
-                      htmlFor="pet-input"
+                      htmlFor={`pet-breed-input-${index}`}
                       className="form-label align-self-center"
                     >
                       Raza:
                     </label>
                     <input
                       type="text"
-                      id="pet-input"
-                      name="pet"
+                      id={`pet-breed-input-${index}`}
+                      name="breed"
                       className="form-control"
                       value={item.breed}
-                      onChange={handleChange}
+                      onChange={(e) => handlePetChange(e, index)}
                       required
                     />
                   </div>
-                  <div className="d-flex">
+                  <div className="col-12 mt-1">
                     <label
-                      htmlFor="pet-input"
-                      className="form-label align-self-center"
+                      htmlFor={`pet-age-input-${index}`}
+                      className="form-label"
                     >
                       Edad:
                     </label>
                     <input
                       type="text"
-                      id="pet-input"
-                      name="pet"
+                      id={`pet-age-input-${index}`}
+                      name="age"
                       className="form-control"
                       value={item.age}
-                      onChange={handleChange}
+                      onChange={(e) => handlePetChange(e, index)}
                       required
                     />
                   </div>
                 </div>
               ))}
             </fieldset>
+  
+
             <hr />
             <fieldset className="col-12">
               <label htmlFor="role-input" className="form-label fs-4">
@@ -148,8 +188,8 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
               >
                 <option value="">Elegir Rol</option>
                 {dataUser?.length > 0 &&
-                  dataUser.map((user) => (
-                    <option key={user._id} value={user._id}>
+                  this.user.dataUser.map((user) => (
+                    <option key={user.id} value={user._id}>
                       {user.role}
                     </option>
                   ))}
@@ -161,6 +201,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
               Guardar cambios
             </button>
           </div>
+          
         </form>
       </Modal.Body>
     </Modal>

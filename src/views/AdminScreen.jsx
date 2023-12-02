@@ -10,6 +10,8 @@ import { useState,useEffect } from "react";
 // importado por ale
 import { Link } from "react-router-dom";
 import "../css/admin.css";
+import  GrettingAdminApp  from "../components/GrettingAdminApp"
+
 
 const AdminScreen = () => {
 
@@ -47,6 +49,7 @@ const AdminScreen = () => {
       role === "ADMIN_ROLE" ? (
     <div className="container-fluid row  main-admin">
       <div className="col pt-5 tables">
+      < GrettingAdminApp />
         <div className="row">
           <h1>Administrador</h1>
         </div>
@@ -69,6 +72,7 @@ const AdminScreen = () => {
           </div>
         </div>
       )}
+      
       </>
   );
 };

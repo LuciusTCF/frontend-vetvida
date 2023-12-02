@@ -4,6 +4,7 @@ import { userDelete } from "../api/usersApi";
 import BtnPagination from "../components/BtnPagination";
 import ModalUserUpdate from "../components/ModalUserUpdate";
 import Table from "react-bootstrap/Table";
+import Swal from 'sweetalert2';
 
 const UserAdmin = () => {
   const [page, setPage] = useState(0);
@@ -25,11 +26,24 @@ const UserAdmin = () => {
     setUser(data);
   };
 
+  
+
   const deleteUser = async (id) => {
-    const validate = confirm("Está seguro que quiere borrar el usuario?");
-    if (validate) {
+    // Utiliza SweetAlert2 para mostrar un cuadro de diálogo de confirmación
+    const { isConfirmed } = await Swal.fire({
+      title: '¿Desea eliminar usuario?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Sí, borrarlo',
+      cancelButtonText: 'Cancelar',
+    });
+  
+    if (isConfirmed) {
       const resp = await userDelete(id);
       console.log(resp);
+      // Aquí puedes realizar más acciones después de la confirmación
     }
   };
 
@@ -71,10 +85,10 @@ const UserAdmin = () => {
                   <td>{item.phone}</td>
                   <td>{item.role}</td>
                   <td>
-                    <div>
+                    <div className="d-flex flex-column flex-sm-row justify-content-center justify-content-sm-between">
                       <button
-                        className="btn btn-danger btn-sm"
-                        onClick={() => deleteUser(item._id)}
+                        className="btn btn-danger btn-sm mb-2 mb-sm-0 me-sm-2"
+                        onClick={() => deleteUser(item.uid)}
                       >
                         X
                       </button>

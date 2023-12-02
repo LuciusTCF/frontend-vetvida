@@ -11,6 +11,8 @@ const ModalAppointmentUpdate = ({
 }) => {
   const [dataAppointment, setDataAppointment] = useState(null);
 
+  
+ 
   useEffect(() => {
     getAppointment();
   }, []);
@@ -20,6 +22,7 @@ const ModalAppointmentUpdate = ({
     setDataAppointment(appointments);
   };
 
+  // cuando cambian los inputs
   const handleChange = (e) => {
     if (e.target.name === "state") {
       setAppointment({ ...appointment, [e.target.name]: e.target.checked });
@@ -28,6 +31,7 @@ const ModalAppointmentUpdate = ({
     }
   };
 
+  // actualizar
   const update = async (e) => {
     e.preventDefault();
 
@@ -37,9 +41,9 @@ const ModalAppointmentUpdate = ({
   };
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={true} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Actualizar {appointment?.date}</Modal.Title>
+        <Modal.Title>Actualizar </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form
@@ -52,7 +56,7 @@ const ModalAppointmentUpdate = ({
                 Fecha
               </label>
               <input
-                type="text"
+                type="date"
                 id="date-input"
                 name="date"
                 className="form-control"
