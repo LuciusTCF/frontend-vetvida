@@ -6,7 +6,7 @@ const useGetUsers = (page = 0) => {
 
   useEffect(() => {
     getData();
-  }, [page]);
+  }, [dataUsers]);
 
   const getData = async () => {
     const { total, users } = await userList(page);

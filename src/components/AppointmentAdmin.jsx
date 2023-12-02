@@ -9,20 +9,20 @@ const AppointmentAdmin = () => {
   const [page, setPage] = useState(0);
   const dataInfo = useGetAppointments(page);
   const [show, setShow] = useState(false);
-  const [appointment, setappointment] = useState(null);
-  console.log(dataInfo);
+  const [appointment, setAppointment] = useState(null);
+  // console.log(dataInfo);
   const handleClose = () => {
-    setappointment(null);
+    setAppointment(null);
     setShow(false);
   };
 
   const handleShow = (data) => {
-    setappointment(data);
+    setAppointment(data);
     setShow(true);
   };
 
   const modifyAppointment = (data) => {
-    setappointment(data);
+    setAppointment(data);
   };
 
   const deleteAppointment = async (id) => {
@@ -48,15 +48,14 @@ const AppointmentAdmin = () => {
   };
 
   return (
-    <div className="col table">
+    <div className="col">
       <div className="row">
         <h3 className="my-3">Turnos</h3>
-        {/*<h4>{dataInfo?.total && dataInfo.total}</h4> */}
-
         {dataInfo?.appointment ? (
           <Table striped bordered hover responsive="lg" variant="dark">
             <thead className="text-center">
               <tr>
+                <th>ID</th>
                 <th>Detalle</th>
                 <th>Veterinario</th>
                 <th>Fecha</th>
@@ -68,10 +67,11 @@ const AppointmentAdmin = () => {
             <tbody className="text-center">
               {dataInfo.appointment.map((item) => (
                 <tr key={item._id}>
+                  <td>{item._id}</td>
                   <td>{item.detail}</td>
                   <td>{item.veterinarian}</td>
                   <td>{item.date}</td>
-                  <td>{item?.user.name}</td>
+                  <td>{`${item?.user.name} (ID:${item?.user.uid})`}</td>
                   <td>
                     <div>
                       <button
@@ -147,7 +147,7 @@ const AppointmentAdmin = () => {
             show={show}
             handleClose={handleClose}
             appointment={appointment}
-            setappointment={modifyAppointment}
+            setAppointment={modifyAppointment}
           />
         )}
       </div>

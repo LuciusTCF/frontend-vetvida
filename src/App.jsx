@@ -24,8 +24,10 @@ function App() {
         <Route path="/AboutUs" element={<AboutUsScreen />} />
         <Route path="/Plans" element={<PlansScreen />} />
       </Routes>
+
     </BrowserRouter>
-  );
+    
+  )
 }
 
 export default App;

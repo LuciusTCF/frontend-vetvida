@@ -16,16 +16,12 @@ const ModalAppointmentUpdate = ({
   }, []);
 
   const getAppointment = async () => {
-    const { appointments } = await appointmentList();
-    setDataAppointment(appointments);
+    const { appointment } = await appointmentList();
+    setDataAppointment(appointment);
   };
 
   const handleChange = (e) => {
-    if (e.target.name === "state") {
-      setAppointment({ ...appointment, [e.target.name]: e.target.checked });
-    } else {
-      setAppointment({ ...appointment, [e.target.name]: e.target.value });
-    }
+    setAppointment({ ...appointment, [e.target.name]: e.target.value });
   };
 
   const update = async (e) => {
@@ -47,9 +43,9 @@ const ModalAppointmentUpdate = ({
           className="bg-light text-dark p-3 rounded w-100"
         >
           <section className="row">
-            <fieldset className="col-12 ">
-              <label htmlFor="date-input" className="form-label">
-                Fecha
+            <fieldset className="col-12 mb-3">
+              <label htmlFor="name-input" className="form-label fs-4">
+                Fecha:
               </label>
               <input
                 type="text"
@@ -61,9 +57,10 @@ const ModalAppointmentUpdate = ({
                 required
               />
             </fieldset>
-            <fieldset className="col-12">
-              <label htmlFor="detail-input" className="form-label">
-                Detalle
+            <hr />
+            <fieldset className="col-12 mb-3">
+              <label htmlFor="name-input" className="form-label fs-4">
+                Detalle:
               </label>
               <textarea
                 type="text"
@@ -75,9 +72,10 @@ const ModalAppointmentUpdate = ({
                 required
               ></textarea>
             </fieldset>
-            <fieldset className="col-12 ">
-              <label htmlFor="vet-input" className="form-label">
-                Veterinario
+            <hr />
+            <fieldset className="col-12 mb-3">
+              <label htmlFor="name-input" className="form-label fs-4">
+                Veterinario:
               </label>
               <input
                 type="text"
@@ -89,9 +87,10 @@ const ModalAppointmentUpdate = ({
                 required
               />
             </fieldset>
-            <fieldset className="col-12 ">
-              <label htmlFor="pet-input" className="form-label">
-                Mascota
+            <hr />
+            <fieldset className="col-12 mb-3">
+              <label htmlFor="name-input" className="form-label fs-4">
+                Mascota:
               </label>
               <input
                 type="text"
