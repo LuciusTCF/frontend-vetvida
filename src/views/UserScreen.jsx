@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, Link } from "react-router-dom";
-import { obtainDataAuth } from "../api/auth";
+import { getAuthData } from "../api/auth";
 import UserAdmin from "../components/UserAdmin";
 import "../css/admin.css";
 
@@ -14,7 +14,7 @@ const UserScreen = () => {
   }, []);
 
   const whatRole = async () => {
-    const resp = await obtainDataAuth(token);
+    const resp = await getAuthData(token);
 
     if (resp?.msg) {
       setMessage(resp.msg);

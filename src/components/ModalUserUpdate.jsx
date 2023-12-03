@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { userAdd, userList, userUpdate } from "../api/usersApi";
 
+
 import Modal from "react-bootstrap/Modal";
 
 const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
   const [dataUser, setDataUser] = useState(null);
   const [dataPet, setDataPet] = useState(null);
+
 
   useEffect(() => {
     getUser();
@@ -20,8 +22,21 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  const handlePetChange = (e, petIndex) => {
+    const updatedPets = [...user.pet];
+    updatedPets[petIndex] = {
+      ...updatedPets[petIndex],
+      [e.target.name]: e.target.value,
+    };
+    setUser({ ...user, pet: updatedPets });
+  };
+
   const update = async (e) => {
     e.preventDefault();
+
+console.log(user)
+
+
 
     await userUpdate(user.uid, user);
 
@@ -65,7 +80,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
 
   const deletePet = async (e, index) => {
     e.preventDefault();
-    user.pet.slice(index, 1);
+    user.pet.splice(index, 1);
 
     await userUpdate(user.uid, user);
     console.log(user);
@@ -106,7 +121,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                   <h6 className="mt-3">{`Mascota ${index + 1}`}</h6>
                   <button
                     className="btn btn-danger btn-sm mb-3"
-                    onClick={() => deletePet(index)}
+                    onClick={(e) => deletePet(e, index)}
                   >
                     Eliminar mascota
                   </button>
@@ -123,11 +138,11 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                       name="namepet"
                       className="form-control"
                       value={item.namepet}
-                      onChange={handleChange}
+                      onChange={(e) => handlePetChange(e, index)}
                       required
                     />
                   </div>
-                  <div className="d-flex">
+                  <div className="col-12 mt-1">
                     <label
                       htmlFor={`pet-specie-input${index + 1}`}
                       className="form-label align-self-center"
@@ -140,11 +155,11 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                       name="specie"
                       className="form-control"
                       value={item.specie}
-                      onChange={handleChange}
+                      onChange={(e) => handlePetChange(e, index)}
                       required
                     />
                   </div>
-                  <div className="d-flex">
+                  <div className="col-12 mt-1">
                     <label
                       htmlFor={`pet-breed-input${index + 1}`}
                       className="form-label align-self-center"
@@ -157,11 +172,11 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                       name="breed"
                       className="form-control"
                       value={item.breed}
-                      onChange={handleChange}
+                      onChange={(e) => handlePetChange(e, index)}
                       required
                     />
                   </div>
-                  <div className="d-flex">
+                  <div className="col-12 mt-1">
                     <label
                       htmlFor={`pet-age-input${index + 1}`}
                       className="form-label align-self-center"
@@ -174,7 +189,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                       name="age"
                       className="form-control"
                       value={item.age}
-                      onChange={handleChange}
+                      onChange={(e) => handlePetChange(e, index)}
                       required
                     />
                   </div>
@@ -186,6 +201,8 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                 </button>
               </div>
             </fieldset>
+  
+
             <hr />
             <fieldset className="col-12 mb-3">
               <label htmlFor="role-input" className="form-label fs-4">
@@ -214,6 +231,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
               Guardar cambios
             </button>
           </div>
+          
         </form>
       </Modal.Body>
     </Modal>

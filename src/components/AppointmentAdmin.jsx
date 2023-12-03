@@ -4,11 +4,13 @@ import { appointmentAdd, appointmentDelete } from "../api/appointmentsApi";
 import BtnPagination from "../components/BtnPagination";
 import ModalAppointmentUpdate from "../components/ModalAppointmentUpdate";
 import Table from "react-bootstrap/Table";
+import Swal from "sweetalert2";
 
 const AppointmentAdmin = () => {
   const [page, setPage] = useState(0);
   const dataInfo = useGetAppointments(page);
   const [show, setShow] = useState(false);
+
   const [appointment, setAppointment] = useState(null);
   const [dataAppointment, setDataAppointment] = useState(null);
   const handleClose = () => {
@@ -26,11 +28,23 @@ const AppointmentAdmin = () => {
     console.log(appointment);
   };
 
+  // **
   const deleteAppointment = async (id) => {
-    const validate = confirm("Está seguro que quiere borrar el turno?");
-    if (validate) {
+    // Utiliza SweetAlert2 para mostrar un cuadro de diálogo de confirmación
+    const { isConfirmed } = await Swal.fire({
+      title: "¿Desea eliminar el turno?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, borrarlo",
+      cancelButtonText: "Cancelar",
+    });
+
+    if (isConfirmed) {
       const resp = await appointmentDelete(id);
       console.log(resp);
+      // Aquí puedes realizar más acciones después de la confirmación
     }
   };
 
@@ -50,20 +64,31 @@ const AppointmentAdmin = () => {
 
   const handleAdd = (e) => {
     if (e.target.name === "date") {
-      setAppointment({ ...appointment, [e.target.name]: e.target.value + "Z" });
+      setDataAppointment({
+        ...dataAppointment,
+        [e.target.name]: e.target.value + ":00.000Z",
+      });
     } else if (e.target.name === "_id") {
-      setAppointment({
-        ...appointment,
+      setDataAppointment({
+        ...dataAppointment,
         user: { [e.target.name]: e.target.value },
       });
     } else {
-      setAppointment({ ...appointment, [e.target.name]: e.target.value });
+      setDataAppointment({
+        ...dataAppointment,
+        [e.target.name]: e.target.value,
+      });
     }
+    console.log(appointment);
+    console.log(dataAppointment);
   };
 
   const add = async (e) => {
     e.preventDefault();
-    await appointmentAdd(appointment);
+    console.log(dataAppointment);
+    await appointmentAdd(dataAppointment);
+    // console.log(appointment);
+    // console.log(dataAppointment);
   };
 
   return (
@@ -86,7 +111,7 @@ const AppointmentAdmin = () => {
                     id="date-input"
                     name="date"
                     className="form-control"
-                    value={dataAppointment?.appointment.date}
+                    value={dataInfo?.appointment?.date}
                     onChange={handleAdd}
                     required
                   />
@@ -101,7 +126,7 @@ const AppointmentAdmin = () => {
                     id="detail-input"
                     name="detail"
                     className="form-control"
-                    value={dataAppointment?.appointment.detail}
+                    value={dataInfo?.appointment?.detail}
                     onChange={handleAdd}
                     required
                   ></textarea>
@@ -137,7 +162,7 @@ const AppointmentAdmin = () => {
                     id="pet-input"
                     name="pet"
                     className="form-control"
-                    value={dataAppointment?.appointment.pet}
+                    value={dataInfo?.appointment?.pet}
                     onChange={handleAdd}
                     required
                   />
@@ -152,7 +177,7 @@ const AppointmentAdmin = () => {
                     id="user-input"
                     name="_id"
                     className="form-control"
-                    value={dataAppointment?.appointment.user._id}
+                    value={dataInfo?.appointment?.user?._id}
                     onChange={handleAdd}
                     required
                   />
@@ -174,7 +199,6 @@ const AppointmentAdmin = () => {
                   <th>Veterinario</th>
                   <th>Fecha</th>
                   <th>Usuario</th>
-
                   <th></th>
                 </tr>
               </thead>

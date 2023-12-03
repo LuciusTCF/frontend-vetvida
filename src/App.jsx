@@ -1,9 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import RouterPrimary from "./routes/RouterPrimary.jsx";
 import LoginScreen from "./views/LoginScreen.jsx";
-import HomeScreen from "./views/HomeScreen";
 import ProtectedRoutes from "../src/routes/ProtectedRoutes.jsx";
-// import "./App.css";
+import RegisterUser from "./views/RegisterUser.jsx";
 
 function App() {
   return (
@@ -17,8 +16,9 @@ function App() {
             </ProtectedRoutes>
           }
         />
-        <Route path="/" element={<HomeScreen />} />
+
         <Route path="/login" element={<LoginScreen />} />
+        <Route path="/register" element={<RegisterUser />} />
       </Routes>
     </BrowserRouter>
   );
