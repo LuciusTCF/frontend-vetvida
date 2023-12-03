@@ -1,0 +1,46 @@
+.textabout {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  bottom: 50%; 
+  transform: translate(-50%, -50%);
+  color: white; 
+  text-align: center;
+  font-size: 50px;
+  font-weight: bold; 
+}
+
+.imgabout{
+  width: 100%;
+  background: rgba(0, 0, 0, 0.5); 
+  z-index: 1;
+  margin-bottom: 3%;
+}
+
+.textAbout{
+  width: 60%;
+  left: 20%;
+  margin-top: 4%;
+  margin-bottom: 3%;
+  align-items: center;
+  text-align: center;
+  border: 0;
+}
+
+.img-container-avatar {
+  border-radius: 80%;  }
+
+.cardAbout{
+margin-top: 7%;
+}
+
+.containerAb {
+  transition: transform 0.3s; 
+}
+
+.containerAb:hover {
+  transform: scale(1.1); 
+}
+
+
+
