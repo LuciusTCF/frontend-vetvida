@@ -4,15 +4,11 @@ import horses from "../assets/caballosInicioSesion.jpg";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import '../css/login.css';
 
 
-
-
-
-
-const LoginScreen = () => {
+const LoginScreen = ({setEstadoLogin}) => {
   const {
     handleSubmit,
     register,
@@ -25,10 +21,11 @@ const LoginScreen = () => {
   const [loginUser, setLoginUser] = useState(null);
 
 
-  // useEffect(() => {
-  //   localStorage.removeItem('token');
-  //   setLoginUser(false);
-  // }, []);
+  useEffect(() => {
+    localStorage.removeItem('token');
+    setLoginUser(false);
+    setEstadoLogin(false);
+  }, []);
 
 
   const logIn = async (data) => {
@@ -41,6 +38,7 @@ const LoginScreen = () => {
 
     if (respuesta?.token) {
       localStorage.setItem("token", JSON.stringify(respuesta.token));
+      setEstadoLogin(true);
       navigate("/admin");
     } else if (respuesta?.msg) {
       Swal.fire({
@@ -128,7 +126,7 @@ const LoginScreen = () => {
                   required
                   disabled={loading ? true : false}
                   {...register("password", {
-                    required,
+                    required: "Este campo es obligatorio.",
                     maxLength: {
                       value: 17,
                       message: "Escribe un máximo de 16 caracteres.",
