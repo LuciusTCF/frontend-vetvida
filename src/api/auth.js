@@ -15,11 +15,7 @@ export const login = async (data) => {
   return info;
 };
 
-
-// funcion para validar el rol para dar o no accesos a ciertas funcionalidades
-export const getAuthData = async (token) => {
-  try{
-
+export const obtainDataAuth = async (token) => {
   const res = await fetch(url, {
     method: "GET",
     headers: {
@@ -27,17 +23,11 @@ export const getAuthData = async (token) => {
       "x-token": token,
     },
   });
-  
-  // creado para mejorar la solucion de errores
-  if (!res.ok) {
-    throw new Error('Error en la solicitud de datos de autenticación');
-  }
 
   const info = await res.json();
+
   return info;
-} catch (error) {
-  console.error('Error en la función getAuthData:', error);
-  throw error;
-}
 };
+
+
 

@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, Link } from "react-router-dom";
+
+import { obtainDataAuth} from "../api/auth";
+import UserAdmin from "../components/UserAdmin";
+import AppointmentAdmin from "../components/AppointmentAdmin";
+
 import { getAuthData } from "../api/auth";
+
 import "../css/admin.css";
 import useGetAppointments from "../hooks/useGetAppointments";
 import BtnPagination from "../components/BtnPagination";

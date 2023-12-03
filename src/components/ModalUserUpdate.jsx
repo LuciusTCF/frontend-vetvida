@@ -114,8 +114,10 @@ console.log(user)
               />
             </fieldset>
             <hr />
+
             <fieldset className="col-12 mb-3">
               <p className="fs-4">Mascotas:</p>
+
               {user?.pet.map((item, index) => (
                 <div key={index}>
                   <h6 className="mt-3">{`Mascota ${index + 1}`}</h6>
@@ -195,19 +197,20 @@ console.log(user)
                   </div>
                 </div>
               ))}
+
               <div className="text-center my-2">
                 <button onClick={addPet} className="btn btn-success">
                   Añadir mascota
                 </button>
               </div>
             </fieldset>
-  
 
+  
             <hr />
-            <fieldset className="col-12 mb-3">
-              <label htmlFor="role-input" className="form-label fs-4">
+             <fieldset className="col-12 mb-3">
+               <label htmlFor="role-input" className="form-label fs-4">
                 Rol:
-              </label>
+               </label>
               <select
                 className="form-select"
                 aria-label="Elegir Rol"
@@ -223,9 +226,11 @@ console.log(user)
                 <option value="USER_ROLE_P1">Usuario con plan Plata</option>
                 <option value="USER_ROLE_P2">Usuario con plan Bronce</option>
                 <option value="USER_ROLE_P3">Usuario con plan Oro</option>
+
               </select>
             </fieldset>
           </section>
+
           <div className="text-end mt-2">
             <button type="submit" className="btn btn-primary">
               Guardar cambios
