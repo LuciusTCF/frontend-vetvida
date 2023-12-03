@@ -93,11 +93,11 @@ const AboutUsScreen = () => {
 
 
     <div class="card text-center containerAb cardAbout" >
-  <div class="card-body">
+  <div class="card-body mb-4">
     <h5 class="card-title">Contactate con nuestro equipo!</h5>
     <p class="card-text">Nos asociamos contigo desde el primer día, trabajando juntos para entender tus objetivos y 
     necesidades. Tu éxito es nuestro éxito.</p>
-    <a href="https://wa.me/3816238974" class="btn btn-outline-dark">Contacto</a>
+    <a href="https://wa.me/3816238974" target="_blank" class="btn btn-outline-dark">Contacto</a>
   </div>
 </div>
     </div>
