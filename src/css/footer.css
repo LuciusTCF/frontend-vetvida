@@ -1,0 +1,48 @@
+.logofooter{
+    overflow: hidden;
+  }
+
+  .footer_bg{
+    background-color: #e2c5fc;
+  }
+
+  .footer-whatsapp {
+    text-decoration: underline;
+    color: #3d1164;
+  }
+
+  .color{
+    color: #3d1164;
+  }
+  
+
+  @media (min-width: 280px) {
+
+    .logofooter img{
+      height: 150px;
+      width: 150px;
+      border-radius: 80px;
+    }
+  
+  }
+
+  @media (min-width: 768px){
+
+    .logofooter img{
+      height: 180px;
+      width: 180px;
+      border-radius: 100px;
+    }
+
+
+  }
+
+  @media (min-width: 1024px) {
+
+    .logofooter img{
+      height: 180px;
+      width: 180px;
+      border-radius: 100px;
+    }
+
+  }

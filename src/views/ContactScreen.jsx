@@ -46,6 +46,8 @@ const ContactScreen = () => {
   const center = [-33.137419, -64.3653236];
   const zoom = 17;
 
+
+  
   return (
     <div>
       <h3 className="text-uppercase fw-bold mt-4">contáctanos</h3>
@@ -163,6 +165,7 @@ const ContactScreen = () => {
             <h2>¿Cómo llegar?</h2>
             <MapContact center={center} zoom={zoom} />
           </div>
+
         </div>
       </div>
       <FooterApp />
