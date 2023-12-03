@@ -2,40 +2,35 @@ import React from 'react'
 import CardApp from '../components/CardApp'
 import { infoProfessionals } from '../data/dataProfessionals'
 import { infoComment } from '../data/dataComment'
-import FooterApp from '../components/FooterApp'
-import NavBarApp from '../components/NavBarApp'
 import imagenhome from '../assets/home.jpg'
 import SponsorsApp from '../components/SponsorsApp'
 import CarouselApp from '../components/CarouselApp'
 import '../css/home.css'
+import CarouselProdHomeApp from '../components/CarouselProdHomeApp'
+
 
 
 const HomeScreen = () => {
   return (
     <div>
 
-        <NavBarApp />
-
-        <div className='position-relative'>   
-            <img src={imagenhome} className="d-block w-100" alt="imagen de gato"/>
-            <div className='overlay overlay-home d-flex h-100 align-items-center text-white position-absolute mx-3'>
-                <p>Brindamos servicios <br /> dignos de calidez <br /> y excelencia</p>
-            </div>
+        <div className='overlay-container'>   
+            <img src={imagenhome} className="imghome" alt="imagen de gato"/>
+            <div className='overlay overlay-home d-flex h-100 w-100 align-items-center text-white'>
+                <p>En <b> Vet Vida </b><br /> Bindamos servicios <br /> dignos de calidez <br /> y excelencia</p>
+            </div>   
         </div>
 
-        <div className='servicios d-flex'>
-            <p className='mx-5 my-4'><b>En VetVida te ofrecemos: </b><br /><br />
-                Consulta general <br /> Medicina preventiva: vacunación y desparasitación <br />
-                Limpieza dental <br /> Esterilizaciones <br /> Cirugías <br /> Rayos x<br />
-                Fisioterapia y rehabilitación <br /> Laboratorio clínico <br />
-                Internación <br /> Baño y peluquería <br /> Pensión <br />
-            </p>
+        <div className='servicios d-flex parrafoshome justify-content-center text-center'>
+                    <p className='mx-5 my-4 lh-lg '><b>En VetVida te ofrecemos: </b><br /><br />
+                        Consulta general <i className="fa fa-paw" aria-hidden="true"></i> Medicina preventiva: vacunación y desparasitación <i className="fa fa-paw" aria-hidden="true"></i> Limpieza dental <i className="fa fa-paw" aria-hidden="true"></i> Esterilizaciones <i className="fa fa-paw" aria-hidden="true"></i> Cirugías <i className="fa fa-paw" aria-hidden="true"></i> Rayos x <i className="fa fa-paw" aria-hidden="true"></i> Fisioterapia y rehabilitación <i className="fa fa-paw" aria-hidden="true"></i> Laboratorio clínico <i className="fa fa-paw" aria-hidden="true"></i> Baño y peluquería <br /> <br />
+                    </p>
         </div>
 
         <CarouselApp />
 
-        <div className='row'>
-            <div className='col-9'>
+        {/* <div className='row'> */}
+            
                 <div >    
                     <div className="row mx-2 my-2 g-3 profesionales">   
                     <p><b>Tus mascotas en las mejores manos.. nuestros profesionales:</b></p>      
@@ -46,13 +41,18 @@ const HomeScreen = () => {
                         }
                     </div>
                 </div>
+            
+
+            <div className=" parrafoshome mx-3 my-2">
+                <p><b>Todo lo que tu mascota necesita, lo encotras aqui en VetVida</b></p>
+                <CarouselProdHomeApp/>
             </div>
 
-            <div className='col-3 d-flex flex-column align-items-center'>
+            {/* <div className=' d-flex flex-column align-items-center'> */}
              <SponsorsApp />
-            </div>
+            {/* </div> */}
 
-        </div>
+        {/* </div> */}
         
 
         <div>
@@ -70,11 +70,9 @@ const HomeScreen = () => {
             </div>
         </div>
 
-    
-        <FooterApp />
 
     </div>
-  )
-}
+  );
+};
 
-export default HomeScreen
+export default HomeScreen;

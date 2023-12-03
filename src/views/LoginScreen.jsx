@@ -1,4 +1,3 @@
-
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import horses from "../assets/caballosInicioSesion.jpg";
@@ -50,13 +49,13 @@ const LoginScreen = () => {
         padding: "3em",
         color: "#716add",
         background: "#fff url(/images/trees.png)",
-        backdrop: `rgba(0,0,123,0.4)`,
+        backdrop: rgba(0,0,123,0.4),
         icon: "error",
       });
     }
   };
 
-  // **********Logica de cierre de sesión en el navBar:
+  // ****Logica de cierre de sesión en el navBar:
   // useEffect(() => {
     // const token = localStorage.getItem("token");
 
@@ -129,7 +128,7 @@ const LoginScreen = () => {
                   required
                   disabled={loading ? true : false}
                   {...register("password", {
-                    required: `Este campo es obligatorio.`,
+                    required,
                     maxLength: {
                       value: 17,
                       message: "Escribe un máximo de 16 caracteres.",
@@ -195,10 +194,10 @@ const LoginScreen = () => {
                     <div className="hamster__eye"></div>
                     <div className="hamster__nose"></div>
                   </div>
-                  <div className="hamster__limb hamster__limb--fr"></div>
-                  <div className="hamster__limb hamster__limb--fl"></div>
-                  <div className="hamster__limb hamster__limb--br"></div>
-                  <div className="hamster__limb hamster__limb--bl"></div>
+                  <div className="hamster_limb hamster_limb--fr"></div>
+                  <div className="hamster_limb hamster_limb--fl"></div>
+                  <div className="hamster_limb hamster_limb--br"></div>
+                  <div className="hamster_limb hamster_limb--bl"></div>
                   <div className="hamster__tail"></div>
                 </div>
               </div>

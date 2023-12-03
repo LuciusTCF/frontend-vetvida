@@ -16,10 +16,10 @@ const CarouselApp = () => {
 
       <div className="overlay">
           <div className="h-100 d-flex flex-column align-items-center justify-content-center text-white p-3">
-            <h3 className="text-center">
+            <p className="text-center">
             Informate de nuestros plane mensuales para obtener <br /> descuentos en servicios y productos
-            </h3>
-            <button className="btn btn-outline-light btn-lg">Conoce más</button>
+            </p>
+            <button className="btn btn-outline-light btn-sm">Conoce más</button>
           </div>
         </div>
       
