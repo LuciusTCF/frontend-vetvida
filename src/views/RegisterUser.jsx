@@ -1,7 +1,10 @@
-// import React, from 'react';
+
 import { useForm } from 'react-hook-form';
 import imagenFondo from "../assets/imagenRegistro.jpg";
 import '../css/RegisterUser.css';
+import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
+
 
 
 
@@ -9,6 +12,30 @@ import '../css/RegisterUser.css';
 const RegisterUser = () => {
 
   const { handleSubmit, register, reset, formState: { errors } } = useForm();
+  const url = "http://localhost:8080/api/users"; 
+  
+  const registerUser = async (data) => {
+    try {
+      const resp = await fetch(url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+      const dataRes = await resp.json();
+      console.log('Usuario registrado:', dataRes);
+      Swal.fire({
+        icon: 'success',
+        title: '¡Usuario registrado!',
+        text: 'El usuario se ha registrado exitosamente.',
+      })
+      
+      reset();
+    } catch (error) {
+      console.error('Error al registrar usuario:', error);
+    }
+  };
 
 
   return (
@@ -17,7 +44,7 @@ const RegisterUser = () => {
         <img src={imagenFondo} className="imgUser " alt="perros" />
       </div>
       <div className="contenedorFormUser border-3 border border-danger mt-5 w-50 rounded-2 container">
-        <form noValidate onSubmit={handleSubmit()} className="row g-3 p-5">
+        <form noValidate onSubmit={handleSubmit(registerUser)} className="row g-3 p-5">
           <h2 className="text-primary fw-bolder  text-uppercase">Registro de usuario</h2>
           <fieldset
             className="col-12 col-lg-4">
@@ -94,14 +121,9 @@ const RegisterUser = () => {
             <select className="form-select ">
               <optgroup label='seleccione especie'>
                 <option value="1">Ave</option>
-                <option value="2">Bovino</option>
-                <option value="3">Canino</option>
-                <option value="4">Caprino</option>
-                <option value="5">Equino</option>
-                <option value="6">Exótico</option>
-                <option value="7">Felino</option>
-                <option value="8">Porcino</option>
-                <option value="9">Ovino</option>
+                <option value="2">Canino</option>
+                <option value="3">Felino</option>
+                <option value="4">Roedor</option>
               </optgroup>
             </select>
           </fieldset>
@@ -216,6 +238,11 @@ const RegisterUser = () => {
             className="d-grid">
             <button type="submit"
               className="btn btn-primary text-uppercase fw-bold">registrarse</button>
+          </div>
+          <div
+            className="d-grid">
+            <Link to="/login"
+              className="btn btn-success text-uppercase fw-bold">inicia sesión</Link>
           </div>
         </form>
       </div>
