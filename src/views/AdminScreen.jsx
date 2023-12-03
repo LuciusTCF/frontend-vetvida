@@ -1,18 +1,9 @@
 
 import React, { useEffect, useState } from "react";
 import { Navigate, Link } from "react-router-dom";
-import { obtainDataAuth } from "../api/auth";
-
+import { obtainDataAuth} from "../api/auth";
 import UserAdmin from "../components/UserAdmin";
 import AppointmentAdmin from "../components/AppointmentAdmin";
-// importar Navigate en caso de no tener el token válido:
-import { Navigate } from "react-router-dom";
-// Importando la funcion para obtenr datos:
-import { getAuthData } from "../api/auth";
-// importado por Ale
-import { useState,useEffect } from "react"; 
-// importado por ale
-import { Link } from "react-router-dom";
 import "../css/admin.css";
 import  GrettingAdminApp  from "../components/GrettingAdminApp"
 

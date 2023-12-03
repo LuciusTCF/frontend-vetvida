@@ -79,7 +79,7 @@ console.log(user)
               <label htmlFor="name-input" className="form-label fs-4">
                 Mascotas:
               </label>
-
+              </fieldset>
               {/* Modificación para mostrar campos de mascotas vacíos si no hay mascotas registradas */}
               {(!user.pet || user.pet.length === 0) && (
             <div className="row">
@@ -100,8 +100,8 @@ console.log(user)
             </div>
           )}
               {/* para renderizar campos cuando hay mascotas cargadas*/}
-              {user.pet && user.pet.length > 0 && user.pet.map((item, index) => (
-                <div key={item} className="mb-3 border p-3">
+              {/* {user.pet && user.pet.length > 0 && user.pet.map((item, index) => (
+                <div key={item} className="mb-3 border p-3"> */}
 
               {user?.pet.map((item, index) => (
                 <div key={index}>
@@ -177,14 +177,15 @@ console.log(user)
                   </div>
                 </div>
               ))}
-            </fieldset>
+            
+            {/* </fieldset> */}
+            {/* ))} */}
   
-
             <hr />
-            <fieldset className="col-12 mb-3">
-              <label htmlFor="role-input" className="form-label fs-4">
+             <fieldset className="col-12 mb-3">
+               <label htmlFor="role-input" className="form-label fs-4">
                 Rol:
-              </label>
+               </label>
               <select
                 className="form-select"
                 aria-label="Default select example"
@@ -198,16 +199,16 @@ console.log(user)
                 <option value="USER_ROLE_P1">Usuario con plan Plata</option>
                 <option value="USER_ROLE_P2">Usuario con plan Bronce</option>
                 <option value="USER_ROLE_P3">Usuario con plan Oro</option>
-                {/* {user?.length > 0 &&
+                {user?.length > 0 &&
                   user.map((item, index) => (
                     <option key={index} value={index}>
                       {item.role}
 
                     </option>
-                  ))} */}
-              </select>
-            </fieldset>
-          </section>
+                  ))}
+          //     </select>
+          //   </fieldset>
+          // </section>
           <div className="text-end mt-2">
             <button type="submit" className="btn btn-primary">
               Guardar cambios

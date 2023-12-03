@@ -155,13 +155,13 @@ const LoginScreen = () => {
               </div>
               <p>Aun no tienes cuenta?</p>
               <Link
-                to="/prueba"
+                to="/register"
                 className="btn btn-outline-success mb-3 fw-bold "
               >
                 Regístrate
               </Link>
               <hr className="text-secondary border-3" />
-              <Link to="/prueba" className="btn btn-info fw-bold mb-3  ">
+              <Link to="/" className="btn btn-info fw-bold mb-3  ">
                 <i className="bi bi-house-fill"> </i>
                 Volver
               </Link>

@@ -40,7 +40,7 @@ const ContactScreen = () => {
     return (
         <div>
             <NavBarApp/>
-            <h3 className='text-uppercase fw-bold mt-4'>contáctanos</h3>
+            <h3 className='text-uppercase  fw-bold mt-4'>contáctanos</h3>
             <p className='p-3'>Como verdaderos apasionados de los animales, sabemos que cada mascota que recibimos es parte de una familia.Estamos aquí para responder cualquier pregunta que pueda tener. No dudes en comunicarte con nosotros a través de cualquiera de los siguientes medios :</p>
             <div className="container">
                 <div className="row">
@@ -52,7 +52,7 @@ const ContactScreen = () => {
             <div className="container mt-5">
                 <div className="row ">
                     <form noValidate ref={form} onSubmit={handleSubmit(sendEmail)} className="col-12 col-lg-6 mt-3">
-                        <h2 className='py-4'>¡Déjanos tu mensaje!</h2>
+                        <h2 className='py-4 text-center'>¡Déjanos tu mensaje!</h2>
                         <section>
                             <fieldset className="form-floating">
                                 <input type="text" className="form-control shadow-sm " name="user_name" id="inputNameContact" required
@@ -123,7 +123,7 @@ const ContactScreen = () => {
                         </section>
                     </form>
                     <div className="col-12 col-lg-6 mt-5 ">
-                        <h2>¿Cómo llegar?</h2>
+                        <h2 className='text-center'>¿Cómo llegar?</h2>
                         <MapContact center={center} zoom={zoom} />
                     </div>
                 </div>
