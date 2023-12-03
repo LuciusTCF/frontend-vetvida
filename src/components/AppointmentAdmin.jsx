@@ -4,7 +4,7 @@ import { appointmentAdd, appointmentDelete } from "../api/appointmentsApi";
 import BtnPagination from "../components/BtnPagination";
 import ModalAppointmentUpdate from "../components/ModalAppointmentUpdate";
 import Table from "react-bootstrap/Table";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 const AppointmentAdmin = () => {
   const [page, setPage] = useState(0);
@@ -23,7 +23,6 @@ const AppointmentAdmin = () => {
     setShow(true);
   };
 
-
   const modifyAppointment = (data) => {
     setAppointment(data);
     console.log(appointment);
@@ -33,15 +32,15 @@ const AppointmentAdmin = () => {
   const deleteAppointment = async (id) => {
     // Utiliza SweetAlert2 para mostrar un cuadro de diálogo de confirmación
     const { isConfirmed } = await Swal.fire({
-      title: '¿Desea eliminar el turno?',
-      icon: 'warning',
+      title: "¿Desea eliminar el turno?",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#d33',
-      cancelButtonColor: '#3085d6',
-      confirmButtonText: 'Sí, borrarlo',
-      cancelButtonText: 'Cancelar',
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, borrarlo",
+      cancelButtonText: "Cancelar",
     });
-  
+
     if (isConfirmed) {
       const resp = await appointmentDelete(id);
       console.log(resp);

@@ -11,8 +11,6 @@ const ModalAppointmentUpdate = ({
 }) => {
   const [dataAppointment, setDataAppointment] = useState(null);
 
-  
- 
   useEffect(() => {
     getAppointment();
   }, [dataAppointment]);
@@ -52,7 +50,7 @@ const ModalAppointmentUpdate = ({
                 Fecha:
               </label>
               <input
-                type="date"
+                type="datetime-local"
                 id="date-input"
                 name="date"
                 className="form-control"
