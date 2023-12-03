@@ -13,8 +13,8 @@ const RouterPrimary = () => {
     <Routes>
       <Route path="/" element={<HomeScreen />} />
       <Route path="/admin" element={<AdminScreen />} />
-      <Route path="/admin-user" element={<UserScreen />} />
-      <Route path="/admin-appointment" element={<AppointmentScreen />} />
+      <Route path="/adminuser" element={<UserScreen />} />
+      <Route path="/adminappointment" element={<AppointmentScreen />} />
       <Route path="/plans" element={<PlansScreen />} />
       <Route path="/contact" element={<ContactScreen />} />
       <Route path="*" element={<ErrorScreen />} />

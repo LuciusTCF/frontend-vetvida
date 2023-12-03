@@ -15,19 +15,25 @@ export const login = async (data) => {
   return info;
 };
 
-export const obtainDataAuth = async (token) => {
-  const res = await fetch(url, {
-    method: "GET",
-    headers: {
-      "Content-type": "application/json; charset=UTF-8",
-      "x-token": token,
-    },
-  });
+export const getAuthData = async (token) => {
+  try {
+    const res = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-type": "application/json; charset=UTF-8",
+        "x-token": token,
+      },
+    });
 
-  const info = await res.json();
+    // creado para mejorar la solucion de errores
+    if (!res.ok) {
+      throw new Error("Error en la solicitud de datos de autenticación");
+    }
 
-  return info;
+    const info = await res.json();
+    return info;
+  } catch (error) {
+    console.error("Error en la función getAuthData:", error);
+    throw error;
+  }
 };
-
-
-
