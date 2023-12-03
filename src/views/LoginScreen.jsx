@@ -1,4 +1,3 @@
-
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import horses from "../assets/caballosInicioSesion.jpg";
@@ -6,10 +5,14 @@ import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
 import { useState } from "react";
-import { useEffect } from "react";
-import Spinner from "react-bootstrap/Spinner";
+import '../css/login.css';
 
-const LoginScreen = ({setEstadoLogin}) => {
+
+
+
+
+
+const LoginScreen = () => {
   const {
     handleSubmit,
     register,
@@ -21,13 +24,14 @@ const LoginScreen = ({setEstadoLogin}) => {
   const [loading, setLoading] = useState(false);
   const [loginUser, setLoginUser] = useState(null);
 
-  useEffect(() => {
-    localStorage.removeItem('user');
-    setEstadoLogin(false);
-  }, [])
-  
 
-   const inicioSesion = async (data) => {
+  // useEffect(() => {
+  //   localStorage.removeItem('token');
+  //   setLoginUser(false);
+  // }, []);
+
+
+  const logIn = async (data) => {
     setLoading(true);
     const respuesta = await login(data);
     console.log(respuesta);
@@ -37,7 +41,6 @@ const LoginScreen = ({setEstadoLogin}) => {
 
     if (respuesta?.token) {
       localStorage.setItem("token", JSON.stringify(respuesta.token));
-      setEstadoLogin(true);
       navigate("/admin");
     } else if (respuesta?.msg) {
       Swal.fire({
@@ -46,13 +49,13 @@ const LoginScreen = ({setEstadoLogin}) => {
         padding: "3em",
         color: "#716add",
         background: "#fff url(/images/trees.png)",
-        backdrop: `rgba(0,0,123,0.4)`,
+        backdrop: rgba(0,0,123,0.4),
         icon: "error",
       });
     }
   };
 
-  // **********Logica de cierre de sesión en el navBar:
+  // ****Logica de cierre de sesión en el navBar:
   // useEffect(() => {
     // const token = localStorage.getItem("token");
 
@@ -125,7 +128,7 @@ const LoginScreen = ({setEstadoLogin}) => {
                   required
                   disabled={loading ? true : false}
                   {...register("password", {
-                    required: `Este campo es obligatorio.`,
+                    required,
                     maxLength: {
                       value: 17,
                       message: "Escribe un máximo de 16 caracteres.",
@@ -151,13 +154,13 @@ const LoginScreen = ({setEstadoLogin}) => {
               </div>
               <p>Aun no tienes cuenta?</p>
               <Link
-                to="/prueba"
+                to="/register"
                 className="btn btn-outline-success mb-3 fw-bold "
               >
                 Regístrate
               </Link>
               <hr className="text-secondary border-3" />
-              <Link to="/prueba" className="btn btn-info fw-bold mb-3  ">
+              <Link to="/" className="btn btn-info fw-bold mb-3  ">
                 <i className="bi bi-house-fill"> </i>
                 Volver
               </Link>
@@ -191,10 +194,10 @@ const LoginScreen = ({setEstadoLogin}) => {
                     <div className="hamster__eye"></div>
                     <div className="hamster__nose"></div>
                   </div>
-                  <div className="hamster__limb hamster__limb--fr"></div>
-                  <div className="hamster__limb hamster__limb--fl"></div>
-                  <div className="hamster__limb hamster__limb--br"></div>
-                  <div className="hamster__limb hamster__limb--bl"></div>
+                  <div className="hamster_limb hamster_limb--fr"></div>
+                  <div className="hamster_limb hamster_limb--fl"></div>
+                  <div className="hamster_limb hamster_limb--br"></div>
+                  <div className="hamster_limb hamster_limb--bl"></div>
                   <div className="hamster__tail"></div>
                 </div>
               </div>
