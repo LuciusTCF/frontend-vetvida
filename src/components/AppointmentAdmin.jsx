@@ -64,20 +64,31 @@ const AppointmentAdmin = () => {
 
   const handleAdd = (e) => {
     if (e.target.name === "date") {
-      setAppointment({ ...appointment, [e.target.name]: e.target.value + "Z" });
+      setDataAppointment({
+        ...dataAppointment,
+        [e.target.name]: e.target.value + ":00.000Z",
+      });
     } else if (e.target.name === "_id") {
-      setAppointment({
-        ...appointment,
+      setDataAppointment({
+        ...dataAppointment,
         user: { [e.target.name]: e.target.value },
       });
     } else {
-      setAppointment({ ...appointment, [e.target.name]: e.target.value });
+      setDataAppointment({
+        ...dataAppointment,
+        [e.target.name]: e.target.value,
+      });
     }
+    console.log(appointment);
+    console.log(dataAppointment);
   };
 
   const add = async (e) => {
     e.preventDefault();
-    await appointmentAdd(appointment);
+    console.log(dataAppointment);
+    await appointmentAdd(dataAppointment);
+    // console.log(appointment);
+    // console.log(dataAppointment);
   };
 
   return (
@@ -100,7 +111,7 @@ const AppointmentAdmin = () => {
                     id="date-input"
                     name="date"
                     className="form-control"
-                    value={dataAppointment?.appointment.date}
+                    value={dataInfo?.appointment?.date}
                     onChange={handleAdd}
                     required
                   />
@@ -115,7 +126,7 @@ const AppointmentAdmin = () => {
                     id="detail-input"
                     name="detail"
                     className="form-control"
-                    value={dataAppointment?.appointment.detail}
+                    value={dataInfo?.appointment?.detail}
                     onChange={handleAdd}
                     required
                   ></textarea>
@@ -151,7 +162,7 @@ const AppointmentAdmin = () => {
                     id="pet-input"
                     name="pet"
                     className="form-control"
-                    value={dataAppointment?.appointment.pet}
+                    value={dataInfo?.appointment?.pet}
                     onChange={handleAdd}
                     required
                   />
@@ -166,7 +177,7 @@ const AppointmentAdmin = () => {
                     id="user-input"
                     name="_id"
                     className="form-control"
-                    value={dataAppointment?.appointment.user._id}
+                    value={dataInfo?.appointment?.user?._id}
                     onChange={handleAdd}
                     required
                   />
