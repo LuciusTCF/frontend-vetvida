@@ -11,9 +11,13 @@ const PlansScreen = () => {
     <div>
       <div>
         <div className="position-relative mx-auto img-main-plans ">
-          <img src={imgMainPlans} className="img-fluid" alt="..." />
-          <div className="position-absolute top-0 star-0">
-            <h1 className="h1-plans">
+          <img
+            src={imgMainPlans}
+            className="img-fluid"
+            alt="Perro blanco y negro de portada"
+          />
+          <div className="position-absolute top-0 ">
+            <h1 className="deslizar">
               Planes que se adaptan a tus necesidades!
             </h1>
           </div>
@@ -24,9 +28,9 @@ const PlansScreen = () => {
         <div className="card-group">
           <div className="card cardPlans">
             <img
-              className="card-img imgPlans mx-auto"
+              className="card-img imgPlans mx-auto containerPlans"
               src={imgBronzePlans}
-              alt=""
+              alt="Huella de animal"
             />
             <div className="card-body">
               <h5 className="card-title ">Bronce</h5>
@@ -45,9 +49,9 @@ const PlansScreen = () => {
 
           <div className="card cardPlans">
             <img
-              className="card-img imgPlans mx-auto"
+              className="card-img imgPlans mx-auto containerPlans"
               src={imgSilverPlans}
-              alt=""
+              alt="figura perro y gato"
             />
             <div className="card-body">
               <h5 className="card-title">Plata</h5>
@@ -66,9 +70,9 @@ const PlansScreen = () => {
 
           <div className="card cardPlans">
             <img
-              className="card-img imgPlans mx-auto"
+              className="card-img imgPlans mx-auto containerPlans"
               src={imgGoldPlans}
-              alt=""
+              alt="figura animales varios"
             />
             <div className="card-body">
               <h5 className="card-title">Oro</h5>

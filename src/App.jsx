@@ -10,41 +10,26 @@ import FooterApp from "./components/FooterApp.jsx";
 import { useState } from "react";
 import AdminScreen from "./views/AdminScreen.jsx";
 import RegisterUser from "./views/RegisterUser.jsx";
-import HomeScreen from "./views/HomeScreen.jsx";
-
-
 
 
 function App() {
-  const [estadoLogin, setEstadoLogin] = useState(false)
+  const [estadoLogin, setEstadoLogin] = useState(false);
   return (
     <BrowserRouter>
-    <NavBarApp estadoLogin={estadoLogin}/>
+      <NavBarApp estadoLogin={estadoLogin} />
       <Routes>
         <Route
           path="/*"
           element={
-            <ProtectedRoutes>
+            <ProtectedRoutes estadoLogin={estadoLogin}>
               <RouterPrimary />
             </ProtectedRoutes>
           }
-
         />
-        <Route path="/" element={<HomeScreen />} />
-        <Route path="/login" element={<LoginScreen />} />
-        <Route path="/AboutUs" element={<AboutUsScreen />} />
-        <Route path="/Plans" element={<PlansScreen />} />
-      </Routes>
-
-
-        />  
-        <Route path="/admin" element={
-          <ProtectedRoutes estadoLogin={estadoLogin}>
-            <AdminScreen/>
-          </ProtectedRoutes>
-        }/>   
-        <Route path="/" element={<HomeScreen />}/>
-        <Route path="/login" element={<LoginScreen setEstadoLogin={setEstadoLogin}/>} />       
+        <Route
+          path="/login"
+          element={<LoginScreen setEstadoLogin={setEstadoLogin} />}
+        />
         <Route path="/register" element={<RegisterUser />} />
       </Routes>
       <FooterApp />

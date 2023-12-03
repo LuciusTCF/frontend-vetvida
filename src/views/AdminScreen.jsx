@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, Link } from "react-router-dom";
-
-import { obtainDataAuth} from "../api/auth";
-import UserAdmin from "../components/UserAdmin";
-import AppointmentAdmin from "../components/AppointmentAdmin";
-
 import { getAuthData } from "../api/auth";
 
 import "../css/admin.css";
@@ -74,14 +69,14 @@ const AdminScreen = () => {
                   <hr />
                   <div className="text-center my-2">
                     <button type="submit" className="btn btn-primary">
-                      <Link className="nav-link" to="/admin-user">
+                      <Link className="nav-link" to="/adminuser">
                         Ir a la página de usuarios
                       </Link>
                     </button>
                   </div>
                   <div className="text-center my-2">
                     <button type="submit" className="btn btn-primary">
-                      <Link className="nav-link" to="/admin-appointment">
+                      <Link className="nav-link" to="/adminappointment">
                         Ir a la página de turnos
                       </Link>
                     </button>
