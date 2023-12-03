@@ -6,14 +6,10 @@ import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
 import { useState } from "react";
-import '../css/login.css';
+import { useEffect } from "react";
+import Spinner from "react-bootstrap/Spinner";
 
-
-
-
-
-
-const LoginScreen = () => {
+const LoginScreen = ({setEstadoLogin}) => {
   const {
     handleSubmit,
     register,
@@ -25,14 +21,13 @@ const LoginScreen = () => {
   const [loading, setLoading] = useState(false);
   const [loginUser, setLoginUser] = useState(null);
 
+  useEffect(() => {
+    localStorage.removeItem('user');
+    setEstadoLogin(false);
+  }, [])
+  
 
-  // useEffect(() => {
-  //   localStorage.removeItem('token');
-  //   setLoginUser(false);
-  // }, []);
-
-
-  const logIn = async (data) => {
+   const inicioSesion = async (data) => {
     setLoading(true);
     const respuesta = await login(data);
     console.log(respuesta);
@@ -42,6 +37,7 @@ const LoginScreen = () => {
 
     if (respuesta?.token) {
       localStorage.setItem("token", JSON.stringify(respuesta.token));
+      setEstadoLogin(true);
       navigate("/admin");
     } else if (respuesta?.msg) {
       Swal.fire({
