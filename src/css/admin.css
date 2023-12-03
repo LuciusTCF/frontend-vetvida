@@ -1,7 +1,7 @@
 * {
   margin: 0;
   padding: 0;
-  text-align: center;
+
   box-sizing: border-box;
 }
 .main-admin {
@@ -9,10 +9,11 @@
   padding: 0;
   margin: 0;
   border: 0;
+  text-align: center;
 }
 
 .tables {
   padding: 0;
   margin: 0;
   width: 100%;
-}
+} 

@@ -28,3 +28,6 @@ export const obtainDataAuth = async (token) => {
 
   return info;
 };
+
+
+

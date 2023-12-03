@@ -10,9 +10,9 @@ const PlansScreen = () => {
   return (
     <div>
       <div>
-        <div class="position-relative mx-auto img-main-plans ">
+        <div className="position-relative mx-auto img-main-plans ">
           <img src={imgMainPlans} className="img-fluid" alt="..." />
-          <div class="position-absolute top-0 star-0">
+          <div className="position-absolute top-0 star-0">
             <h1 className="h1-plans">
               Planes que se adaptan a tus necesidades!
             </h1>
