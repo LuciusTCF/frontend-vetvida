@@ -7,6 +7,7 @@ import FooterApp from "./components/FooterApp.jsx";
 import { useState } from "react";
 import AdminScreen from "./views/AdminScreen.jsx";
 import RegisterUser from "./views/RegisterUser.jsx";
+import HomeScreen from "./views/HomeScreen.jsx";
 
 
 function App() {
