@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 import { useNavigate } from "react-router-dom";
 import { login } from "../api/auth";
 import { useState } from "react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
 
 const LoginScreen = ({setEstadoLogin}) => {
