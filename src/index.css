@@ -1,4 +1,4 @@
-:root {
+/* :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -12,6 +12,36 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+}
+*{
+  padding: 0;
+  margin: 0;
+}
+
+
+.imgPlans{
+  border-radius: 50%;
+  width: 50%;
+  height: auto;
+
+}
+
+.cardPlans{
+  width: auto;
+  border: none;
+  margin-left: 7%;
+  margin-right: 7%;
+}
+
+
+.h1-plans{
+ color: aliceblue;
+ margin-left:1%;
+ margin-top: 12%;
+}
+
+.img-main-plans{
+margin-bottom: 4%;
 }
 
 a {
@@ -66,4 +96,4 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
-}
+} */

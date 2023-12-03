@@ -13,33 +13,31 @@ const ModalAppointmentUpdate = ({
 
   useEffect(() => {
     getAppointment();
-  }, []);
+  }, [dataAppointment]);
 
   const getAppointment = async () => {
-    const { appointments } = await appointmentList();
-    setDataAppointment(appointments);
+    const { appointment } = await appointmentList();
+    setDataAppointment(appointment);
   };
 
+  // cuando cambian los inputs
   const handleChange = (e) => {
-    if (e.target.name === "state") {
-      setAppointment({ ...appointment, [e.target.name]: e.target.checked });
-    } else {
-      setAppointment({ ...appointment, [e.target.name]: e.target.value });
-    }
+    setAppointment({ ...appointment, [e.target.name]: e.target.value });
   };
 
+  // actualizar
   const update = async (e) => {
     e.preventDefault();
 
-    await appointmentUpdate(appointment._id, appointment);
+    await appointmentUpdate(appointment.aid, appointment);
 
     handleClose();
   };
 
   return (
-    <Modal show={show} onHide={handleClose}>
+    <Modal show={true} onHide={handleClose}>
       <Modal.Header closeButton>
-        <Modal.Title>Actualizar {appointment?.date}</Modal.Title>
+        <Modal.Title>Actualizar </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <form
@@ -47,12 +45,12 @@ const ModalAppointmentUpdate = ({
           className="bg-light text-dark p-3 rounded w-100"
         >
           <section className="row">
-            <fieldset className="col-12 ">
-              <label htmlFor="date-input" className="form-label">
-                Fecha
+            <fieldset className="col-12 mb-3">
+              <label htmlFor="date-input" className="form-label fs-4">
+                Fecha:
               </label>
               <input
-                type="text"
+                type="datetime-local"
                 id="date-input"
                 name="date"
                 className="form-control"
@@ -61,9 +59,10 @@ const ModalAppointmentUpdate = ({
                 required
               />
             </fieldset>
-            <fieldset className="col-12">
-              <label htmlFor="detail-input" className="form-label">
-                Detalle
+            <hr />
+            <fieldset className="col-12 mb-3">
+              <label htmlFor="detail-input" className="form-label fs-4">
+                Detalle:
               </label>
               <textarea
                 type="text"
@@ -75,23 +74,29 @@ const ModalAppointmentUpdate = ({
                 required
               ></textarea>
             </fieldset>
-            <fieldset className="col-12 ">
-              <label htmlFor="vet-input" className="form-label">
-                Veterinario
+            <hr />
+            <fieldset className="col-12 mb-3">
+              <label htmlFor="vet-input" className="form-label fs-4">
+                Veterinario:
               </label>
-              <input
-                type="text"
-                id="vet-input"
-                name="vet"
-                className="form-control"
-                value={appointment.veterinarian}
+              <select
+                className="form-select"
+                aria-label="Elegir veterinario"
                 onChange={handleChange}
-                required
-              />
+                id="vet-input"
+                name="veterinarian"
+              >
+                <option value="0" disabled>
+                  Elegir veterinario
+                </option>
+                <option value="José Luis Olivares">José Luis Olivares</option>
+                <option value="Raúl Álvarez">Raúl Álvarez</option>
+              </select>
             </fieldset>
-            <fieldset className="col-12 ">
-              <label htmlFor="pet-input" className="form-label">
-                Mascota
+            <hr />
+            <fieldset className="col-12 mb-3">
+              <label htmlFor="pet-input" className="form-label fs-4">
+                Mascota:
               </label>
               <input
                 type="text"
@@ -102,20 +107,6 @@ const ModalAppointmentUpdate = ({
                 onChange={handleChange}
                 required
               />
-            </fieldset>
-            <fieldset className="col-12 ">
-              <div className="form-check form-switch">
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  name="state"
-                  role="switch"
-                  id="flexSwitchCheckChecked"
-                  checked={appointment.state}
-                  onChange={handleChange}
-                />
-                <label className="form-check-label">Estado</label>
-              </div>
             </fieldset>
           </section>
           <div className="text-end mt-2">
