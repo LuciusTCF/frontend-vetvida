@@ -1,15 +1,17 @@
-// import React from "react";
+import React from "react";
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoutes = ({ children }) => {
-    const token = JSON.parse(localStorage.getItem("token")) || null;
-
+const ProtectedRoutes = ({ children, estadoLogin }) => {
+  const token = JSON.parse(localStorage.getItem("token")) || null;
+  if (estadoLogin) {
     if (token) {
-        return children;
+      return children;
     } else {
-        return <Navigate to="/login" />;
+      return <Navigate to="/" />;
     }
+  } else {
+    return <Navigate to="/" />;
+  }
 };
 
 export default ProtectedRoutes;
-

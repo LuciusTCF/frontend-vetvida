@@ -5,7 +5,6 @@ import emailJS from "@emailjs/browser";
 import Swal from "sweetalert2";
 import { detailCardContact } from "../data/dataContact";
 import MyCardContactUI from "../components/MyCardContactUI";
-import FooterApp from "../components/FooterApp";
 
 const ContactScreen = () => {
   const {
@@ -48,7 +47,7 @@ const ContactScreen = () => {
 
   return (
     <div>
-      <h3 className="text-uppercase fw-bold mt-4">contáctanos</h3>
+      <h3 className="text-uppercase fw-bold mt-4 text-center">contáctanos</h3>
       <p className="p-3">
         Como verdaderos apasionados de los animales, sabemos que cada mascota
         que recibimos es parte de una familia.Estamos aquí para responder
@@ -165,7 +164,6 @@ const ContactScreen = () => {
           </div>
         </div>
       </div>
-      <FooterApp />
     </div>
   );
 };

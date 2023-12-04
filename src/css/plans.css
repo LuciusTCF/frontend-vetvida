@@ -1,4 +1,61 @@
-.formPlans{
-    background-color: #f7b9ff;
-   border-color: rgb(0, 255, 21);
+* {
+  padding: 0%;
+  margin: 0%;
+}
+
+.formPlans {
+  background-color: #f7b9ff;
+}
+
+.imgPlans {
+  border-radius: 50%;
+  width: 50%;
+  height: auto;
+}
+
+.cardPlans {
+  width: auto;
+  border: none;
+  margin-left: 7%;
+  margin-right: 7%;
+}
+
+.h1-plans {
+  color: aliceblue;
+  margin-left: 1%;
+  margin-top: 12%;
+}
+
+.img-main-plans {
+  margin-bottom: 4%;
+}
+
+.containerPlans {
+  transition: transform 0.3s;
+}
+
+.containerPlans:hover {
+  transform: scale(1.1);
+}
+
+@keyframes deslizarTexto {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.deslizar {
+  animation: deslizarTexto 2s ease-in-out;
+  color: aliceblue;
+  margin-top: 30%;
+  margin-left: 1%;
+}
+
+@media only screen and (max-width: 480px) {
+  .deslizar {
+    margin-top: 8%;
+  }
 }

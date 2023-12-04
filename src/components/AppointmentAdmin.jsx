@@ -25,12 +25,9 @@ const AppointmentAdmin = () => {
 
   const modifyAppointment = (data) => {
     setAppointment(data);
-    console.log(appointment);
   };
 
-  // **
   const deleteAppointment = async (id) => {
-    // Utiliza SweetAlert2 para mostrar un cuadro de diálogo de confirmación
     const { isConfirmed } = await Swal.fire({
       title: "¿Desea eliminar el turno?",
       icon: "warning",
@@ -43,14 +40,11 @@ const AppointmentAdmin = () => {
 
     if (isConfirmed) {
       const resp = await appointmentDelete(id);
-      console.log(resp);
-      // Aquí puedes realizar más acciones después de la confirmación
     }
   };
 
   const nextPage = () => {
     const totalPages = dataInfo.total;
-    console.log(totalPages);
     if (page + 10 < totalPages) {
       setPage(page + 10);
     }
@@ -79,16 +73,11 @@ const AppointmentAdmin = () => {
         [e.target.name]: e.target.value,
       });
     }
-    console.log(appointment);
-    console.log(dataAppointment);
   };
 
   const add = async (e) => {
     e.preventDefault();
-    console.log(dataAppointment);
     await appointmentAdd(dataAppointment);
-    // console.log(appointment);
-    // console.log(dataAppointment);
   };
 
   return (
@@ -146,10 +135,8 @@ const AppointmentAdmin = () => {
                     <option value="0" disabled>
                       Elegir veterinario
                     </option>
-                    <option value="José Luis Olivares">
-                      José Luis Olivares
-                    </option>
-                    <option value="Raúl Álvarez">Raúl Álvarez</option>
+                    <option value="Diego Torres">Diego Torres</option>
+                    <option value="Patricia Sosa">Patricia Sosa</option>
                   </select>
                 </fieldset>
                 <hr />

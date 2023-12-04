@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { userAdd, userList, userUpdate } from "../api/usersApi";
 
-
 import Modal from "react-bootstrap/Modal";
 
 const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
   const [dataUser, setDataUser] = useState(null);
   const [dataPet, setDataPet] = useState(null);
-
 
   useEffect(() => {
     getUser();
@@ -34,37 +32,12 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
   const update = async (e) => {
     e.preventDefault();
 
-console.log(user)
-
-
-
     await userUpdate(user.uid, user);
 
     handleClose();
   };
-
-  // const handleAdd = () => {
-  //   setDataUser({
-  //     ...user.pet,
-  //     [user.pet.length]: {
-  //       namepet: "",
-  //       specie: "",
-  //       breed: "",
-  //       age: "",
-  //     },
-  //   });
-  // };
   const addPet = async (e) => {
     e.preventDefault();
-    // setDataPet({
-    //   ...dataPet,
-    //   [user.pet.length]: {
-    //     namepet: "",
-    //     specie: "",
-    //     breed: "",
-    //     age: "",
-    //   },
-    // });
 
     user.pet.push({
       namepet: "",
@@ -74,8 +47,6 @@ console.log(user)
     });
 
     await userUpdate(user.uid, user);
-    console.log(user);
-    console.log(user.pet);
   };
 
   const deletePet = async (e, index) => {
@@ -83,8 +54,6 @@ console.log(user)
     user.pet.splice(index, 1);
 
     await userUpdate(user.uid, user);
-    console.log(user);
-    console.log(user.pet);
   };
 
   return (
@@ -114,8 +83,10 @@ console.log(user)
               />
             </fieldset>
             <hr />
+
             <fieldset className="col-12 mb-3">
               <p className="fs-4">Mascotas:</p>
+
               {user?.pet.map((item, index) => (
                 <div key={index}>
                   <h6 className="mt-3">{`Mascota ${index + 1}`}</h6>
@@ -195,13 +166,13 @@ console.log(user)
                   </div>
                 </div>
               ))}
+
               <div className="text-center my-2">
                 <button onClick={addPet} className="btn btn-success">
                   Añadir mascota
                 </button>
               </div>
             </fieldset>
-  
 
             <hr />
             <fieldset className="col-12 mb-3">
@@ -226,12 +197,12 @@ console.log(user)
               </select>
             </fieldset>
           </section>
+
           <div className="text-end mt-2">
             <button type="submit" className="btn btn-primary">
               Guardar cambios
             </button>
           </div>
-          
         </form>
       </Modal.Body>
     </Modal>

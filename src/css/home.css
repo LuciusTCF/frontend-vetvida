@@ -8,17 +8,45 @@
     height: 100vh;
   }
 
+  .imghome {
+    width: 100%;
+    object-fit: cover;
+    height: auto;
+  }
+
+  .servicios{
+    background-color: #e2c5fc;
+  }
+
+  .servicios p{
+    font-size: 18px;
+  }
+
   .container-carousel img {
     height: 100%;
+    width: 100%;
     filter: grayscale(0.8);
     object-fit: cover;
     object-position: top;
   }
-  
+
+  .carousel-inner img {
+    max-height: 100%; 
+    object-fit: cover;
+  }
+
+  .card{
+    overflow: hidden;
+  }
+
   .carousel button{
     z-index: 100;
   }
   
+  .overlay-container{
+    position: relative;
+  }
+
   .overlay{
     position: absolute;
     top: 0;
@@ -26,36 +54,85 @@
     left: 0;
     bottom: 0;
     z-index: 99;
+    padding: 10px;
   }
   
-  .overlay-home p{
-    font-size: 40px;
-
-  }
-
-  .profesionales p{
+  .parrafoshome p{
     font-size: 18px;
   }
 
-  .footer_bg{
-    background-color: #6a3093;
+  .carouselproductoshome{
+    height: 250px;
+    overflow: hidden;
+  }
+  
+  .carousel-item img{
+    object-fit: cover;
+    height: 100%;
   }
 
-  .footer-whatsapp {
-    text-decoration: underline;
-    color: white;
+  .sponsors img{
+    filter: grayscale(1);
   }
 
-  .servicios{
-    background-color: #FBD3E9;
-  }
-
-  .servicios p{
-    font-size: 18px;
+  .color{
+    color: #3d1164;
   }
 
   .cardhome img{
     object-fit: cover;
     height: 100%;
+    width: 100%;
   }
 
+  .cardhome p{
+    font-size: 15px;
+  }
+  
+
+  @media (min-width: 280px) {
+    .overlay p {
+      font-size: 20px; 
+    }
+    .carouselproductoshome{
+      height: 80px;
+    }
+    .container-carousel p{
+      font-size: 15px;
+    }
+    .container-carousel{
+      max-height: 300px;
+    }
+  }
+
+  @media (min-width: 768px){
+    .overlay p {
+      font-size: 30px; 
+    }
+    .carouselproductoshome{
+      height: 170px;
+    }
+    .container-carousel p{
+      font-size: 30px;
+    }
+    .container-carousel{
+    max-height: 250px;
+  }
+
+  }
+
+  @media (min-width: 1024px) {
+    .overlay p {
+      font-size: 50px; 
+    }
+    .carouselproductoshome{
+      height: 260px;
+    }
+    .container-carousel p{
+      font-size: 30px;
+    }
+    .container-carousel{
+      max-height: 350px;
+    }
+    
+  }

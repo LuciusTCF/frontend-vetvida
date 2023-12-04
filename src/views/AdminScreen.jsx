@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Navigate, Link } from "react-router-dom";
 import { getAuthData } from "../api/auth";
+
 import "../css/admin.css";
 import useGetAppointments from "../hooks/useGetAppointments";
 import BtnPagination from "../components/BtnPagination";
@@ -27,13 +28,11 @@ const AdminScreen = () => {
     } else {
       setRole(resp.role);
     }
-    console.log(resp);
   };
 
   const nextPage = () => {
-    const totalPages = dataInfo.total / 10;
-    console.log(totalPages);
-    if (page + 1 < totalPages) {
+    const totalPages = dataInfo.total;
+    if (page + 10 < totalPages) {
       setPage(page + 10);
     }
   };
@@ -68,14 +67,14 @@ const AdminScreen = () => {
                   <hr />
                   <div className="text-center my-2">
                     <button type="submit" className="btn btn-primary">
-                      <Link className="nav-link" to="/admin-user">
+                      <Link className="nav-link" to="/admin/user">
                         Ir a la página de usuarios
                       </Link>
                     </button>
                   </div>
                   <div className="text-center my-2">
                     <button type="submit" className="btn btn-primary">
-                      <Link className="nav-link" to="/admin-appointment">
+                      <Link className="nav-link" to="/admin/appointment">
                         Ir a la página de turnos
                       </Link>
                     </button>
