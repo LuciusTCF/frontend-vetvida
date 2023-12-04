@@ -1,5 +1,5 @@
-// const url = "https://backend-vetvida-dev-jche.1.us-1.fl0.io/api/users";
-const url = "http://localhost:8080/api/users";
+const url = "https://backend-vetvida-dev-jche.1.us-1.fl0.io/api/users";
+// const url = "http://localhost:8080/api/users";
 const token = JSON.parse(localStorage.getItem("token")) || null;
 
 const userList = async (page) => {
@@ -23,7 +23,7 @@ const userAdd = async (data) => {
     headers: {
       "Content-type": "application/json; charset=UTF-8",
       "x-token": token,
-    }
+    },
   });
 
   const dataRes = await resp.json();
@@ -56,7 +56,4 @@ const userDelete = async (id) => {
   return data;
 };
 
-export { userList,
-    userAdd,
-    userUpdate,
-    userDelete };
+export { userList, userAdd, userUpdate, userDelete };

@@ -89,14 +89,14 @@ const AboutUsScreen = () => {
           </div>
         </div>
 
-        <div class="card text-center containerAb cardAbout">
-          <div class="card-body mb-4">
-            <h5 class="card-title">Contactate con nuestro equipo!</h5>
-            <p class="card-text">
+        <div className="card text-center containerAb cardAbout">
+          <div className="card-body mb-4">
+            <h5 className="card-title">Contactate con nuestro equipo!</h5>
+            <p className="card-text">
               Nos asociamos contigo desde el primer día, trabajando juntos para
               entender tus objetivos y necesidades. Tu éxito es nuestro éxito.
             </p>
-            <button target="_blank" class="btn btn-outline-dark">
+            <button target="_blank" className="btn btn-outline-dark">
               <Link className="nav-link" to="/contact">
                 Contacto
               </Link>
