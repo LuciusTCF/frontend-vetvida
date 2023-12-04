@@ -89,6 +89,11 @@ const NavBarApp = ({ estadoLogin }) => {
               )}
             </ul>
 
+            {!estadoLogin && (
+              <Link className="btn btn-outline-dark" to="/register">
+                Register
+              </Link>
+            )}
             <Link className="btn btn-outline-dark" to="/login">
               {estadoLogin ? "LogOut" : "LogIn"}
             </Link>

@@ -146,10 +146,8 @@ const AppointmentAdmin = () => {
                     <option value="0" disabled>
                       Elegir veterinario
                     </option>
-                    <option value="José Luis Olivares">
-                      José Luis Olivares
-                    </option>
-                    <option value="Raúl Álvarez">Raúl Álvarez</option>
+                    <option value="Diego Torres">Diego Torres</option>
+                    <option value="Patricia Sosa">Patricia Sosa</option>
                   </select>
                 </fieldset>
                 <hr />
