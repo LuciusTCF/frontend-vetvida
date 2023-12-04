@@ -1,4 +1,4 @@
-const url = "https://backend-vetvida-dev-jche.1.us-1.fl0.io/api/appointments";
+const url = "https://backend-vetvida.onrender.com/api/appointments";
 // const url = "http://localhost:8080/api/appointments";
 const token = JSON.parse(localStorage.getItem("token")) || null;
 

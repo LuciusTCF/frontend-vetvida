@@ -11,7 +11,7 @@ const RegisterUser = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const url = "https://backend-vetvida-dev-jche.1.us-1.fl0.io/api/users";
+  const url = "https://backend-vetvida.onrender.com/api/users";
 
   const registerUser = async (data) => {
     try {

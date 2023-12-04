@@ -1,4 +1,4 @@
-const url = "https://backend-vetvida-dev-jche.1.us-1.fl0.io/api/auth";
+const url = "https://backend-vetvida.onrender.com/api/auth";
 // const url = "http://localhost:8080/api/auth";
 
 export const login = async (data) => {
