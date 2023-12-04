@@ -49,25 +49,6 @@ const LoginScreen = ({ setEstadoLogin }) => {
     }
   };
 
-  // ****Logica de cierre de sesión en el navBar:
-  // useEffect(() => {
-  // const token = localStorage.getItem("token");
-
-  // if (!token) {
-  // Si no hay un token almacenado, redirigir a la pantalla de inicio de sesión
-  //     navigate("/login");
-  //   }
-  // }, [navigate]);
-
-  // const logout = () => {
-  // Limpiar el estado de autenticación
-  // setLoginUser(null);
-  // Eliminar el token de autenticación almacenado en el almacenamiento local
-  // localStorage.removeItem("token");
-  // Redirigir al usuario a la pantalla de inicio de sesión u otra pantalla pública
-  //   navigate("/login");
-  // };
-
   return (
     <>
       <div className="container  w-75 my-4 shadow-lg rounded-3 p-0">

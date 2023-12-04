@@ -11,15 +11,6 @@ const ModalAppointmentAdd = ({
 }) => {
   const [dataAppointment, setDataAppointment] = useState(null);
 
-  //   useEffect(() => {
-  //     getAppointment();
-  //   }, []);
-
-  //   const getAppointment = async () => {
-  //     const { appointment } = await appointmentList();
-  //     setDataAppointment(appointment);
-  //   };
-
   const handleAdd = (e) => {
     setAppointment({ ...appointment, [e.target.name]: e.target.value });
   };
