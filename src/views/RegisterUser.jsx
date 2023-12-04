@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import imagenFondo from "../assets/imagenRegistro.jpg";
-import "../css/RegisterUser.css";
+import "../css/registerUser.css";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
