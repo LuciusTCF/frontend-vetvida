@@ -21,7 +21,6 @@ const AppointmentScreen = () => {
     } else {
       setRole(resp.role);
     }
-    // console.log(resp);
   };
 
   return (

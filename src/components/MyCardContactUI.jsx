@@ -2,7 +2,6 @@ import React from "react";
 import "../css/contact.css";
 
 const MyCardContactUI = ({ item }) => {
-  console.log(item);
   return (
     <div className="col-12 col-md-4 mt-4 mb-3 mb-sm-0">
       <div className="card p-2 bg-danger-subtle border-2 border-danger-subtle shadow-lg h-100 p-3">

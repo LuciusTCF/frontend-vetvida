@@ -28,7 +28,7 @@ function App() {
       <NavBarApp estadoLogin={estadoLogin} />
       <Routes>
         <Route
-          path="/*"
+          path="/admin/*"
           element={
             <ProtectedRoutes estadoLogin={estadoLogin}>
               <RouterPrimary />

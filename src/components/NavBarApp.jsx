@@ -21,7 +21,6 @@ const NavBarApp = ({ estadoLogin }) => {
             temp: main.temp,
             clima: weather[0],
           });
-          // console.log(tiempo.clima)
         })
         .catch((error) => console.log(error));
     });

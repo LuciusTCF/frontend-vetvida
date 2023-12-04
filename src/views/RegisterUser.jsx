@@ -11,7 +11,7 @@ const RegisterUser = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const url = "https://backend-vetvida.onrender.com/api/users";
+  const url = "https://vetvida.netlify.app/api/users";
 
   const registerUser = async (data) => {
     try {
@@ -23,7 +23,6 @@ const RegisterUser = () => {
         body: JSON.stringify(data),
       });
       const dataRes = await resp.json();
-      console.log("Usuario registrado:", dataRes);
       Swal.fire({
         icon: "success",
         title: "¡Usuario registrado!",
