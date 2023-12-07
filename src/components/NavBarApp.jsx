@@ -21,7 +21,6 @@ const NavBarApp = ({ estadoLogin }) => {
             temp: main.temp,
             clima: weather[0],
           });
-          // console.log(tiempo.clima)
         })
         .catch((error) => console.log(error));
     });
@@ -89,6 +88,11 @@ const NavBarApp = ({ estadoLogin }) => {
               )}
             </ul>
 
+            {!estadoLogin && (
+              <Link className="btn btn-outline-dark" to="/register">
+                Register
+              </Link>
+            )}
             <Link className="btn btn-outline-dark" to="/login">
               {estadoLogin ? "LogOut" : "LogIn"}
             </Link>

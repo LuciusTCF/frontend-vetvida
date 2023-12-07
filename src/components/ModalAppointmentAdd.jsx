@@ -1,61 +1,47 @@
 import React, { useState, useEffect } from "react";
-import { appointmentList, appointmentUpdate } from "../api/appointmentsApi";
+import { appointmentList, appointmentAdd } from "../api/appointmentsApi";
 
 import Modal from "react-bootstrap/Modal";
 
-const ModalAppointmentUpdate = ({
-  show,
-  handleClose,
+const ModalAppointmentAdd = ({
+  showAdd,
+  handleCloseAdd,
   appointment,
   setAppointment,
 }) => {
   const [dataAppointment, setDataAppointment] = useState(null);
 
-  useEffect(() => {
-    getAppointment();
-  }, [dataAppointment]);
-
-  const getAppointment = async () => {
-    const { appointment } = await appointmentList();
-    setDataAppointment(appointment);
-  };
-
-  // cuando cambian los inputs
-  const handleChange = (e) => {
+  const handleAdd = (e) => {
     setAppointment({ ...appointment, [e.target.name]: e.target.value });
   };
 
-  // actualizar
-  const update = async (e) => {
+  const add = async (e) => {
     e.preventDefault();
 
-    await appointmentUpdate(appointment.aid, appointment);
+    await appointmentAdd(appointment.aid, appointment);
 
-    handleClose();
+    handleCloseAdd();
   };
 
   return (
-    <Modal show={true} onHide={handleClose}>
+    <Modal showAdd={showAdd} onHide={handleCloseAdd}>
       <Modal.Header closeButton>
-        <Modal.Title>Actualizar </Modal.Title>
+        <Modal.Title>Crear turno</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <form
-          onSubmit={update}
-          className="bg-light text-dark p-3 rounded w-100"
-        >
+        <form onSubmit={add} className="bg-light text-dark p-3 rounded w-100">
           <section className="row">
             <fieldset className="col-12 mb-3">
               <label htmlFor="date-input" className="form-label fs-4">
                 Fecha:
               </label>
               <input
-                type="datetime-local"
+                type="text"
                 id="date-input"
-                name="date"
+                name="date-input"
                 className="form-control"
-                value={appointment.date}
-                onChange={handleChange}
+                value={dataAppointment?.appointment.date}
+                onChange={handleAdd}
                 required
               />
             </fieldset>
@@ -67,10 +53,10 @@ const ModalAppointmentUpdate = ({
               <textarea
                 type="text"
                 id="detail-input"
-                name="detail"
+                name="detail-input"
                 className="form-control"
-                value={appointment.detail}
-                onChange={handleChange}
+                value={dataAppointment?.appointment.detail}
+                onChange={handleAdd}
                 required
               ></textarea>
             </fieldset>
@@ -82,15 +68,15 @@ const ModalAppointmentUpdate = ({
               <select
                 className="form-select"
                 aria-label="Elegir veterinario"
-                onChange={handleChange}
+                onChange={handleAdd}
                 id="vet-input"
-                name="veterinarian"
+                name="vet-input"
               >
                 <option value="0" disabled>
                   Elegir veterinario
                 </option>
-                <option value="Diego Torres">Diego Torres</option>
-                <option value="Patricia Sosa">Patricia Sosa</option>
+                <option value="José Luis Olivares">José Luis Olivares</option>
+                <option value="Raúl Álvarez">Raúl Álvarez</option>
               </select>
             </fieldset>
             <hr />
@@ -101,10 +87,10 @@ const ModalAppointmentUpdate = ({
               <input
                 type="text"
                 id="pet-input"
-                name="pet"
+                name="pet-input"
                 className="form-control"
-                value={appointment.pet}
-                onChange={handleChange}
+                value={dataAppointment?.appointment.pet}
+                onChange={handleAdd}
                 required
               />
             </fieldset>
@@ -120,4 +106,4 @@ const ModalAppointmentUpdate = ({
   );
 };
 
-export default ModalAppointmentUpdate;
+export default ModalAppointmentAdd;

@@ -21,7 +21,6 @@ const UserScreen = () => {
     } else {
       setRole(resp.role);
     }
-    // console.log(resp);
   };
 
   return (

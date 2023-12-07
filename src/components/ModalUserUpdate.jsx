@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { userAdd, userList, userUpdate } from "../api/usersApi";
 
-
 import Modal from "react-bootstrap/Modal";
 
 const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
   const [dataUser, setDataUser] = useState(null);
   const [dataPet, setDataPet] = useState(null);
-
 
   useEffect(() => {
     getUser();
@@ -34,37 +32,12 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
   const update = async (e) => {
     e.preventDefault();
 
-console.log(user)
-
-
-
     await userUpdate(user.uid, user);
 
     handleClose();
   };
-
-  // const handleAdd = () => {
-  //   setDataUser({
-  //     ...user.pet,
-  //     [user.pet.length]: {
-  //       namepet: "",
-  //       specie: "",
-  //       breed: "",
-  //       age: "",
-  //     },
-  //   });
-  // };
   const addPet = async (e) => {
     e.preventDefault();
-    // setDataPet({
-    //   ...dataPet,
-    //   [user.pet.length]: {
-    //     namepet: "",
-    //     specie: "",
-    //     breed: "",
-    //     age: "",
-    //   },
-    // });
 
     user.pet.push({
       namepet: "",
@@ -74,8 +47,6 @@ console.log(user)
     });
 
     await userUpdate(user.uid, user);
-    console.log(user);
-    console.log(user.pet);
   };
 
   const deletePet = async (e, index) => {
@@ -83,8 +54,6 @@ console.log(user)
     user.pet.splice(index, 1);
 
     await userUpdate(user.uid, user);
-    console.log(user);
-    console.log(user.pet);
   };
 
   return (
@@ -205,12 +174,11 @@ console.log(user)
               </div>
             </fieldset>
 
-  
             <hr />
-             <fieldset className="col-12 mb-3">
-               <label htmlFor="role-input" className="form-label fs-4">
+            <fieldset className="col-12 mb-3">
+              <label htmlFor="role-input" className="form-label fs-4">
                 Rol:
-               </label>
+              </label>
               <select
                 className="form-select"
                 aria-label="Elegir Rol"
@@ -226,7 +194,6 @@ console.log(user)
                 <option value="USER_ROLE_P1">Usuario con plan Plata</option>
                 <option value="USER_ROLE_P2">Usuario con plan Bronce</option>
                 <option value="USER_ROLE_P3">Usuario con plan Oro</option>
-
               </select>
             </fieldset>
           </section>
@@ -236,7 +203,6 @@ console.log(user)
               Guardar cambios
             </button>
           </div>
-          
         </form>
       </Modal.Body>
     </Modal>
