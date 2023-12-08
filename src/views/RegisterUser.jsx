@@ -12,6 +12,7 @@ const RegisterUser = () => {
     formState: { errors },
   } = useForm();
   const url = "https://vetvida.netlify.app/api/users";
+  // const url = "http://localhost:8080/api/users"
 
   const registerUser = async (data) => {
     try {
@@ -46,7 +47,7 @@ const RegisterUser = () => {
           onSubmit={handleSubmit(registerUser)}
           className="row g-3 p-5"
         >
-          <h2 className="text-primary fw-bolder  text-uppercase">
+          <h2 className="text-primary fw-bolder text-center text-uppercase">
             Registro de usuario
           </h2>
           <fieldset className="col-12 col-lg-4">
