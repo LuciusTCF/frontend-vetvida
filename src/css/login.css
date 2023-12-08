@@ -15,7 +15,7 @@
 }
 /* Estilos de página de error 404 */
 .error404-container {
-  width: 50vw;
+  width: 500px;
 }
 
 /* ****** */
@@ -370,5 +370,11 @@
 
   to {
     transform: rotate(-1turn);
+  }
+}
+@media (max-width: 560px) {
+  .error404-container {
+    width: auto; /* Ajuste automático del ancho */
+    max-width: 100%; /* Evita que la imagen se desborde del contenedor */
   }
 }
