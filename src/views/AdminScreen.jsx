@@ -83,7 +83,6 @@ const AdminScreen = () => {
                   <Table striped bordered hover responsive="lg" variant="dark">
                     <thead className="text-center">
                       <tr>
-                        <th>ID</th>
                         <th>Detalle</th>
                         <th>Veterinario</th>
                         <th>Fecha</th>
@@ -93,11 +92,10 @@ const AdminScreen = () => {
                     <tbody className="text-center">
                       {dataInfo?.appointment.map((item) => (
                         <tr key={item.aid}>
-                          <td>{item.aid}</td>
                           <td>{item.detail}</td>
                           <td>{item.veterinarian}</td>
                           <td>{item.date}</td>
-                          <td>{`${item?.user.name} (ID:${item?.user._id})`}</td>
+                          <td>{`${item?.user.name} (${item?.user.email})`}</td>
                         </tr>
                       ))}
                     </tbody>
