@@ -68,9 +68,7 @@ const NavBarApp = ({estadoLogin}) => {
           <Link className='btn btn-outline-dark' to='/login'>{estadoLogin ? 'LogOut' : 'LogIn'}</Link>
 
         </div>
-
       </div>
-
     </nav>
 
     <div className='navbarhome d-flex justify-content-end'>
