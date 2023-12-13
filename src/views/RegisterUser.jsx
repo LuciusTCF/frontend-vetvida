@@ -11,7 +11,7 @@ const RegisterUser = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const url = "https://vetvida.netlify.app/api/users";
+  const url = "http://localhost:8080/api/users";
 
   const registerUser = async (data) => {
     try {
