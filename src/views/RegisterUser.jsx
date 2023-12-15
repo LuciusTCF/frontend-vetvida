@@ -3,6 +3,7 @@ import imagenFondo from "../assets/imagenRegistro.jpg";
 import "../css/registerUser.css";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
+import { userAdd } from "../api/usersApi";
 
 const RegisterUser = () => {
   const {
@@ -11,25 +12,17 @@ const RegisterUser = () => {
     reset,
     formState: { errors },
   } = useForm();
-  const url = "https://vetvida.netlify.app/api/users";
-  // const url = "http://localhost:8080/api/users"
-
+  const url = "https://backend-vetvida.onrender.com/api/users";
+  
   const registerUser = async (data) => {
     try {
-      const resp = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-      const dataRes = await resp.json();
+      const dataRes = await userAdd(data); 
       Swal.fire({
         icon: "success",
         title: "¡Usuario registrado!",
         text: "El usuario se ha registrado exitosamente.",
       });
-
+  
       reset();
     } catch (error) {
       console.error("Error al registrar usuario:", error);
@@ -41,7 +34,7 @@ const RegisterUser = () => {
       <div className="imgFondoUser">
         <img src={imagenFondo} className="imgUser " alt="perros" />
       </div>
-      <div className="contenedorFormUser border-3 border border-danger mt-5 w-50 rounded-2 container">
+      <div className="contenedorFormUser border-2 border border-primary mt-5 w-50 rounded-2 container">
         <form
           noValidate
           onSubmit={handleSubmit(registerUser)}
@@ -58,15 +51,15 @@ const RegisterUser = () => {
               type="text"
               className="form-control"
               id="name"
-              minLength={5}
+              minLength={3}
               maxLength={21}
               required
               placeholder="propietario de mascota"
               {...register("name", {
                 required: "Este campo es obligatorio.",
                 minLength: {
-                  value: 5,
-                  message: "Escribe un mínimo de 5 caracteres.",
+                  value: 3,
+                  message: "Escribe un mínimo de 3 caracteres.",
                 },
                 maxLength: {
                   value: 21,
@@ -159,8 +152,8 @@ const RegisterUser = () => {
                   message: "Escribe un mínimo de 5 caracteres.",
                 },
                 maxLength: {
-                  value: 20,
-                  message: "Escribe un máximo de 20 caracteres.",
+                  value: 40,
+                  message: "Escribe un máximo de 40 caracteres.",
                 },
               })}
             />
@@ -177,7 +170,7 @@ const RegisterUser = () => {
               id="age"
               required
               minLength={5}
-              maxLength={10}
+              maxLength={20}
               className="form-control"
               placeholder="edad de mascota"
               {...register("age", {
@@ -187,8 +180,8 @@ const RegisterUser = () => {
                   message: "Escribe un mínimo de 5 caracteres.",
                 },
                 maxLength: {
-                  value: 10,
-                  message: "Escribe un máximo de 10 caracteres.",
+                  value: 20,
+                  message: "Escribe un máximo de 20 caracteres.",
                 },
               })}
             />
@@ -205,7 +198,7 @@ const RegisterUser = () => {
               id="email"
               required
               minLength={5}
-              maxLength={21}
+              maxLength={60}
               className="form-control"
               placeholder="correo electrónico"
               name="email"
@@ -216,8 +209,8 @@ const RegisterUser = () => {
                   message: "Escribe un mínimo de 5 caracteres.",
                 },
                 maxLength: {
-                  value: 21,
-                  message: "Escribe un máximo de 20 caracteres.",
+                  value: 60,
+                  message: "Escribe un máximo de 60 caracteres.",
                 },
                 pattern: {
                   value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.com$/,

@@ -79,8 +79,8 @@ const LoginScreen = ({ setEstadoLogin }) => {
                       message: "Escribe un mínimo de 5 caracteres.",
                     },
                     maxLength: {
-                      value: 21,
-                      message: "Escribe un máximo de 20 caracteres.",
+                      value: 60,
+                      message: "Escribe un máximo de 60 caracteres.",
                     },
                     pattern: {
                       value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.com$/,
@@ -89,7 +89,7 @@ const LoginScreen = ({ setEstadoLogin }) => {
                     },
                   })}
                   required
-                  maxLength={30}
+                  maxLength={60}
                   minLength={5}
                   disabled={loading ? true : false}
                 />
