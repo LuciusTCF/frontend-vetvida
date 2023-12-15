@@ -69,7 +69,7 @@ const ContactScreen = () => {
             onSubmit={handleSubmit(sendEmail)}
             className="col-12 col-lg-6 mt-3"
           >
-            <h2 className="py-4">¡Déjanos tu mensaje!</h2>
+            <h2 className="py-4 text-center">¡Déjanos tu mensaje!</h2>
             <section>
               <fieldset className="form-floating">
                 <input
@@ -159,7 +159,7 @@ const ContactScreen = () => {
             </section>
           </form>
           <div className="col-12 col-lg-6 mt-5 ">
-            <h2>¿Cómo llegar?</h2>
+            <h2 className="text-center">¿Cómo llegar?</h2>
             <MapContact center={center} zoom={zoom} />
           </div>
         </div>
