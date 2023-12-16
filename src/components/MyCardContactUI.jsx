@@ -13,10 +13,10 @@ const MyCardContactUI = ({ item }) => {
             ></i>
           </h5>
 
-          <strong className="text-uppercase ">{item.texto1}</strong>
-          <p>{item.texto2}</p>
-          <strong>{item.texto3}</strong>
-          <p>{item.texto4}</p>
+          <h6 className="text-uppercase text-center fw-bold">{item.texto1}</h6>
+          <p className="text-center">{item.texto2}</p>
+          <h6 className="text-uppercase text-center fw-bold" >{item.texto3}</h6>
+          <p className="text-center">{item.texto4}</p>
         </div>
       </div>
     </div>
