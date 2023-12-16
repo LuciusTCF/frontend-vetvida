@@ -11,8 +11,10 @@ import "../css/admin.css";
 
 const AppointmentAdmin = () => {
   const [page, setPage] = useState(0);
+  const [pageUser, setPageUser] = useState(0);
+  const [limit, setLimit] = useState(31);
   const dataInfo = useGetAppointments(page);
-  const dataUsers = useGetUsers(page);
+  const dataUsers = useGetUsers(pageUser, limit);
   const [show, setShow] = useState(false);
   const [appointment, setAppointment] = useState(null);
   const [dataAppointment, setDataAppointment] = useState(null);
@@ -60,6 +62,25 @@ const AppointmentAdmin = () => {
       setPage(page - 10);
     }
   };
+  const nextUserPage = () => {
+    const totalUserPages = dataUsers?.total;
+    if (pageUser + 10 < totalUserPages) {
+      setPageUser(pageUser + 10);
+    }
+  };
+
+  const backUserPage = () => {
+    if (pageUser >= 10) {
+      setPageUser(pageUser - 10);
+    }
+  };
+
+  for (let index = 0; index < dataUsers?.total / 10; index++) {}
+
+  const changeLimit = () => {
+    setLimit(dataUsers?.total);
+    console.log(limit);
+  };
 
   const handleAdd = async (e) => {
     if (e.target.name === "date") {
@@ -67,17 +88,18 @@ const AppointmentAdmin = () => {
         ...dataAppointment,
         [e.target.name]: e.target.value + ":00.000Z",
       });
-    } else if (e.target.name === "email") {
-      const userIndex = dataUsers?.users.find(
-        (item) => item.email === e.target.value
+    } else if (e.target.name === "client") {
+      const userIndex = dataUsers.users.find(
+        (item) => item.uid === e.target.value
       );
       setDataAppointment({
         ...dataAppointment,
-        user: userIndex?.uid,
+        [e.target.name]: {
+          nameuser: userIndex.name,
+          emailuser: userIndex.email,
+          iduser: userIndex.uid,
+        },
       });
-      console.log(dataUsers.users);
-      console.log(userIndex);
-      console.log(userIndex.uid);
     } else {
       setDataAppointment({
         ...dataAppointment,
@@ -137,89 +159,12 @@ const AppointmentAdmin = () => {
                     max={maxDate}
                     required
                   />
-                  {/* <Controller
-                    name="date"
-                    control={control}
-                    rules={{ required: "La fecha es requerida" }}
-                    render={({ field }) => (
-                      <div>
-                        <input
-                          name="date"
-                          className="form-control"
-                          type="datetime-local"
-                          id="date-input"
-                          value={dataInfo?.appointment?.date}
-                          onChange={handleAdd}
-                          {...field}
-                          min={minDate}
-                          max={maxDate}
-                        />
-                        {errors.date && (
-                          <p className="text-danger">{errors.date?.message}</p>
-                        )}
-                      </div>
-                    )}
-                  /> */}
-                  {/* <input
-                    type="datetime-local"
-                    id="date-input"
-                    name="date"
-                    className="form-control"
-                    value={dataInfo?.appointment?.date}
-                    onChange={handleAdd}
-                    {...field("date", {
-                      required: "Este campo es obligatorio.",
-                      min: {
-                        value: minDate,
-                        message: `La fecha no puede ser anterior a ${minDate}.`,
-                      },
-                      max: {
-                        value: maxDate,
-                        message: `La fecha no puede ser posterior a ${maxDate}.`,
-                      },
-                    })}
-                  />
-                  {errors.date && (
-                    <p className="text-danger">{errors.date?.message}</p>
-                  )} */}
                 </fieldset>
                 <hr />
                 <fieldset className="col-12 mb-3">
                   <label htmlFor="detail-input" className="form-label fs-4">
                     Detalle:
                   </label>
-                  {/* <Controller
-                    name="detail"
-                    control={control}
-                    rules={{
-                      required: "Este campo es obligatorio.",
-                      minLength: {
-                        value: 5,
-                        message: "Escribe un mínimo de 5 caracteres.",
-                      },
-                      maxLength: {
-                        value: 500,
-                        message: "Escribe un máximo de 500 caracteres.",
-                      },
-                    }}
-                    render={({ field }) => (
-                      <div>
-                        <input
-                          className="form-control"
-                          type="text"
-                          id="detail-input"
-                          value={dataInfo?.appointment?.detail}
-                          onChange={handleAdd}
-                          {...field}
-                        />
-                        {errors.detail && (
-                          <p className="text-danger">
-                            {errors.detail?.message}
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  /> */}
                   <textarea
                     type="text"
                     id="detail-input"
@@ -237,35 +182,6 @@ const AppointmentAdmin = () => {
                   <label htmlFor="vet-input" className="form-label fs-4">
                     Veterinario:
                   </label>
-                  {/* <Controller
-                    name="veterinarian"
-                    control={control}
-                    rules={{
-                      required: "Este campo es obligatorio.",
-                    }}
-                    render={({ field }) => (
-                      <div>
-                        <select
-                          className="form-select"
-                          aria-label="Elegir veterinario"
-                          onChange={handleAdd}
-                          id="vet-input"
-                          {...field}
-                        >
-                          <option value="0" disabled>
-                            Elegir veterinario
-                          </option>
-                          <option value="Diego Torres">Diego Torres</option>
-                          <option value="Patricia Sosa">Patricia Sosa</option>
-                        </select>
-                        {errors.veterinarian && (
-                          <p className="text-danger">
-                            {errors.veterinarian?.message}
-                          </p>
-                        )}
-                      </div>
-                    )}
-                  /> */}
                   <select
                     className="form-select"
                     aria-label="Elegir veterinario"
@@ -274,7 +190,7 @@ const AppointmentAdmin = () => {
                     name="veterinarian"
                     required
                   >
-                    <option value="0" disabled>
+                    <option value="" disabled selected>
                       Elegir veterinario
                     </option>
                     <option value="Diego Torres">Diego Torres</option>
@@ -286,32 +202,6 @@ const AppointmentAdmin = () => {
                   <label htmlFor="pet-input" className="form-label fs-4">
                     Mascota:
                   </label>
-                  {/* <Controller
-                    name="pet"
-                    control={control}
-                    rules={{
-                      required: "Este campo es obligatorio.",
-                      maxLength: {
-                        value: 100,
-                        message: "Escribe un máximo de 100 caracteres.",
-                      },
-                    }}
-                    render={({ field }) => (
-                      <div>
-                        <input
-                          className="form-control"
-                          type="text"
-                          id="pet-input"
-                          value={dataInfo?.appointment?.pet}
-                          onChange={handleAdd}
-                          {...field}
-                        />
-                        {errors.pet && (
-                          <p className="text-danger">{errors.pet?.message}</p>
-                        )}
-                      </div>
-                    )}
-                  /> */}
                   <input
                     type="text"
                     id="pet-input"
@@ -326,56 +216,83 @@ const AppointmentAdmin = () => {
                 </fieldset>
                 <hr />
                 <fieldset className="col-12 mb-3">
-                  <label htmlFor="user-input" className="form-label fs-4">
-                    Usuario:
+                  <label htmlFor="client-input" className="form-label fs-4">
+                    Cliente:
                   </label>
-                  {/* <Controller
-                    name="email"
-                    control={control}
-                    rules={{
-                      required: "Este campo es obligatorio.",
-                      minLength: {
-                        value: 1,
-                        message: "Ingrese al menos 1 persona",
-                      },
-                      maxLength: {
-                        value: 100,
-                        message: "No más de 10 personas permitidas",
-                      },
-                      pattern: {
-                        value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.com$/,
-                        message:
-                          "El campo debe tener formato de correo electrónico.",
-                      },
-                    }}
-                    render={({ field }) => (
-                      <div>
-                        <input
-                          className="form-control"
-                          type="text"
-                          id="user-input"
-                          value={dataInfo?.appointment?.user?._id}
-                          onChange={handleAdd}
-                          {...field}
-                        />
-                        {errors.email && (
-                          <p className="text-danger">{errors.email?.message}</p>
-                        )}
-                      </div>
-                    )}
-                  /> */}
+                  <div className="col-12">
+                    <button
+                      disabled={pageUser == 0 && true}
+                      className="btn btn-success btn-sm"
+                      onClick={backUserPage}
+                    >
+                      <i className="fa fa-chevron-left" aria-hidden="true"></i>
+                    </button>
+                    <button
+                      disabled={pageUser + 11 > dataUsers?.total && true}
+                      className="btn btn-success btn-sm"
+                      onClick={nextUserPage}
+                    >
+                      <i className="fa fa-chevron-right" aria-hidden="true"></i>
+                    </button>
+                  </div>
+
                   <input
-                    type="text"
-                    id="user-input"
-                    name="email"
                     className="form-control"
-                    value={dataInfo?.appointment?.user?.email}
+                    list="clients"
+                    name="client"
+                    id="client-input"
                     onChange={handleAdd}
+                    onClick={changeLimit}
                     required
-                    minLength={1}
-                    maxLength={100}
-                    pattern={"/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+.com$/"}
                   />
+                  <datalist id="clients">
+                    {/* {
+                    dataUsers?.total > 0 &&
+                    (
+                      for (let index = 0; index < dataUsers?.total/10; index++) {
+                      dataUsers?.users.map((item, index) => (
+                        <option key={index} value={item?.uid}>
+                          {`${item?.name} (${item?.email})`}
+                        </option>
+                      ))
+                      setPageUser(pageUser+10)
+                    }
+                    )
+                    } */}
+                    {dataUsers?.total > 0 &&
+                      dataUsers?.users.map((item, index) => (
+                        <option key={index} value={item?.uid}>
+                          {`${item?.name} (${item?.email})`}
+                        </option>
+                      ))}
+                    {dataUsers?.total > 0 &&
+                      dataUsers?.users.map((item, index) => (
+                        <option key={index} value={item?.uid}>
+                          {`${item?.name} (${item?.email})`}
+                        </option>
+                      ))}
+                  </datalist>
+
+                  {/* <select
+                    className="form-select"
+                    placeholder="Elegir cliente"
+                    onChange={handleAdd}
+                    onClick={changeLimit}
+                    id="client-input"
+                    name="client"
+                    required
+                  >
+                    <option value="" disabled selected>
+                      Elegir cliente
+                    </option>
+
+                    {dataUsers?.users?.length > 0 &&
+                      dataUsers?.users.map((item, index) => (
+                        <option key={index} value={item?.uid}>
+                          {`${item?.name} (${item?.email})`}
+                        </option>
+                      ))}
+                  </select> */}
                 </fieldset>
               </section>
               <div className="text-end mt-2">
@@ -392,7 +309,7 @@ const AppointmentAdmin = () => {
                   <th>Detalle</th>
                   <th>Veterinario</th>
                   <th>Fecha</th>
-                  <th>Usuario</th>
+                  <th>Cliente</th>
                   <th></th>
                 </tr>
               </thead>
@@ -402,7 +319,7 @@ const AppointmentAdmin = () => {
                     <td>{item.detail}</td>
                     <td>{item.veterinarian}</td>
                     <td>{item.date}</td>
-                    <td>{`${item?.user.name} (${item?.user.email})`}</td>
+                    <td>{`${item?.client?.nameuser} (${item?.client?.emailuser})`}</td>
                     <td>
                       <div>
                         <button
@@ -437,7 +354,12 @@ const AppointmentAdmin = () => {
         )}
       </div>
       <div className="row">
-        <BtnPagination nextPage={nextPage} backPage={backPage} />
+        <BtnPagination
+          nextPage={nextPage}
+          backPage={backPage}
+          nextPageDisabled={page + 11 > dataInfo?.total && true}
+          backPageDisabled={page == 0 && true}
+        />
       </div>
     </div>
   );

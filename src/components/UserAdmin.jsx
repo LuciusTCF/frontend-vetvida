@@ -8,7 +8,8 @@ import Swal from "sweetalert2";
 
 const UserAdmin = () => {
   const [page, setPage] = useState(0);
-  const dataUsers = useGetUsers(page);
+  const [limit, setLimit] = useState(10);
+  const dataUsers = useGetUsers(page, limit);
   const [show, setShow] = useState(false);
   const [user, setUser] = useState(null);
   const handleClose = () => {
@@ -115,7 +116,12 @@ const UserAdmin = () => {
         )}
       </div>
       <div className="row">
-        <BtnPagination nextPage={nextPage} backPage={backPage} />
+        <BtnPagination
+          nextPage={nextPage}
+          backPage={backPage}
+          nextPageDisabled={page + 10 > dataUsers?.total && true}
+          backPageDisabled={page == 0 && true}
+        />
       </div>
     </div>
   );
