@@ -6,7 +6,6 @@ import "../css/admin.css";
 import useGetAppointments from "../hooks/useGetAppointments";
 import BtnPagination from "../components/BtnPagination";
 import Table from "react-bootstrap/Table";
-import GrettingAdminApp from "../components/GrettingAdminApp";
 
 const AdminScreen = () => {
   const [role, setRole] = useState(null);
@@ -14,7 +13,6 @@ const AdminScreen = () => {
   const token = JSON.parse(localStorage.getItem("token")) || null;
   const [page, setPage] = useState(0);
   const dataInfo = useGetAppointments(page);
-  // const [appointment, setAppointment] = useState(null);
 
   useEffect(() => {
     whatRole();
@@ -86,7 +84,7 @@ const AdminScreen = () => {
                         <th>Detalle</th>
                         <th>Veterinario</th>
                         <th>Fecha</th>
-                        <th>Usuario</th>
+                        <th>Cliente</th>
                       </tr>
                     </thead>
                     <tbody className="text-center">
@@ -95,14 +93,19 @@ const AdminScreen = () => {
                           <td>{item.detail}</td>
                           <td>{item.veterinarian}</td>
                           <td>{item.date}</td>
-                          <td>{`${item?.user.name} (${item?.user.email})`}</td>
+                          <td>{`${item?.client?.nameuser} (${item?.client?.emailuser})`}</td>
                         </tr>
                       ))}
                     </tbody>
                   </Table>
                 </div>
                 <div className="row">
-                  <BtnPagination nextPage={nextPage} backPage={backPage} />
+                  <BtnPagination
+                    nextPage={nextPage}
+                    backPage={backPage}
+                    nextPageDisabled={page + 10 > dataInfo?.total && true}
+                    backPageDisabled={page == 0 && true}
+                  />
                 </div>
               </>
             ) : (

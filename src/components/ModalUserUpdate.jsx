@@ -96,7 +96,7 @@ const ModalUserUpdate = ({ show, handleClose, user, setUser }) => {
                   >
                     Eliminar mascota
                   </button>
-                  <div className="d-flex">
+                  <div className="col-12 mt-1">
                     <label
                       htmlFor={`pet-name-input${index + 1}`}
                       className="form-label align-self-center"
