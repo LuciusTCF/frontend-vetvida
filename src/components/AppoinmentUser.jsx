@@ -1,105 +1,167 @@
-import React from 'react';
-import { useForm } from 'react-hook-form';
-
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { maxDate, minDate } from "../helpers/obtain-dates";
+import useGetAppointments from "../hooks/useGetAppointments";
+import useGetUsers from "../hooks/useGetUsers";
+import { appointmentAdd } from "../api/appointmentsApi";
+import { getAuthData } from "../api/auth";
 
 const AppoinmentUser = () => {
-  const { handleSubmit, register, reset, formState: { errors } } = useForm();
+  const [page, setPage] = useState(0);
+  const [pageUser, setPageUser] = useState(0);
+  const dataInfo = useGetAppointments(page);
+  const dataUsers = useGetUsers(pageUser);
+  const [id, setId] = useState(null);
+  const [message, setMessage] = useState(null);
+  const token = JSON.parse(localStorage.getItem("token")) || null;
+  const [dataAppointment, setDataAppointment] = useState(null);
+  const { reset } = useForm();
+
+  useEffect(() => {
+    whatId();
+  }, []);
+
+  const whatId = async () => {
+    const resp = await getAuthData(token);
+
+    if (resp?.msg) {
+      setMessage(resp.msg);
+    } else {
+      setId(resp.id);
+    }
+    console.log(resp?.id);
+  };
+
+  const handleAdd = async (e) => {
+    const userIndex = dataUsers.users.find((item) => item.uid === id);
+
+    console.log(userIndex);
+
+    if (e.target.name === "date") {
+      setDataAppointment({
+        ...dataAppointment,
+        [e.target.name]: e.target.value + ":00.000Z",
+        client: {
+          nameuser: userIndex.name,
+          emailuser: userIndex.email,
+          phoneuser: userIndex.phone,
+          iduser: userIndex.uid,
+        },
+      });
+    } else {
+      setDataAppointment({
+        ...dataAppointment,
+        [e.target.name]: e.target.value,
+        client: {
+          nameuser: userIndex.name,
+          emailuser: userIndex.email,
+          phoneuser: userIndex.phone,
+          iduser: userIndex.uid,
+        },
+      });
+    }
+    console.log(dataAppointment);
+  };
+
+  // const registerStatus = () => {
+  //   setRegister(!register);
+  // };
+
+  const add = async (e) => {
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
+    console.log(dataAppointment);
+    await appointmentAdd(dataAppointment);
+    reset();
+  };
+
   return (
-    <div className='container'>
+    <div className="container">
       <div className="col">
-        <form noValidate onSubmit={handleSubmit()} className="row my-3 g-3 ">
-          <h3 className='text-center  fw-bold text-uppercase mb-2'>Reservar turno</h3>
-          <fieldset class="col-md-6">
-            <label htmlFor="date-input" class="form-label">fecha y hora</label>
-            <input type="datetime-local" name='date-input' required placeholder='sellecione fecha y hora' class="form-control" id="date-input"
-              {...register('datetime', {
-                required: 'Este campo es obligatorio.'
-              })} />
-            <p className="text-danger bg-danger-subtle my-2 rounded-2">
-              {errors.datetime?.message}
-            </p>
+        <form noValidate onSubmit={add} className="row my-3 g-3 ">
+          <h3 className="text-center  fw-bold text-uppercase mb-2">
+            Reservar turno
+          </h3>
+          <fieldset className="col-md-6">
+            <label htmlFor="date-input" className="form-label">
+              Fecha y hora
+            </label>
+            <input
+              type="datetime-local"
+              name="date"
+              required
+              placeholder="Selecione fecha y hora"
+              className="form-control"
+              value={dataInfo?.appointment?.date}
+              onChange={handleAdd}
+              id="date-input"
+              min={minDate}
+              max={maxDate}
+            />
           </fieldset>
-          <fieldset class="col-md-6">
-            <label htmlFor='vet-input' class="form-label">Veterinario</label>
+          <fieldset className="col-md-6">
+            <label htmlFor="vet-input" className="form-label">
+              Veterinario
+            </label>
             <select
               className="form-select"
               aria-label="Elegir veterinario"
-              // onChange={handleAdd}
+              onChange={handleAdd}
               id="vet-input"
               name="veterinarian"
             >
-              <option value="0" disabled>
+              <option value="" disabled selected>
                 Elegir veterinario
               </option>
               <option value="Diego Torres">Diego Torres</option>
               <option value="Patricia Sosa">Patricia Sosa</option>
             </select>
           </fieldset>
-          <fieldset class="col-md-6">
-            <label htmlFor='userAppoinments' class="form-label">propietario</label>
-            <input type="text" minLength={3} maxLength={40} placeholder='nombre de usuario' class="form-control" id="user-input" required name="_id"
-              {...register('name', {
-                required: "Este campo es obligatorio.",
-                minLength: {
-                  value: 3,
-                  message: "Escribe un mínimo de 3 caracteres.",
-                },
-                maxLength: {
-                  value: 40,
-                  message: "Escribe un máximo de 40 caracteres.",
-                },
-              })}
-            />
-            <p className="text-danger bg-danger-subtle my-2 rounded-2">
-              {errors.name?.message}
-            </p>
-          </fieldset>
-          <fieldset class="col-md-6">
-            <label htmlFor='pet-input' class="form-label">mascota</label>
-            <input type="text" minLength={3} maxLength={50} required placeholder='nombre de mascota y especie' class="form-control" name='pet-input' id="pet-input"
-              {...register('pet', {
-                required: "Este campo es obligatorio.",
-                minLength: {
-                  value: 3,
-                  message: "Escribe un mínimo de 3 caracteres.",
-                },
-                maxLength: {
-                  value: 50,
-                  message: "Escribe un máximo de 50 caracteres.",
-                },
-              })}
-            />
-            <p className="text-danger bg-danger-subtle my-2 rounded-2">
-              {errors.pet?.message}
-            </p>
-          </fieldset>
-          <fieldset class="col-md-12">
-            <label htmlFor='detail-input' class="form-label">detalle</label>
-            <textarea type="text" placeholder='motivo de consulta' minLength={5} maxLength={99} name='detail-input' class="form-control" id="detail-input" 
-            {...register('detail',{
-              required:"Este campo es obligatorio.",
-              minLength: {
-                value: 5,
-                message: "Escribe un mínimo de 5 caracteres.",
-              },
-              maxLength: {
-                value: 99,
-                message: "Escribe un máximo de 100 caracteres.",
-              },
-            })}
-            />
-            <p className="text-danger bg-danger-subtle my-2 rounded-2">
-              {errors.detail?.message}
-            </p>
-          </fieldset>
-          <div className='d-grid'>
-            <button className="btn btn-primary fw-bold text-uppercase">confirmar</button>
-          </div>
 
+          <fieldset className="col-md-6">
+            <label htmlFor="pet-input" className="form-label">
+              Mascota
+            </label>
+            <input
+              type="text"
+              minLength={1}
+              maxLength={100}
+              required
+              placeholder="nombre de mascota y especie"
+              className="form-control"
+              onChange={handleAdd}
+              name="pet"
+              id="pet-input"
+              value={dataInfo?.appointment?.pet}
+            />
+          </fieldset>
+          <fieldset className="col-md-12">
+            <label htmlFor="detail-input" className="form-label">
+              Detalle
+            </label>
+            <textarea
+              type="text"
+              placeholder="motivo de consulta"
+              minLength={5}
+              maxLength={500}
+              name="detail"
+              className="form-control"
+              value={dataInfo?.appointment?.detail}
+              onChange={handleAdd}
+              id="detail-input"
+              required
+            />
+          </fieldset>
+          <div className="d-grid">
+            <button className="btn btn-primary fw-bold text-uppercase">
+              confirmar
+            </button>
+          </div>
         </form>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default AppoinmentUser
+export default AppoinmentUser;

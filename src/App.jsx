@@ -41,7 +41,7 @@ function App() {
           path="/login"
           element={<LoginScreen setEstadoLogin={setEstadoLogin} />}
         />
-        <Route path = "/appoinmentUser" element={<UserAppoinmentScreen/>} />
+        <Route path="/appointmentuser" element={<UserAppoinmentScreen />} />
         <Route path="/register" element={<RegisterUser />} />
         <Route path="/" element={<HomeScreen />} />
         <Route path="/about" element={<AboutUsScreen />} />
