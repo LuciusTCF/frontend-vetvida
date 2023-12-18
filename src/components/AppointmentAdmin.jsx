@@ -7,14 +7,15 @@ import Table from "react-bootstrap/Table";
 import Swal from "sweetalert2";
 import { useForm } from "react-hook-form";
 import useGetUsers from "../hooks/useGetUsers";
+import { minDate, maxDate } from "../helpers/obtain-dates";
 import "../css/admin.css";
 
 const AppointmentAdmin = () => {
   const [page, setPage] = useState(0);
   const [pageUser, setPageUser] = useState(0);
-  const [limit, setLimit] = useState(31);
   const dataInfo = useGetAppointments(page);
-  const dataUsers = useGetUsers(pageUser, limit);
+  const dataUsers = useGetUsers(pageUser);
+
   const [show, setShow] = useState(false);
   const [appointment, setAppointment] = useState(null);
   const [dataAppointment, setDataAppointment] = useState(null);
@@ -62,25 +63,6 @@ const AppointmentAdmin = () => {
       setPage(page - 10);
     }
   };
-  const nextUserPage = () => {
-    const totalUserPages = dataUsers?.total;
-    if (pageUser + 10 < totalUserPages) {
-      setPageUser(pageUser + 10);
-    }
-  };
-
-  const backUserPage = () => {
-    if (pageUser >= 10) {
-      setPageUser(pageUser - 10);
-    }
-  };
-
-  for (let index = 0; index < dataUsers?.total / 10; index++) {}
-
-  const changeLimit = () => {
-    setLimit(dataUsers?.total);
-    console.log(limit);
-  };
 
   const handleAdd = async (e) => {
     if (e.target.name === "date") {
@@ -117,19 +99,6 @@ const AppointmentAdmin = () => {
     await appointmentAdd(dataAppointment);
     reset();
   };
-
-  const actualDate = new Date();
-
-  const year = actualDate.getFullYear();
-  let month = actualDate.getMonth() + 1;
-  month = month < 10 ? `0${month}` : month;
-  let day = actualDate.getDate() + 1;
-  day = day < 10 ? `0${day}` : day;
-
-  const minDate = `${year}-${month}-${day}T00:00`;
-
-  const actualYear = actualDate.getFullYear();
-  const maxDate = `${actualYear + 1}-12-31T23:59`;
 
   return (
     <div className="col">
@@ -219,22 +188,6 @@ const AppointmentAdmin = () => {
                   <label htmlFor="client-input" className="form-label fs-4">
                     Cliente:
                   </label>
-                  <div className="col-12">
-                    <button
-                      disabled={pageUser == 0 && true}
-                      className="btn btn-success btn-sm"
-                      onClick={backUserPage}
-                    >
-                      <i className="fa fa-chevron-left" aria-hidden="true"></i>
-                    </button>
-                    <button
-                      disabled={pageUser + 11 > dataUsers?.total && true}
-                      className="btn btn-success btn-sm"
-                      onClick={nextUserPage}
-                    >
-                      <i className="fa fa-chevron-right" aria-hidden="true"></i>
-                    </button>
-                  </div>
 
                   <input
                     className="form-control"
@@ -242,10 +195,10 @@ const AppointmentAdmin = () => {
                     name="client"
                     id="client-input"
                     onChange={handleAdd}
-                    onClick={changeLimit}
                     required
                   />
                   <datalist id="clients">
+                    {/* {fullUserList} */}
                     {/* {
                     dataUsers?.total > 0 &&
                     (
@@ -259,12 +212,6 @@ const AppointmentAdmin = () => {
                     }
                     )
                     } */}
-                    {dataUsers?.total > 0 &&
-                      dataUsers?.users.map((item, index) => (
-                        <option key={index} value={item?.uid}>
-                          {`${item?.name} (${item?.email})`}
-                        </option>
-                      ))}
                     {dataUsers?.total > 0 &&
                       dataUsers?.users.map((item, index) => (
                         <option key={index} value={item?.uid}>

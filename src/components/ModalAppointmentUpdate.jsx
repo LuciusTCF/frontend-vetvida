@@ -3,6 +3,7 @@ import { appointmentList, appointmentUpdate } from "../api/appointmentsApi";
 
 import Modal from "react-bootstrap/Modal";
 import useGetUsers from "../hooks/useGetUsers";
+import { maxDate, minDate } from "../helpers/obtain-dates";
 
 const ModalAppointmentUpdate = ({
   show,
@@ -72,6 +73,8 @@ const ModalAppointmentUpdate = ({
                 className="form-control"
                 value={appointment.date}
                 onChange={handleChange}
+                min={minDate}
+                max={maxDate}
                 required
               />
             </fieldset>
@@ -87,6 +90,8 @@ const ModalAppointmentUpdate = ({
                 className="form-control"
                 value={appointment.detail}
                 onChange={handleChange}
+                minLength={5}
+                maxLength={500}
                 required
               ></textarea>
             </fieldset>
@@ -121,6 +126,8 @@ const ModalAppointmentUpdate = ({
                 className="form-control"
                 value={appointment.pet}
                 onChange={handleChange}
+                minLength={1}
+                maxLength={100}
                 required
               />
             </fieldset>
