@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { userList } from "../api/usersApi";
 
-const useGetUsers = (page = 0) => {
+const useGetUsers = (page = 0, limit) => {
   const [dataUsers, setDataUsers] = useState(null);
 
   useEffect(() => {
@@ -9,7 +9,7 @@ const useGetUsers = (page = 0) => {
   }, [dataUsers]);
 
   const getData = async () => {
-    const { total, users } = await userList(page);
+    const { total, users } = await userList(page, limit);
     setDataUsers({
       total,
       users,

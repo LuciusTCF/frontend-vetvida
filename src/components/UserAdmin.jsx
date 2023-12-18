@@ -8,8 +8,7 @@ import Swal from "sweetalert2";
 
 const UserAdmin = () => {
   const [page, setPage] = useState(0);
-  const [limit, setLimit] = useState(10);
-  const dataUsers = useGetUsers(page, limit);
+  const dataUsers = useGetUsers(page, 10);
   const [show, setShow] = useState(false);
   const [user, setUser] = useState(null);
   const handleClose = () => {

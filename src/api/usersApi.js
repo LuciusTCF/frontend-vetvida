@@ -3,7 +3,7 @@ const url = "http://localhost:8080/api/users";
 const token = JSON.parse(localStorage.getItem("token")) || null;
 
 const userList = async (page, limit) => {
-  const resp = await fetch(url + "?from=" + page + "?limit=" + limit, {
+  const resp = await fetch(url + "?from=" + page + "&limit=" + limit, {
     method: "GET",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
