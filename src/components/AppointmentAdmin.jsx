@@ -19,6 +19,7 @@ const AppointmentAdmin = () => {
   const [show, setShow] = useState(false);
   const [appointment, setAppointment] = useState(null);
   const [dataAppointment, setDataAppointment] = useState(null);
+  const [buttonChange, setButtonChange] = useState(false);
   const { reset } = useForm();
 
   const handleClose = () => {
@@ -79,7 +80,18 @@ const AppointmentAdmin = () => {
         [e.target.name]: {
           nameuser: userIndex.name,
           emailuser: userIndex.email,
+          phoneuser: userIndex.phone,
           iduser: userIndex.uid,
+        },
+      });
+    } else if (e.target.name === "phone") {
+      setDataAppointment({
+        ...dataAppointment,
+        client: {
+          nameuser: "Cliente no registrado",
+          emailuser: "Cliente no registrado",
+          phoneuser: e.target.value,
+          iduser: "Cliente no registrado",
         },
       });
     } else {
@@ -89,6 +101,10 @@ const AppointmentAdmin = () => {
       });
     }
     console.log(dataInfo);
+  };
+
+  const changeStatus = () => {
+    setButtonChange(!buttonChange);
   };
 
   const add = async (e) => {
@@ -185,61 +201,53 @@ const AppointmentAdmin = () => {
                 </fieldset>
                 <hr />
                 <fieldset className="col-12 mb-3">
-                  <label htmlFor="client-input" className="form-label fs-4">
-                    Cliente:
-                  </label>
-
-                  <input
-                    className="form-control"
-                    list="clients"
-                    name="client"
-                    id="client-input"
-                    onChange={handleAdd}
-                    required
-                  />
-                  <datalist id="clients">
-                    {/* {fullUserList} */}
-                    {/* {
-                    dataUsers?.total > 0 &&
-                    (
-                      for (let index = 0; index < dataUsers?.total/10; index++) {
-                      dataUsers?.users.map((item, index) => (
-                        <option key={index} value={item?.uid}>
-                          {`${item?.name} (${item?.email})`}
-                        </option>
-                      ))
-                      setPageUser(pageUser+10)
-                    }
-                    )
-                    } */}
-                    {dataUsers?.total > 0 &&
-                      dataUsers?.users.map((item, index) => (
-                        <option key={index} value={item?.uid}>
-                          {`${item?.name} (${item?.email})`}
-                        </option>
-                      ))}
-                  </datalist>
-
-                  {/* <select
-                    className="form-select"
-                    placeholder="Elegir cliente"
-                    onChange={handleAdd}
-                    onClick={changeLimit}
-                    id="client-input"
-                    name="client"
-                    required
+                  <button
+                    className="btn btn-success btn-sm me-2"
+                    onClick={changeStatus}
                   >
-                    <option value="" disabled selected>
-                      Elegir cliente
-                    </option>
+                    Cambiar
+                  </button>
+                  {buttonChange == true ? (
+                    <>
+                      <label htmlFor="client-input" className="form-label fs-4">
+                        Cliente (Registrado):
+                      </label>
 
-                    {dataUsers?.users?.length > 0 &&
-                      dataUsers?.users.map((item, index) => (
-                        <option key={index} value={item?.uid}>
-                          {`${item?.name} (${item?.email})`}
-                        </option>
-                      ))}
-                  </select> */}
+                      <input
+                        className="form-control"
+                        list="clients"
+                        name="client"
+                        id="client-input"
+                        onChange={handleAdd}
+                        required
+                      />
+                      <datalist id="clients">
+                        {dataUsers?.total > 0 &&
+                          dataUsers?.users.map((item, index) => (
+                            <option key={index} value={item?.uid}>
+                              {`${item?.name} (${item?.email})`}
+                            </option>
+                          ))}
+                      </datalist>
+                    </>
+                  ) : (
+                    <>
+                      <label htmlFor="phone-input" className="form-label fs-4">
+                        Cliente (No registrado):
+                      </label>
+                      <input
+                        type="text"
+                        id="phone-input"
+                        name="phone"
+                        className="form-control"
+                        value={dataInfo?.appointment?.client}
+                        onChange={handleAdd}
+                        required
+                        minLength={1}
+                        maxLength={100}
+                      />
+                    </>
+                  )}
                 </fieldset>
               </section>
               <div className="text-end mt-2">
@@ -266,7 +274,11 @@ const AppointmentAdmin = () => {
                     <td>{item.detail}</td>
                     <td>{item.veterinarian}</td>
                     <td>{item.date}</td>
-                    <td>{`${item?.client?.nameuser} (${item?.client?.emailuser})`}</td>
+                    <td>
+                      {item?.client?.nameuser == "Cliente no registrado"
+                        ? `${item?.client?.nameuser} (Tel:${item?.client?.phoneuser})`
+                        : `${item?.client?.nameuser} (${item?.client?.emailuser})`}
+                    </td>
                     <td>
                       <div>
                         <button

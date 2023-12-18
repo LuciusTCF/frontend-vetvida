@@ -132,19 +132,19 @@ const LoginScreen = ({ setEstadoLogin }) => {
               </div>
               <p className="text-center">Aún no tienes cuenta?</p>
               <div className="d-flex justify-content-center">
-              <Link
-                to="/register"
-                className="btn btn-outline-success mb-3 fw-bold"
-              >
-                Regístrate
-              </Link>
+                <Link
+                  to="/register"
+                  className="btn btn-outline-success mb-3 fw-bold"
+                >
+                  Regístrate
+                </Link>
               </div>
-              <hr className="text-secondary border-3"/>
+              <hr className="text-secondary border-3" />
               <div className="d-flex justify-content-center">
-              <Link to="/" className="btn btn-info fw-bold mb-3">
-                <i className="bi bi-house-fill"> </i>
-                Volver
-              </Link>
+                <Link to="/" className="btn btn-info fw-bold mb-3">
+                  <i className="bi bi-house-fill"> </i>
+                  Volver
+                </Link>
               </div>
             </section>
           </form>
