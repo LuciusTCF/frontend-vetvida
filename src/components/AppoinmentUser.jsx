@@ -5,6 +5,7 @@ import useGetAppointments from "../hooks/useGetAppointments";
 import useGetUsers from "../hooks/useGetUsers";
 import { appointmentAdd } from "../api/appointmentsApi";
 import { getAuthData } from "../api/auth";
+import Swal from "sweetalert2";
 
 const AppoinmentUser = () => {
   const [page, setPage] = useState(0);
@@ -63,16 +64,29 @@ const AppoinmentUser = () => {
     console.log(dataAppointment);
   };
 
-  // const registerStatus = () => {
-  //   setRegister(!register);
-  // };
-
   const add = async (e) => {
     if (e && e.preventDefault) {
       e.preventDefault();
     }
     console.log(dataAppointment);
-    await appointmentAdd(dataAppointment);
+    try {
+      await appointmentAdd(dataAppointment);
+      Swal.fire({
+        icon: "success",
+        title: "¡Turno registrado!",
+        text: "El turno se ha registrado exitosamente.",
+      });
+
+      reset();
+    } catch (error) {
+      console.error("Error al registrar turno:", error);
+      Swal.fire({
+        icon: "error",
+        title: "¡El turno no pudo registrarse!",
+        text: "El turno no se ha podido registrar.",
+      });
+    }
+
     reset();
   };
 
