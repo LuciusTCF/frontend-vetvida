@@ -11,6 +11,7 @@ import ErrorScreen from "./views/ErrorScreen.jsx";
 import HomeScreen from "./views/HomeScreen";
 import ContactScreen from "./views/ContactScreen";
 import AboutUsScreen from "./views/AboutUsScreen";
+import UserAppoinmentScreen from "./views/UserAppoinmentScreen.jsx";
 
 function App() {
   const [estadoLogin, setEstadoLogin] = useState(1);
@@ -40,6 +41,7 @@ function App() {
           path="/login"
           element={<LoginScreen setEstadoLogin={setEstadoLogin} />}
         />
+        <Route path="/appointmentuser" element={<UserAppoinmentScreen />} />
         <Route path="/register" element={<RegisterUser />} />
         <Route path="/" element={<HomeScreen />} />
         <Route path="/about" element={<AboutUsScreen />} />

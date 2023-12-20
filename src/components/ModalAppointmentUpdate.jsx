@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { appointmentList, appointmentUpdate } from "../api/appointmentsApi";
 
 import Modal from "react-bootstrap/Modal";
+import useGetUsers from "../hooks/useGetUsers";
+import { maxDate, minDate } from "../helpers/obtain-dates";
 
 const ModalAppointmentUpdate = ({
   show,
@@ -10,6 +12,7 @@ const ModalAppointmentUpdate = ({
   setAppointment,
 }) => {
   const [dataAppointment, setDataAppointment] = useState(null);
+  const dataUsers = useGetUsers();
 
   useEffect(() => {
     getAppointment();
@@ -22,7 +25,21 @@ const ModalAppointmentUpdate = ({
 
   // cuando cambian los inputs
   const handleChange = (e) => {
-    setAppointment({ ...appointment, [e.target.name]: e.target.value });
+    if (e.target.name === "client") {
+      const userIndex = dataUsers.users.find(
+        (item) => item.uid === e.target.value
+      );
+      setAppointment({
+        ...appointment,
+        [e.target.name]: {
+          nameuser: userIndex.name,
+          emailuser: userIndex.email,
+          iduser: userIndex.uid,
+        },
+      });
+    } else {
+      setAppointment({ ...appointment, [e.target.name]: e.target.value });
+    }
   };
 
   // actualizar
@@ -56,6 +73,8 @@ const ModalAppointmentUpdate = ({
                 className="form-control"
                 value={appointment.date}
                 onChange={handleChange}
+                min={minDate}
+                max={maxDate}
                 required
               />
             </fieldset>
@@ -71,6 +90,8 @@ const ModalAppointmentUpdate = ({
                 className="form-control"
                 value={appointment.detail}
                 onChange={handleChange}
+                minLength={5}
+                maxLength={500}
                 required
               ></textarea>
             </fieldset>
@@ -86,7 +107,7 @@ const ModalAppointmentUpdate = ({
                 id="vet-input"
                 name="veterinarian"
               >
-                <option value="0" disabled>
+                <option value="" disabled selected>
                   Elegir veterinario
                 </option>
                 <option value="Diego Torres">Diego Torres</option>
@@ -105,8 +126,34 @@ const ModalAppointmentUpdate = ({
                 className="form-control"
                 value={appointment.pet}
                 onChange={handleChange}
+                minLength={1}
+                maxLength={100}
                 required
               />
+            </fieldset>
+            <fieldset className="col-12 mb-3">
+              <label htmlFor="client-input" className="form-label fs-4">
+                Cliente:
+              </label>
+              <select
+                className="form-select"
+                aria-label="Elegir cliente"
+                onChange={handleChange}
+                id="client-input"
+                name="client"
+                required
+              >
+                <option value="" disabled selected>
+                  Elegir cliente
+                </option>
+
+                {dataUsers?.users?.length > 0 &&
+                  dataUsers?.users.map((item, index) => (
+                    <option key={index} value={item?.uid}>
+                      {`${item?.name} (${item?.email})`}
+                    </option>
+                  ))}
+              </select>
             </fieldset>
           </section>
           <div className="text-end mt-2">

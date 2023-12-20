@@ -8,7 +8,7 @@ import Swal from "sweetalert2";
 
 const UserAdmin = () => {
   const [page, setPage] = useState(0);
-  const dataUsers = useGetUsers(page);
+  const dataUsers = useGetUsers(page, 10);
   const [show, setShow] = useState(false);
   const [user, setUser] = useState(null);
   const handleClose = () => {
@@ -63,7 +63,6 @@ const UserAdmin = () => {
             <Table striped bordered hover responsive="lg" variant="dark">
               <thead className="text-center">
                 <tr>
-                  <th>ID</th>
                   <th>Nombre</th>
                   <th>Correo</th>
                   <th>Télefono</th>
@@ -73,9 +72,8 @@ const UserAdmin = () => {
               </thead>
 
               <tbody className="text-center">
-                {dataUsers.users.map((item) => (
-                  <tr key={item.uid}>
-                    <td>{item.uid}</td>
+                {dataUsers.users.map((item, index) => (
+                  <tr key={index}>
                     <td>{item.name}</td>
                     <td>{item.email}</td>
                     <td>{item.phone}</td>
@@ -83,16 +81,18 @@ const UserAdmin = () => {
                     <td>
                       <div>
                         <button
+                          disabled={item.role === "ADMIN_ROLE" ? true : false}
                           className="btn btn-danger btn-sm"
                           onClick={() => deleteUser(item.uid)}
                         >
-                          X
+                          <i className="fa fa-trash" aria-hidden="true"></i>
                         </button>
                         <button
+                          disabled={item.role === "ADMIN_ROLE" ? true : false}
                           className="btn btn-warning btn-sm"
                           onClick={() => handleShow(item)}
                         >
-                          M
+                          <i className="fa fa-pencil" aria-hidden="true"></i>
                         </button>
                       </div>
                     </td>
@@ -115,7 +115,12 @@ const UserAdmin = () => {
         )}
       </div>
       <div className="row">
-        <BtnPagination nextPage={nextPage} backPage={backPage} />
+        <BtnPagination
+          nextPage={nextPage}
+          backPage={backPage}
+          nextPageDisabled={page + 10 > dataUsers?.total && true}
+          backPageDisabled={page == 0 && true}
+        />
       </div>
     </div>
   );

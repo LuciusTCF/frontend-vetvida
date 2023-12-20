@@ -56,16 +56,6 @@ const NavBarApp = ({ estadoLogin }) => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" aria-current="page" to="/about">
-                  Nosotros
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" aria-current="page" to="/contact">
-                  Contacto
-                </NavLink>
-              </li>
-              <li className="nav-item">
                 <NavLink
                   className="nav-link"
                   aria-current="page"
@@ -77,6 +67,25 @@ const NavBarApp = ({ estadoLogin }) => {
               <li className="nav-item">
                 <NavLink className="nav-link" aria-current="page" to="/plans">
                   Planes
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link"
+                  aria-current="page"
+                  to="/appointmentuser"
+                >
+                  Turnos
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" aria-current="page" to="/contact">
+                  Contacto
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" aria-current="page" to="/about">
+                  Nosotros
                 </NavLink>
               </li>
               {estadoLogin && (
@@ -93,6 +102,7 @@ const NavBarApp = ({ estadoLogin }) => {
                 Register
               </Link>
             )}
+            
             <Link className="btn btn-outline-dark" to="/login">
               {estadoLogin ? "LogOut" : "LogIn"}
             </Link>
