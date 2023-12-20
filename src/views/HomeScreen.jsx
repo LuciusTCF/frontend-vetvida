@@ -64,10 +64,10 @@ const HomeScreen = () => {
 
       <div>
         <div className="card mx-3 mb-5">
-          <div className="card-header">Gracias por confiar en nosotros:</div>
+          <div className="card-header bgComentario">Gracias por confiar en nosotros:</div>
           <ul className="list-group list-group-flush">
             {infoComment.map((item, index) => (
-              <li key={index} className="list-group-item">
+              <li key={index} className="list-group-item servicios">
                 {item.date + item.name + item.description}
               </li>
             ))}
