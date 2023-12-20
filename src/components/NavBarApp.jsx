@@ -102,6 +102,7 @@ const NavBarApp = ({ estadoLogin }) => {
                 Register
               </Link>
             )}
+            
             <Link className="btn btn-outline-dark" to="/login">
               {estadoLogin ? "LogOut" : "LogIn"}
             </Link>
