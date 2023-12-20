@@ -88,6 +88,11 @@
   .cardhome p{
     font-size: 15px;
   }
+
+  .bgComentario{
+    background-color: #3d1164;
+    color: white;
+  }
   
 
   @media (min-width: 280px) {
