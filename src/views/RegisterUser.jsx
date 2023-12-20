@@ -13,6 +13,7 @@ const RegisterUser = () => {
     formState: { errors },
   } = useForm();
   const url = "https://backend-vetvida.onrender.com/api/users";
+
   const registerUser = async (data) => {
     try {
       const dataRes = await userAdd(data); 
