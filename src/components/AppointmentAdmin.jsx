@@ -5,14 +5,23 @@ import BtnPagination from "../components/BtnPagination";
 import ModalAppointmentUpdate from "../components/ModalAppointmentUpdate";
 import Table from "react-bootstrap/Table";
 import Swal from "sweetalert2";
+import { useForm } from "react-hook-form";
+import useGetUsers from "../hooks/useGetUsers";
+import { minDate, maxDate } from "../helpers/obtain-dates";
+import "../css/admin.css";
 
 const AppointmentAdmin = () => {
   const [page, setPage] = useState(0);
+  const [pageUser, setPageUser] = useState(0);
   const dataInfo = useGetAppointments(page);
-  const [show, setShow] = useState(false);
+  const dataUsers = useGetUsers(pageUser);
 
+  const [show, setShow] = useState(false);
   const [appointment, setAppointment] = useState(null);
   const [dataAppointment, setDataAppointment] = useState(null);
+  const [buttonChange, setButtonChange] = useState(false);
+  const { reset } = useForm();
+
   const handleClose = () => {
     setAppointment(null);
     setShow(false);
@@ -56,16 +65,34 @@ const AppointmentAdmin = () => {
     }
   };
 
-  const handleAdd = (e) => {
+  const handleAdd = async (e) => {
     if (e.target.name === "date") {
       setDataAppointment({
         ...dataAppointment,
         [e.target.name]: e.target.value + ":00.000Z",
       });
-    } else if (e.target.name === "_id") {
+    } else if (e.target.name === "client") {
+      const userIndex = dataUsers.users.find(
+        (item) => item.uid === e.target.value
+      );
       setDataAppointment({
         ...dataAppointment,
-        user: { [e.target.name]: e.target.value },
+        [e.target.name]: {
+          nameuser: userIndex.name,
+          emailuser: userIndex.email,
+          phoneuser: userIndex.phone,
+          iduser: userIndex.uid,
+        },
+      });
+    } else if (e.target.name === "phone") {
+      setDataAppointment({
+        ...dataAppointment,
+        client: {
+          nameuser: "Cliente no registrado",
+          emailuser: "Cliente no registrado",
+          phoneuser: e.target.value,
+          iduser: "Cliente no registrado",
+        },
       });
     } else {
       setDataAppointment({
@@ -73,21 +100,32 @@ const AppointmentAdmin = () => {
         [e.target.name]: e.target.value,
       });
     }
+    console.log(dataInfo);
+  };
+
+  const changeStatus = () => {
+    setButtonChange(!buttonChange);
   };
 
   const add = async (e) => {
-    e.preventDefault();
+    if (e && e.preventDefault) {
+      e.preventDefault();
+    }
+    console.log(dataAppointment);
     await appointmentAdd(dataAppointment);
+    reset();
   };
 
   return (
     <div className="col">
-      <div className="row">
+      <div className="row justify-content-center">
         {dataInfo?.appointment ? (
           <>
             <form
               onSubmit={add}
-              className="bg-light text-dark p-3 rounded w-100"
+              className={`bg-light text-dark p-3 rounded ${
+                window.innerWidth > 1024 ? "w-50" : "w-100"
+              } justify-content-center`}
             >
               <h3>Crear turno</h3>
               <section className="row">
@@ -102,6 +140,8 @@ const AppointmentAdmin = () => {
                     className="form-control"
                     value={dataInfo?.appointment?.date}
                     onChange={handleAdd}
+                    min={minDate}
+                    max={maxDate}
                     required
                   />
                 </fieldset>
@@ -118,6 +158,8 @@ const AppointmentAdmin = () => {
                     value={dataInfo?.appointment?.detail}
                     onChange={handleAdd}
                     required
+                    minLength={5}
+                    maxLength={500}
                   ></textarea>
                 </fieldset>
                 <hr />
@@ -131,8 +173,9 @@ const AppointmentAdmin = () => {
                     onChange={handleAdd}
                     id="vet-input"
                     name="veterinarian"
+                    required
                   >
-                    <option value="0" disabled>
+                    <option value="" disabled selected>
                       Elegir veterinario
                     </option>
                     <option value="Diego Torres">Diego Torres</option>
@@ -152,22 +195,59 @@ const AppointmentAdmin = () => {
                     value={dataInfo?.appointment?.pet}
                     onChange={handleAdd}
                     required
+                    minLength={1}
+                    maxLength={100}
                   />
                 </fieldset>
                 <hr />
                 <fieldset className="col-12 mb-3">
-                  <label htmlFor="user-input" className="form-label fs-4">
-                    Usuario:
-                  </label>
-                  <input
-                    type="text"
-                    id="user-input"
-                    name="_id"
-                    className="form-control"
-                    value={dataInfo?.appointment?.user?._id}
-                    onChange={handleAdd}
-                    required
-                  />
+                  <button
+                    className="btn btn-success btn-sm me-2"
+                    onClick={changeStatus}
+                  >
+                    Cambiar
+                  </button>
+                  {buttonChange == true ? (
+                    <>
+                      <label htmlFor="client-input" className="form-label fs-4">
+                        Cliente (Registrado):
+                      </label>
+
+                      <input
+                        className="form-control"
+                        list="clients"
+                        name="client"
+                        id="client-input"
+                        onChange={handleAdd}
+                        required
+                      />
+                      <datalist id="clients">
+                        {dataUsers?.total > 0 &&
+                          dataUsers?.users.map((item, index) => (
+                            <option key={index} value={item?.uid}>
+                              {`${item?.name} (${item?.email})`}
+                            </option>
+                          ))}
+                      </datalist>
+                    </>
+                  ) : (
+                    <>
+                      <label htmlFor="phone-input" className="form-label fs-4">
+                        Cliente (No registrado):
+                      </label>
+                      <input
+                        type="text"
+                        id="phone-input"
+                        name="phone"
+                        className="form-control"
+                        value={dataInfo?.appointment?.client}
+                        onChange={handleAdd}
+                        required
+                        minLength={1}
+                        maxLength={100}
+                      />
+                    </>
+                  )}
                 </fieldset>
               </section>
               <div className="text-end mt-2">
@@ -181,35 +261,37 @@ const AppointmentAdmin = () => {
             <Table striped bordered hover responsive="lg" variant="dark">
               <thead className="text-center">
                 <tr>
-                  <th>ID</th>
                   <th>Detalle</th>
                   <th>Veterinario</th>
                   <th>Fecha</th>
-                  <th>Usuario</th>
+                  <th>Cliente</th>
                   <th></th>
                 </tr>
               </thead>
               <tbody className="text-center">
-                {dataInfo.appointment.map((item) => (
-                  <tr key={item.aid}>
-                    <td>{item.aid}</td>
+                {dataInfo.appointment.map((item, index) => (
+                  <tr key={index}>
                     <td>{item.detail}</td>
                     <td>{item.veterinarian}</td>
                     <td>{item.date}</td>
-                    <td>{`${item?.user.name} (ID:${item?.user._id})`}</td>
+                    <td>
+                      {item?.client?.nameuser == "Cliente no registrado"
+                        ? `${item?.client?.nameuser} (Tel:${item?.client?.phoneuser})`
+                        : `${item?.client?.nameuser} (${item?.client?.emailuser})`}
+                    </td>
                     <td>
                       <div>
                         <button
                           className="btn btn-danger btn-sm"
                           onClick={() => deleteAppointment(item.aid)}
                         >
-                          X
+                          <i className="fa fa-trash" aria-hidden="true"></i>
                         </button>
                         <button
                           className="btn btn-warning btn-sm"
                           onClick={() => handleShow(item)}
                         >
-                          M
+                          <i className="fa fa-pencil" aria-hidden="true"></i>
                         </button>
                       </div>
                     </td>
@@ -231,7 +313,12 @@ const AppointmentAdmin = () => {
         )}
       </div>
       <div className="row">
-        <BtnPagination nextPage={nextPage} backPage={backPage} />
+        <BtnPagination
+          nextPage={nextPage}
+          backPage={backPage}
+          nextPageDisabled={page + 11 > dataInfo?.total && true}
+          backPageDisabled={page == 0 && true}
+        />
       </div>
     </div>
   );

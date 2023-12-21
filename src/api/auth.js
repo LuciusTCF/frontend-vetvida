@@ -1,4 +1,5 @@
-const url = "https://backend-vetvida.onrender.com/api/auth";
+// const url = "https://backend-vetvida.onrender.com/api/auth";
+const url = "http://localhost:8080/api/auth";
 
 export const login = async (data) => {
   const res = await fetch(url + "/login", {
@@ -29,6 +30,7 @@ export const getAuthData = async (token) => {
     }
 
     const info = await res.json();
+    console.log(info);
     return info;
   } catch (error) {
     console.error("Error en la función getAuthData:", error);
