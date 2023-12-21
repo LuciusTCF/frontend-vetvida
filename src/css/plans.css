@@ -5,6 +5,7 @@
 
 .formPlans {
   background-color: #f7b9ff;
+  width: 50%;
 }
 
 .imgPlans {
@@ -54,8 +55,16 @@
   margin-left: 1%;
 }
 
+.inputEmail{
+  display: none;
+}
+
 @media only screen and (max-width: 480px) {
   .deslizar {
     margin-top: 8%;
+  }
+
+  .formPlans{
+    width: 100%;
   }
 }
