@@ -1,5 +1,4 @@
-// const url = "https://backend-vetvida.onrender.com/api/appointments";
-const url = "http://localhost:8080/api/appointments";
+const url = "https://backend-vetvida.onrender.com/api/appointments";
 const token = JSON.parse(localStorage.getItem("token")) || null;
 
 const appointmentList = async (page) => {

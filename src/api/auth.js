@@ -1,5 +1,4 @@
-// const url = "https://backend-vetvida.onrender.com/api/auth";
-const url = "http://localhost:8080/api/auth";
+const url = "https://backend-vetvida.onrender.com/api/auth";
 
 export const login = async (data) => {
   const res = await fetch(url + "/login", {
