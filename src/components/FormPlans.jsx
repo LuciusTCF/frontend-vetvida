@@ -13,15 +13,20 @@ export const FormPlans = () => {
     formState: { errors },
   } = useForm();
 
+
+  
+
+
   const sendEmail = (e) => {
     e.preventDefault();
+    
 
     emailjs
       .sendForm(
         "service_wv4tbgi",
-        "template_4tzbupq",
-        form.current,
-        "EmZk4erSQRl74webE"
+    "template_whc5cdc",
+        form.current, 
+        "8NvfwY6UdhvtfKmpd"
       )
       .then(
         (result) => {
@@ -34,41 +39,24 @@ export const FormPlans = () => {
         }
       );
 
-    onSubmit = (event) => {
-      event.preventDefault();
-      this.setState({ isLoading: true });
-      console.log(this.state);
-      setTimeout(() => {
-        this.setState({ isLoading: false });
-      }, 2000);
-    };
-
-    handleSubmit = (event) => {
-      event.preventDefault();
-      this.setState({ isLoading: true });
-      console.log(this.state);
-      setTimeout(() => {
-        this.setState({ isLoading: false });
-      }, 2000);
-    };
   };
 
   return (
-    <form
-      ref={form}
-      onSubmit={sendEmail}
-      className=" text-dark p-3 rounded w-50 mx-auto formPlans mt-4 mb-4"
+    <form ref={form}
+      onSubmit={sendEmail} 
+      className=" text-dark p-3 rounded mx-auto formPlans mt-4 mb-4" 
     >
       <h2 className="text-center mb-4">
         <b>Dejá tus datos y nuestro equipo se pondrá en contacto!</b>
       </h2>
       <section className="row">
-        <fieldset className="col-12 ">
+        <fieldset className="col-12 col-sm-12">
           <input
             type="text"
             placeholder="Nombre completo"
             className="form-control"
             name="fullName"
+            id="fullName"
             {...register("name", {
               required: "Este campo es requerido",
               minLength: {
@@ -97,6 +85,18 @@ export const FormPlans = () => {
               required: "Este campo es requerido",
             })}
             required
+          />
+          <p className="text-danger">{errors.emailPlans?.message}</p>
+        </fieldset>
+        
+        <fieldset className="col-12 inputEmail">
+          <input
+            type="email"
+            name="emailPlans"
+            placeholder="Correo electrónico"
+            className="form-control"
+            value="vetvida979@gmail.com"
+           
           />
           <p className="text-danger">{errors.emailPlans?.message}</p>
         </fieldset>
@@ -155,7 +155,7 @@ export const FormPlans = () => {
               name="flexRadioDefault"
               id="flexRadioDefault1"
             />
-            <label className="form-check-label" htmlFor="flexRadioDefault1">
+            <label className="form-check-label" htmlFor="flexRadioDefault1" name=" Información sobre costos.">
               Información sobre costos.
             </label>
           </div>
@@ -167,7 +167,7 @@ export const FormPlans = () => {
               id="flexRadioDefault2"
               defaultChecked=""
             />
-            <label className="form-check-label" htmlFor="flexRadioDefault2">
+            <label className="form-check-label" htmlFor="flexRadioDefault2" name=" Coberturas y descuentos especiales.">
               Coberturas y descuentos especiales.
             </label>
           </div>
@@ -179,11 +179,13 @@ export const FormPlans = () => {
               name="flexRadioDefault"
               id="flexRadioDefault3"
             />
-            <label className="form-check-label" htmlFor="flexRadioDefault3">
+            <label className="form-check-label" htmlFor="flexRadioDefault3" name="Otras.">
               Otras.
             </label>
           </div>
         </fieldset>
+        
+       
 
         <button type="submit" value="Send" className="btn btn-light mt-4">
           Enviar
