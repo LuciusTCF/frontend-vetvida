@@ -65,7 +65,7 @@ const LoginScreen = ({ setEstadoLogin }) => {
             onSubmit={handleSubmit(logIn)}
             className="col-12 col-lg-6 my-auto px-5"
           >
-            <h1 className="mb-4  mt-4 ">Iniciar sesión</h1>
+            <h1 className="mb-4  mt-4 text-center">Iniciar sesión</h1>
             <section>
               <fieldset className="form-floating  mb-3">
                 <input
@@ -79,8 +79,8 @@ const LoginScreen = ({ setEstadoLogin }) => {
                       message: "Escribe un mínimo de 5 caracteres.",
                     },
                     maxLength: {
-                      value: 21,
-                      message: "Escribe un máximo de 20 caracteres.",
+                      value: 60,
+                      message: "Escribe un máximo de 60 caracteres.",
                     },
                     pattern: {
                       value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9-]+\.com$/,
@@ -89,7 +89,7 @@ const LoginScreen = ({ setEstadoLogin }) => {
                     },
                   })}
                   required
-                  maxLength={30}
+                  maxLength={60}
                   minLength={5}
                   disabled={loading ? true : false}
                 />
@@ -130,18 +130,22 @@ const LoginScreen = ({ setEstadoLogin }) => {
                   Ingresar
                 </button>
               </div>
-              <p>Aun no tienes cuenta?</p>
-              <Link
-                to="/register"
-                className="btn btn-outline-success mb-3 fw-bold "
-              >
-                Regístrate
-              </Link>
+              <p className="text-center">Aún no tienes cuenta?</p>
+              <div className="d-flex justify-content-center">
+                <Link
+                  to="/register"
+                  className="btn btn-outline-success mb-3 fw-bold"
+                >
+                  Regístrate
+                </Link>
+              </div>
               <hr className="text-secondary border-3" />
-              <Link to="/" className="btn btn-info fw-bold mb-3  ">
-                <i className="bi bi-house-fill"> </i>
-                Volver
-              </Link>
+              <div className="d-flex justify-content-center">
+                <Link to="/" className="btn btn-info fw-bold mb-3">
+                  <i className="bi bi-house-fill"> </i>
+                  Volver
+                </Link>
+              </div>
             </section>
           </form>
         </div>

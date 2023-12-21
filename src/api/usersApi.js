@@ -1,8 +1,8 @@
 const url = "https://backend-vetvida.onrender.com/api/users";
 const token = JSON.parse(localStorage.getItem("token")) || null;
 
-const userList = async (page) => {
-  const resp = await fetch(url + "?from=" + page, {
+const userList = async (page, limit) => {
+  const resp = await fetch(url + "?from=" + page + "&limit=" + limit, {
     method: "GET",
     headers: {
       "Content-type": "application/json; charset=UTF-8",
@@ -20,7 +20,6 @@ const userAdd = async (data) => {
     body: JSON.stringify(data),
     headers: {
       "Content-type": "application/json; charset=UTF-8",
-      "x-token": token,
     },
   });
 

@@ -56,16 +56,6 @@ const NavBarApp = ({ estadoLogin }) => {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" aria-current="page" to="/about">
-                  Nosotros
-                </NavLink>
-              </li>
-              <li className="nav-item">
-                <NavLink className="nav-link" aria-current="page" to="/contact">
-                  Contacto
-                </NavLink>
-              </li>
-              <li className="nav-item">
                 <NavLink
                   className="nav-link"
                   aria-current="page"
@@ -79,7 +69,26 @@ const NavBarApp = ({ estadoLogin }) => {
                   Planes
                 </NavLink>
               </li>
-              {estadoLogin && (
+              <li className="nav-item">
+                <NavLink
+                  className="nav-link"
+                  aria-current="page"
+                  to="/appointmentuser"
+                >
+                  Turnos
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" aria-current="page" to="/contact">
+                  Contacto
+                </NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink className="nav-link" aria-current="page" to="/about">
+                  Nosotros
+                </NavLink>
+              </li>
+              {localStorage.getItem("token") && (
                 <li className="nav-item">
                   <NavLink className="nav-link" aria-current="page" to="/admin">
                     Administrador
@@ -88,13 +97,14 @@ const NavBarApp = ({ estadoLogin }) => {
               )}
             </ul>
 
-            {!estadoLogin && (
-              <Link className="btn btn-outline-dark" to="/register">
+            {!localStorage.getItem("token") && (
+              <Link className="btn btn-outline-dark mx-1 btnNav" to="/register">
                 Register
               </Link>
             )}
-            <Link className="btn btn-outline-dark" to="/login">
-              {estadoLogin ? "LogOut" : "LogIn"}
+
+            <Link className="btn btn-outline-dark btnNav" to="/login">
+              {localStorage.getItem("token") ? "LogOut" : "LogIn"}
             </Link>
           </div>
         </div>
