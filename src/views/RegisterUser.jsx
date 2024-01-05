@@ -65,6 +65,10 @@ const RegisterUser = () => {
                   value: 21,
                   message: "Escribe un máximo de 20 caracteres.",
                 },
+                pattern: {
+                  value: /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/,
+                  message: "Ingresa solo letras en este campo.",
+                }
               })}
             />
             <p className="text-danger bg-danger-subtle my-2 rounded-2">
@@ -88,6 +92,10 @@ const RegisterUser = () => {
                   value: 14,
                   message: "Escribe un máximo de 15 caracteres.",
                 },
+                pattern: {
+                  value: /^\d*$/,
+                  message: "Ingresa solo números en este campo.",
+                }
               })}
             />
             <p className="text-danger bg-danger-subtle my-2 rounded-2">
