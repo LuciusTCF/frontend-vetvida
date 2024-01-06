@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { userAdd } from "../api/usersApi";
 
+
+
 const RegisterUser = () => {
   const {
     handleSubmit,
@@ -34,7 +36,7 @@ const RegisterUser = () => {
       <div className="imgFondoUser">
         <img src={imagenFondo} className="imgUser " alt="perros" />
       </div>
-      <div className="contenedorFormUser border-2 border border-primary mt-5 w-50 rounded-2 container">
+      <div className="contenedorFormUser my-5   rounded-2 container">
         <form
           noValidate
           onSubmit={handleSubmit(registerUser)}
