@@ -11,10 +11,11 @@ const AppoinmentUser = () => {
   const [page, setPage] = useState(0);
   const [pageUser, setPageUser] = useState(0);
   const dataInfo = useGetAppointments(page);
-  const dataUsers = useGetUsers(pageUser);
+  let dataUsers = null;
   const [id, setId] = useState(null);
   const [message, setMessage] = useState(null);
   const token = JSON.parse(localStorage.getItem("token")) || null;
+  token && (dataUsers = useGetUsers(pageUser));
   const [dataAppointment, setDataAppointment] = useState(null);
   const { reset } = useForm();
 
