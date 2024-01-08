@@ -20,7 +20,9 @@ const AppoinmentUser = () => {
   const { reset } = useForm();
 
   useEffect(() => {
-    whatId();
+    if (token) {
+      whatId();
+    }
   }, []);
 
   const whatId = async () => {
@@ -31,7 +33,6 @@ const AppoinmentUser = () => {
     } else {
       setId(resp.id);
     }
-    console.log(resp?.id);
   };
 
   const handleAdd = async (e) => {
