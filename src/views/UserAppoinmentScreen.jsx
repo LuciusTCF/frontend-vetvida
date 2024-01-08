@@ -10,7 +10,7 @@ const UserAppoinmentScreen = () => {
         <img src={perritos} className="imgAppoinments " alt="perros" />
       </div>
       <div className="vh-100">
-        <div className="contenedorFormAppoinments border-3 border border-info my-5 rounded-2 container">
+        <div className="contenedorFormAppoinments border-1 border border-info my-5 rounded-2 container">
           <AppoinmentUser />
         </div>
       </div>
