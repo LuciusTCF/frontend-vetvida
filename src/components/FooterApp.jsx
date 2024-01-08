@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../assets/logo.png";
 import "../css/footer.css";
+import { Link } from "react-router-dom";
 
 const FooterApp = () => {
   return (
@@ -15,9 +16,15 @@ const FooterApp = () => {
             Siguenos en nuestras redes sociales
           </h5>
           <div className="d-flex justify-content-evenly mb-4">
-            <i className="fa fa-instagram fa-2x color"></i>
-            <i className="fa fa-facebook fa-2x color"></i>
-            <i className="fa fa-twitter fa-2x color"></i>
+            <Link to="/instagram">
+              <i className="fa fa-instagram fa-2x color"></i>
+            </Link>
+            <Link to="/facebook">
+              <i className="fa fa-facebook fa-2x color"></i>
+            </Link>
+            <Link to="/twitter">
+              <i className="fa fa-twitter fa-2x color"></i>
+            </Link>
           </div>
           <div className="text-center">
             <a
