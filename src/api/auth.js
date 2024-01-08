@@ -30,7 +30,7 @@ export const getAuthData = async (token) => {
     }
 
     const info = await res.json();
-    console.log(info);
+
     return info;
   } catch (error) {
     console.error("Error en la función getAuthData:", error);

@@ -33,7 +33,6 @@ const ContactScreen = () => {
             showConfirmButton: false,
             timer: 2500,
           });
-          console.log(result.text);
           reset();
         },
         (error) => {
@@ -90,6 +89,10 @@ const ContactScreen = () => {
                       value: 21,
                       message: "Escribe un máximo de 20 caracteres.",
                     },
+                    pattern: {
+                      value: /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/,
+                      message: "Ingresa solo letras en este campo.",
+                    }
                   })}
                 />
                 <p className="text-danger">{errors.user_name?.message}</p>

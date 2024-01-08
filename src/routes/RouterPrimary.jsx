@@ -5,6 +5,7 @@ import UserScreen from "../views/UserScreen";
 import AppointmentScreen from "../views/AppointmentScreen";
 import ErrorScreen from "../views/ErrorScreen";
 
+
 const RouterPrimary = () => {
   return (
     <Routes>

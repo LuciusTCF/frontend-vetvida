@@ -5,6 +5,8 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 import { userAdd } from "../api/usersApi";
 
+
+
 const RegisterUser = () => {
   const {
     handleSubmit,
@@ -34,7 +36,7 @@ const RegisterUser = () => {
       <div className="imgFondoUser">
         <img src={imagenFondo} className="imgUser " alt="perros" />
       </div>
-      <div className="contenedorFormUser border-2 border border-primary mt-5 w-50 rounded-2 container">
+      <div className="contenedorFormUser my-5   rounded-2 container">
         <form
           noValidate
           onSubmit={handleSubmit(registerUser)}
@@ -65,6 +67,10 @@ const RegisterUser = () => {
                   value: 21,
                   message: "Escribe un máximo de 20 caracteres.",
                 },
+                pattern: {
+                  value: /^[A-Za-zÁÉÍÓÚáéíóúñÑ\s]+$/,
+                  message: "Ingresa solo letras en este campo.",
+                }
               })}
             />
             <p className="text-danger bg-danger-subtle my-2 rounded-2">
@@ -88,6 +94,10 @@ const RegisterUser = () => {
                   value: 14,
                   message: "Escribe un máximo de 15 caracteres.",
                 },
+                pattern: {
+                  value: /^\d*$/,
+                  message: "Ingresa solo números en este campo.",
+                }
               })}
             />
             <p className="text-danger bg-danger-subtle my-2 rounded-2">
