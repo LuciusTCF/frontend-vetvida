@@ -30,7 +30,6 @@ export const FormPlans = () => {
       )
       .then(
         (result) => {
-          console.log(result.text);
           Swal.fire("Hecho!", "Por favor, verifique su email.", "success");
           form.current.reset();
         },
@@ -51,7 +50,9 @@ export const FormPlans = () => {
       </h2>
       <section className="row">
         <fieldset className="col-12 col-sm-12">
-          <input
+          <input 
+          pattern="[a-zA-Z ]+"
+           title="Solo se permiten letras y espacios"
             type="text"
             placeholder="Nombre completo"
             className="form-control"
@@ -68,6 +69,7 @@ export const FormPlans = () => {
                 message: "Este campo tiene un máximo de 30 letras",
               },
             })}
+            
             required
             minLength={4}
             maxLength={30}
