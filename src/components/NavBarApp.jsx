@@ -3,6 +3,7 @@ import logo from "../assets/logo.png";
 import { NavLink, Link } from "react-router-dom";
 import "../css/navbar.css";
 import obtenerClima from "../helpers/obtener-clima";
+import { getAuthData } from "../api/auth";
 
 const NavBarApp = ({ estadoLogin }) => {
   const [tiempo, setTiempo] = useState(null);
@@ -29,6 +30,27 @@ const NavBarApp = ({ estadoLogin }) => {
   useEffect(() => {
     clima();
   }, []);
+
+
+  const [role, setRole] = useState(null);
+  const [message, setMessage] = useState(null);
+  const token = JSON.parse(localStorage.getItem("token")) || null;
+
+  const whatRole = async () => {
+    const resp = await getAuthData(token);
+
+    if (resp?.msg) {
+      setMessage(resp.msg);
+    } else {
+      setRole(resp.role);
+    }
+    
+  };
+  
+  useEffect(() => {
+    whatRole();
+  }, []);
+
 
   return (
     <div className="sticky-top">
@@ -88,7 +110,7 @@ const NavBarApp = ({ estadoLogin }) => {
                   Nosotros
                 </NavLink>
               </li>
-              {localStorage.getItem("token") && (
+              {(localStorage.getItem("token") && (role === "ADMIN_ROLE")) && (
                 <li className="nav-item">
                   <NavLink className="nav-link" aria-current="page" to="/admin">
                     Administrador
